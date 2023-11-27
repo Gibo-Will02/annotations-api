@@ -2,8 +2,9 @@ const axios = require('axios')
 const express = require( "express" )
 
 const router = express.Router()
-var serviceHost = encodeURIComponent('http://localhost:3000/');
-var casHost = 'https://signin.k-state.edu/WebISO/';
+var serviceHost = encodeURIComponent(process.env.DOMAIN_NAME);
+console.log(process.env)
+var casHost = 'https://testcas.cs.ksu.edu/';
 
 router.get('/login', (req, res) => {
   console.log("Inside /login")
