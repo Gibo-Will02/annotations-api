@@ -26,7 +26,7 @@ app.use(session({
 
 const router = express.Router();
 
-app.use('/api', router)
+app.use('/api', router) //Put in routers folder in a file
 
 router.use(auth)
 
@@ -35,7 +35,7 @@ router.get('/whoami',loginRequired,(req, res) => {
   res.json({username: req.session.username});
 })
 
-const config = {
+const config = { //put into router file
   headers: {
     "X-Institution": process.env.INSTITUTION,
     "X-API-TOKEN": process.env.TOKEN
