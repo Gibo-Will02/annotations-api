@@ -4,6 +4,8 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile.dev
+    environment:
+      DOMAIN_NAME: "https://${CODESPACE_NAME}-3000.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/"
     ports:
       - "3050:3050"
     container_name: coding-textbook-server
