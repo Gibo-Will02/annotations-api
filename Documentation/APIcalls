@@ -1,0 +1,54 @@
+Call: /api/instution_roster
+Type: GET
+Parameters: None
+Description: Get information on all the students in the university
+Return:  [{ _id: string, FirstName: string, lastName: string, email: string }]
+
+Call: /api/user_course_list
+Type: GET
+Parameters: user_perusall_id (string)
+Description: Get courses for a student
+Return: [{ _id: string, FirstName: string, lastName: string, email: string, studentCourseIds: [string] }]
+
+Call: /api/institution_courses
+Type: GET
+Parameters: None
+Description: Gets all the courses for the institution
+Return: [{ _id: string, name: string }]
+
+Call: /api/course_data
+Type: GET
+Parameters: course_id (string)
+Description: Get information from the selected course
+Return: { _id: string, instructorIds: [string], name: string, lowestPossibleScore: int, 
+highestPossibleScore: int,  inactiveStudentIds: [string], studentIds: [string] }	
+
+Call: /api/course_assignments
+Type: GET
+Parameters: course_id (string)
+Description: Get information on all the assignments of a course, a list of student IDs will be added if the assignment was assigned to specific students
+Return: [{ _id: string, name: string, documentId: string, deadline: string (date in ISO 8601 format), studentIds: [string] (if applicable) }]
+
+Call: /api/assignment_grades
+Type: GET
+Parameters: course_id (string), assignment_id (string)
+Description: Get grades from all students on a specific assignment, and whether the grades have been released
+Return: [{ studentId: string, score: int, released: bool }]
+
+Call: /api/assignment_annotations
+Type: GET
+Parameters: course_id (int), assignement_id (string)
+Description: Get all annotations for a specific assignment within a specific course, including the student that wrote it and their score on the annotation
+Return: [{ id: string, studentId: string, text: string (in HTML), score: int, createdAt: string (date in ISO 8601 format), editedAt: string (date in ISO 8601 format) }]
+
+Call: /api/assignment_analytics
+Type: GET
+Parameters: course_id (string), assignment_id (string), report_type (string), report_part (int)
+Description: Get the analytics for an assignment within a specific course
+Return: varying based on the report type and report part
+
+
+
+
+
+
