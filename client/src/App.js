@@ -9,7 +9,7 @@ import axios from 'axios'
 
 let config = {
   headers: {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': '*', //Don't need anymore
   }
 }
 
@@ -21,10 +21,10 @@ function App() {
   // If there is no user yet, then we load the login page from 
   // the API server by directly setting the url in the browser.
   useEffect(() => {
-    console.log(user)
+    console.log(user) //Don't need logs
     if (!user) {
-      console.log("Inside !user conditional")
-      fetch('/api/whoami')
+      console.log("Inside !user conditional") //Don't need logs
+      fetch('/api/whoami') //Switch this to axios or switch axios to base commands, reccomended to not use axios
       .then(response => response.json())
       .then(user => setUser(user))
       .catch(err => window.location = "/api/login")

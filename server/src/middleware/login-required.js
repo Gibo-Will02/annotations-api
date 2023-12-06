@@ -1,6 +1,6 @@
 const loginRequired = (req, res, next) => {
     // A logged-in user should have a username set in the session
-    console.log("Printing req.session.username: " + req.session.username)
+    console.log("Printing req.session.username: " + req.session.username) //window.location can be moved here
     if(req.session && req.session.username) next();
     // If not, redirect them to the login page
     else {

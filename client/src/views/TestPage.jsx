@@ -13,14 +13,14 @@ function TestPage() {
 		.catch(error => {
 			console.error(error);
 		});
-	}, []);
+	}, []); //[] updates page if value changes, if empty it only updates on entry to the page
 
 	return (
 		<div>
 			<h1>Perusall API User Return:</h1>
 			{posts.map((post) => {
 				return(<li>ID: {post._id} / First Name: {post.firstName} / Last Name: {post.lastName} / Email: {post.email}</li>)
-			})}
+			})} //Switch to variables instead of parts of post
 		</div>
 	)
 }

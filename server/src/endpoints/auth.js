@@ -2,12 +2,12 @@ const axios = require('axios')
 const express = require( "express" )
 
 const router = express.Router()
-var serviceHost = encodeURIComponent(process.env.DOMAIN_NAME);
+var serviceHost = encodeURIComponent(process.env.DOMAIN_NAME); //.env variable
 console.log(process.env)
-var casHost = 'https://testcas.cs.ksu.edu/';
+var casHost = 'https://testcas.cs.ksu.edu/'; //.env variable
 
 router.get('/login', (req, res) => {
-  console.log("Inside /login")
+  console.log("Inside /login") //Don't need logs
   res.redirect(`${casHost}login?service=${serviceHost}api/ticket`)
 });
 
@@ -19,7 +19,7 @@ router.get('/logout', (req,res) => {
 })
 
 router.get('/ticket', async (req,res) => {
-  console.log("Inside /ticket")
+  console.log("Inside /ticket") //Don't need logs
   // get the ticket from the querystring
   const ticket = req.query.ticket;
   // We need to verify this ticket with the CAS server,
@@ -41,7 +41,7 @@ router.get('/ticket', async (req,res) => {
       // The username should be the first capture group, so store it in our session
       req.session.username = match[1];
       req.session.save()
-      console.log("Successfully logged in: " +  req.session.username)
+      console.log("Successfully logged in: " +  req.session.username) //Don't need logs
       res.redirect('/')
       // Then redirect them to the landing page 
     } else {
