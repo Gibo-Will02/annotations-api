@@ -5,6 +5,16 @@ services:
       context: ./server
       dockerfile: Dockerfile.dev
     environment:
+      DB_HOST: postgres
+      DB_PORT: 5432,
+      DB_NAME: RAATDB
+      DB_USER: user
+      DB_PASSWORD: pass
+      CLIENT_KEY: "RAAT"
+      SHARED_SECRET: "Cheese"
+      TRUST_PROXY: "true"
+      INSTITUTION: "aabbxhaM9jHJ44DaY"
+      TOKEN: "JC2xmuaXmFpRlcgfbaouYUo7QzqRVQgqkBYQ-jFaqwW"
       DOMAIN_NAME: "https://${CODESPACE_NAME}-3000.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/"
     ports:
       - "3050:3050"
@@ -21,3 +31,12 @@ services:
     stdin_open: true
     volumes:
        - ./client:/usr/src/coding-textbook/client
+  database:
+    container_name: postgres
+    image: postgres:12
+    ports:
+      - "35432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: RAATDB
