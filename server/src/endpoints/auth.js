@@ -6,11 +6,13 @@ var serviceHost = encodeURIComponent(process.env.DOMAIN_NAME); //.env variable
 console.log(process.env)
 var casHost = 'https://testcas.cs.ksu.edu/'; //.env variable
 
+//The /login route that will reroute to outside cashost for login
 router.get('/login', (req, res) => {
   console.log("Inside /login") //Don't need logs
   res.redirect(`${casHost}login?service=${serviceHost}api/ticket`)
 });
 
+//The /logout route which will log the user out of the CAS server, and kill the session
 router.get('/logout', (req,res) => {
   // Destroy the session with this app
   req.session.destroy();
@@ -18,6 +20,11 @@ router.get('/logout', (req,res) => {
   res.redirect(`${casHost}logout`);
 })
 
+/**
+ * The /ticket route
+ * Catches the response from the CAS server, validates that that a username that was entered exists, (will check against the whitelist)
+ * Then redirects users to the application showing they have logged in
+ */
 router.get('/ticket', async (req,res) => {
   console.log("Inside /ticket") //Don't need logs
   // get the ticket from the querystring
