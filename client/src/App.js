@@ -13,7 +13,10 @@ let config = {
   }
 }
 
-
+/**
+ * The App that will be shown upon start up of the application
+ * @returns React component to be viewed
+ */
 function App() {
   const [user, setUser] = useState(undefined);
 

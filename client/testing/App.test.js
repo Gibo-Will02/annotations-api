@@ -1,10 +1,10 @@
 
-import TestPage, { calculate, handleCalculate, handleClick } from './views/TestPage';
+import TestPage, { calculate, handleCalculate, handleClick } from '../src/views/TestPage';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { NathanContainer } from './views/TestPage';
-import { nathanClick } from './views/TestPage';
-import App from './App';
-import ButtonTest from './views/TestPage';
+import { NathanContainer } from '../src/views/TestPage';
+import { nathanClick } from '../src/views/TestPage';
+import App from '../src/App';
+import ButtonTest from '../src/views/TestPage';
 
 
 const buttontypes = ['one', 'two', 'three'];
