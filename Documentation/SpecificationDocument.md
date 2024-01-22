@@ -27,6 +27,18 @@ General factors that are affecting this product and its requirements are that it
 ## Specific Stakeholders
  - Russel Feldhausen
  - Nathan Bean
+
+## Persona of Professor Jack
+- Age: 32
+- Location: Manhattan, KS
+- Education: Masters in Computer Science
+- Job-Title: Assistant Professor
+- Goals:
+  * Research time interactivity among students on class readings
+  * Understand the interactions the students have with the readings
+    * Time actively engaged with assignment
+    * What pages were looked at the most
+
  
 # Development and Target Environments
 
