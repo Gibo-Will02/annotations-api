@@ -65,9 +65,9 @@ The physical environments that our application will be used in are at a universi
 
 # User Interaction
 
- - Professor Jack can query a database hosted on K-State's servers to be able to get information about a specific student or class.
+ - Users can query a database hosted on K-State's servers to be able to get information about a specific student or class.
 
- - Professor Jack can manually request an update of the database instead of waiting for the automatic run.
+ - Users can manually request an update of the database instead of waiting for the automatic run.
  
 # Functional Requirements
 
@@ -88,10 +88,10 @@ The physical environments that our application will be used in are at a universi
 # Semester Goals
 
 ### Minimum viable product 
-- Communication between our application and Perusall via Json files. 
+- The system sends and retrieves information from Perusall and saves data about assignments to a database. While allowing users to complete Perusall assigned readings.
 
 ### Enhanced Version
-- The system sends and retrieves information from Perusall and saves data about assignments to a database. While allowing users to complete Perusall assigned readings.
+- Along with the minimal requirements, the application will allow professors to query the database and apply sorting to the recieved information.
 
 # Appendices
 ### Database Diagram
