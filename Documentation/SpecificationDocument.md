@@ -65,43 +65,23 @@ The physical environments that our application will be used in are at a universi
 
 # User Interaction
 
- - When the user clicks the button to load another tool on a separate page in Canvas they get sent to a K-state login page. 
+ - Professor Jack can query a database hosted on K-State's servers to be able to get information about a specific student or class.
 
-- They input their information and click the login button or press enter. 
-
-- They are then shown their assigned readings or watching’s and they then select one of their assigned readings. 
-
- - They are shown the assignment and then the user does any number of his assigned readings or watching's. 
-
- - After finishing for now they then either click X on the web page or press the logout button. 
-
- - If they press the X they return to Canvas. 
-
- - If they press the logout button they are logged out and sent back to the login screen before clicking X.
+ - Professor Jack can manually request an update of the database instead of waiting for the automatic run.
  
 # Functional Requirements
 
-The Application runs in the user’s web browser and provides the user the ability to see currently assigned readings or viewings and allows the user to annotate and view the assigned content. 
+- Database needs to be hosted on K-State or secure servers.
 
- - The application must first send the user to authenticate using a CAS server. 
+- A script will need to be automatically run to start the application at a predetermined time.
 
- - The Perusall section of the application must allow verified users to see all assigned assignments to them. 
-
- - The Perusall section of the application must allow verified users to annotate and interact with all assigned assignments. 
-
- - The application must allow verified users to log out of the CAS server and be sent back to the CAS login screen. 
-
- - The application must store assignment statistics data to a database. 
+- The application will collect information from the API endpoints of Perusall.
  
 # Nonfunctional Requirements
 
- - When the enter button is pressed, the system must display the result and load the content within 3 seconds. 
+ - The application shall run as quickly and as efficiently as possibile to avoid being stopped by other processes.
 
- - The assignments shall be populated and contain the assignment content. 
-
- - The annotations shall be shown to all others on the assignment within 3 seconds.  
-
- - When the logout button is pressed, they shall be sent back to the CAS login screen within 2 seconds. 
+ - The application shall ensure that as little information is requested through the API to avoid extra charges and bandwidth from duplicate API calls.
 
  - The application shall securely store data to the database without any errors or loss of data. 
  
