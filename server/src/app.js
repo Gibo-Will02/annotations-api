@@ -78,6 +78,30 @@ router.get('/assignment_analytics', (req, res) => {
   axios.get("https://app.perusall.com/api/v1/courses/"+ CourseId +"/assignments/"+ AssignId +"/report/"+ Report +"/" + Part, config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
 })
 
+//Application API call to send a get to receive the list of courses of the given user id in an institution from the Perusall API
+router.get('/user_course_list', (req,res) => {
+  var data = req.body.id;
+  axios.get("https://app.perusall.com/api/v1/courses/" + data, config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
+})
+
+//Application API call to send a get to receive the list of courses in an institution from the Perusall API
+router.get('/institution_courses', (req,res) => {
+  axios.get("https://app.perusall.com/api/v1/courses", config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
+})
+
+//Application API call to send a get to receive the list of assignments from the given course id in an institution from the Perusall API
+router.get('/course_assignments', (req,res) => {
+  var courseId = req.body.courseId;
+  axios.get("https://app.perusall.com/api/v1/courses/" + courseId + "/assignments", config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
+})
+
+//Application API call to send a get to receive the annotations from the course of the given course id on the assignment with the given assignment id in an institution from the Perusall API
+router.get('/assignment_annotations', (req,res) => {
+  var courseId = req.body.courseId;
+  var assignmentId = req.body.assignmentId;
+  axios.get("https://app.perusall.com/api/v1/courses/" + courseId + "/assignments/" + assignmentId + "/annotations", config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
+})
+
 // We use the bodyparser middleware to process incoming
 // request bodies
 app.use(bodyParser.urlencoded({extended: false}));
