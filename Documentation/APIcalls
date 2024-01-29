@@ -4,7 +4,7 @@ Parameters: None
 Description: Get information on all the students in the university
 Return:  [{ _id: string, FirstName: string, lastName: string, email: string }]
 
-Call: /api/user_course_list
+Call: /api/user_course_list 
 Type: GET
 Parameters: user_perusall_id (string)
 Description: Get courses for a student
