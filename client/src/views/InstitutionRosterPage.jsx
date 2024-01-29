@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-function TestPage() {
+function InstitutionRosterPage() {
 	const [posts,setposts] = useState([]);
 
 	useEffect(() => {
-		axios.get('/api/users')
+		axios.get('/api/institution_rosters')
 		.then(response => {
 			setposts(response.data);
 		})
@@ -20,11 +20,11 @@ function TestPage() {
 			<h1>Perusall API User Return:</h1>
 			{posts.map((post) => {
 				return(<li>ID: {post._id} / First Name: {post.firstName} / Last Name: {post.lastName} / Email: {post.email}</li>)
-			})} //Switch to variables instead of parts of post
+			})}
 		</div>
 	)
 }
 
-export default TestPage;
+export default InstitutionRosterPage;
 
 

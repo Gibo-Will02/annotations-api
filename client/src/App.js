@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import TestPage from './views/TestPage';
+import InstitutionRosterPage from './views/InstitutionRosterPage';
+import CourseListPage from './views/CourseListPage';
 import Navbar from './components/NavBar/index';
 import { BrowserRouter as Router, Routes, Route, useHref }
     from 'react-router-dom';
@@ -47,7 +48,8 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/testpage' element={<TestPage />} />
+          <Route path='/institutionRosterPage' element={<InstitutionRosterPage />} />
+          <Route path='/courseListPage' element={<CourseListPage />} />
          </Routes>
        </Router>
       <header className="App-header">
