@@ -7,7 +7,13 @@ const Navbar = () => {
 			<Nav>
 				<NavMenu>
 					<NavLink to="/institutionRosterPage" activeStyle>
-						Api Info Page
+						Institution Roster Page
+					</NavLink>
+					<NavLink to="/courseListPage" activeStyle>
+						User Course Page
+					</NavLink>
+					<NavLink to="/institutionCoursesPage" activeStyle>
+						InstitutionCoursesPage
 					</NavLink>
 				</NavMenu>
 			</Nav>

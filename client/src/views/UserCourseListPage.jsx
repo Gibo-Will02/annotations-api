@@ -2,22 +2,32 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-function CourseListPage() {
+function UserCourseListPage() {
 	const [posts,setPosts] = useState([]);
     const [userId, setUserId] = useState("");
 
+	const [updated, setUpdated] = useState(userId);
+
+	const handleChange = (event) => {
+		setUserId(event.target.value);
+
+	};
+
+	const handleClick = () => {
+		setUpdated(userId);
+	};
+
 	useEffect(() => {
         if (userId !== "") {
-			console.log("test")
             axios.get('/api/user_course_list')
-		.then(response => {
-			setPosts(response.data);
-		})
-		.catch(error => {
-			console.error(error);
-		});
+			.then(response => {
+				setPosts(response.data);
+			})
+			.catch(error => {
+				console.error(error);
+			});
         }
-	}, []); //[] updates page if value changes, if empty it only updates on entry to the page
+	}, [updated]); //[] updates page if value changes, if empty it only updates on entry to the page
 
 	return (
         posts.length !== 0 ? (
@@ -29,12 +39,13 @@ function CourseListPage() {
 		</div>
         ) : (
             <div>
-				<label> Enter the students id:
-					<input type='text' />
+				<label> Enter the course id:
+					<input type='text' onChange={handleChange}/>
 				</label>
+				<button onClick={handleClick}>Search User</button>
 			</div>
         )
 	)
 }
 
-export default CourseListPage;
+export default UserCourseListPage;

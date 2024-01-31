@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 function InstitutionRosterPage() {
-	const [posts,setposts] = useState([]);
+	const [posts,setPosts] = useState([]);
 
 	useEffect(() => {
-		axios.get('/api/institution_rosters')
+		axios.get('/api/instution_roster')
 		.then(response => {
-			setposts(response.data);
+			setPosts(response.data);
 		})
 		.catch(error => {
 			console.error(error);

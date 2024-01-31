@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import InstitutionRosterPage from './views/InstitutionRosterPage';
-import CourseListPage from './views/CourseListPage';
+import UserCourseListPage from './views/UserCourseListPage';
+import InstitutionCoursesPage from './views/InstitutionCoursesPage';
 import Navbar from './components/NavBar/index';
 import { BrowserRouter as Router, Routes, Route, useHref }
     from 'react-router-dom';
@@ -45,17 +46,19 @@ function App() {
   // components.
   return (
     <div className="App">
+      <h1 style={{backgroundColor: "lightgray"}}>
+        <label>Welcome {user.username}!
+          <a href="/api/logout">Logout</a>
+        </label>
+      </h1>
       <Router>
         <Navbar />
         <Routes>
           <Route path='/institutionRosterPage' element={<InstitutionRosterPage />} />
-          <Route path='/courseListPage' element={<CourseListPage />} />
+          <Route path='/courseListPage' element={<UserCourseListPage />} />
+          <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
          </Routes>
        </Router>
-      <header className="App-header">
-        <p>Welcome {user.username}! You are authenticated :</p>
-        <a href="/api/logout">Logout</a>
-      </header>
     </div>
   );
 }
