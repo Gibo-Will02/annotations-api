@@ -8,6 +8,7 @@
     "express-session": "^1.17.3",
     "ims-lti": "github:alt-cs-lab/ims-lti",
     "knex": "^3.1.0",
+    "mysql": "^2.18.1",
     "node-fetch": "^3.3.0",
     "oauth1-signature": "^1.0.5",
     "pg": "^8.11.3",
