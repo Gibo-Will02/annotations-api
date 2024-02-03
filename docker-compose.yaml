@@ -5,10 +5,6 @@ services:
       context: ./server
       dockerfile: Dockerfile.dev
     environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
-      POSTGRES_HOST: db
       DOMAIN_NAME: "https://${CODESPACE_NAME}-3000.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/"
     ports:
       - "3050:3050"
@@ -25,15 +21,3 @@ services:
     stdin_open: true
     volumes:
        - ./client:/usr/src/coding-textbook/client
-  db:
-    image: postgres:latest
-    restart: unless-stopped
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
-
-volumes:
-  postgres-data:
