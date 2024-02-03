@@ -3,6 +3,7 @@ import './App.css';
 import InstitutionRosterPage from './views/InstitutionRosterPage';
 import UserCourseListPage from './views/UserCourseListPage';
 import InstitutionCoursesPage from './views/InstitutionCoursesPage';
+import CourseDataPage from './views/CourseDataPage';
 import Navbar from './components/NavBar/index';
 import { BrowserRouter as Router, Routes, Route, useHref }
     from 'react-router-dom';
@@ -57,6 +58,7 @@ function App() {
           <Route path='/institutionRosterPage' element={<InstitutionRosterPage />} />
           <Route path='/courseListPage' element={<UserCourseListPage />} />
           <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
+          <Route path='/courseDataPage' element={<CourseDataPage />} />
          </Routes>
        </Router>
     </div>

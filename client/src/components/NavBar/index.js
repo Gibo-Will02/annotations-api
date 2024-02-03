@@ -13,7 +13,10 @@ const Navbar = () => {
 						User Course Page
 					</NavLink>
 					<NavLink to="/institutionCoursesPage" activeStyle>
-						InstitutionCoursesPage
+						Institution Courses Page
+					</NavLink>
+					<NavLink to="/courseDataPage" activeStyle>
+						Course Data Page
 					</NavLink>
 				</NavMenu>
 			</Nav>

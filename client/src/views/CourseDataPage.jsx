@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-function UserCourseListPage() {
+function CourseDataPage() {
 	const [posts,setPosts] = useState([]);
     const [userId, setUserId] = useState("");
 
@@ -34,7 +34,7 @@ function UserCourseListPage() {
 		<div>
 			<h1>Perusall API Course Return:</h1>
 			{posts.map((post) => {
-				return(<li>ID: {post._id} / First Name: {post.firstName} / Last Name: {post.lastName} / Email: {post.email}</li>)
+				return(<li>ID: {post._id} / Instructors: {post.instructorIds} / Name: {post.name} / Student Ids: {post.studentIds}</li>)
 			})}
 		</div>
         ) : (
@@ -48,4 +48,4 @@ function UserCourseListPage() {
 	)
 }
 
-export default UserCourseListPage;
+export default CourseDataPage;
