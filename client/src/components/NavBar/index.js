@@ -6,8 +6,17 @@ const Navbar = () => {
 		<>
 			<Nav>
 				<NavMenu>
-					<NavLink to="/testpage" activeStyle>
-						Test Page
+					<NavLink to="/institutionRosterPage" activeStyle>
+						Institution Roster Page
+					</NavLink>
+					<NavLink to="/courseListPage" activeStyle>
+						User Course Page
+					</NavLink>
+					<NavLink to="/institutionCoursesPage" activeStyle>
+						Institution Courses Page
+					</NavLink>
+					<NavLink to="/courseDataPage" activeStyle>
+						Course Data Page
 					</NavLink>
 				</NavMenu>
 			</Nav>
