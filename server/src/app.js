@@ -5,8 +5,6 @@ const uid = require( "uid-safe" )
 const auth = require("./endpoints/auth")
 const session = require('express-session')
 const loginRequired = require('./middleware/login-required')
-const knexFile = require("../knexfile.js")
-const knex = require('knex')
 
 //Instantiation of the server app
 const app = new express()
@@ -32,12 +30,6 @@ app.use(session({
     secure: false,
   },
 }))
-
-/**
- * Establishes connection to knex database
- */
-const db = knex( knexFile.development )
-app.set( "db", db )
 
 //app.use(express.static('../../client/build'))
 
