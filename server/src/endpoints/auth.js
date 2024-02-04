@@ -3,7 +3,7 @@ const express = require( "express" )
 
 const router = express.Router()
 var serviceHost = encodeURIComponent(process.env.DOMAIN_NAME); //.env variable
-console.log(process.env)
+console.log("Inside of auth.js")
 var casHost = 'https://testcas.cs.ksu.edu/'; //.env variable
 
 //The /login route that will reroute to outside cashost for login

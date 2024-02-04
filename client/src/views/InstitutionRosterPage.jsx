@@ -6,7 +6,7 @@ function InstitutionRosterPage() {
 	const [posts,setPosts] = useState([]);
 
 	useEffect(() => {
-		axios.get('/api/instution_roster')
+		axios.get('/api/institution_roster')
 		.then(response => {
 			setPosts(response.data);
 		})

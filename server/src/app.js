@@ -31,21 +31,8 @@ app.use(session({
   },
 }))
 
-//app.use(express.static('../../client/build'))
-
-//Link the login-middleware to the router
-app.use(auth);
-
 //Establish the router to be off of the /api route
-app.use('/api', loginRequired, require('./routers/api')) //Put in routers folder in a file
+app.use('/api', require('./routers/api')) //Put in routers folder in a file
 
-// Establish a router for the login-middleware to utilize
-// const router = express.Router();
-
-//The /whoami api router call to start the login middleware
-app.get('/whoami',loginRequired,(req, res) => {
-  console.log("Username: " + req.session.username)
-  res.json({username: req.session.username});
-})
 
 module.exports = app;

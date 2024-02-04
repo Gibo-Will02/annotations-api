@@ -3,25 +3,25 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 function CourseDataPage() {
-	const [posts,setPosts] = useState([]);
+	const [data,setData] = useState({});
     const [userId, setUserId] = useState("");
 
 	const [updated, setUpdated] = useState(userId);
 
 	const handleChange = (event) => {
 		setUserId(event.target.value);
-
 	};
 
 	const handleClick = () => {
-		setUpdated(userId);
+		setUpdated(prevUserId => prevUserId !== userId ? userId : prevUserId);
 	};
 
 	useEffect(() => {
         if (userId !== "") {
-            axios.post('/api/user_course_list', {'id': userId})
+            axios.post('/api/course_data', {'_CID': userId})
 			.then(response => {
-				setPosts(response.data);
+				setData({...response.data});
+				console.log(response.data);
 			})
 			.catch(error => {
 				console.error(error);
@@ -30,22 +30,26 @@ function CourseDataPage() {
 	}, [updated]); //[] updates page if value changes, if empty it only updates on entry to the page
 
 	return (
-        posts.length !== 0 ? (
 		<div>
+			<label> Enter the course id:
+				<input type='text' onChange={handleChange}/>
+			</label>
+			<button onClick={handleClick}>Search Course</button>
 			<h1>Perusall API Course Return:</h1>
-			{posts.map((post) => {
-				return(<li>ID: {post._id} / Instructors: {post.instructorIds} / Name: {post.name} / Student Ids: {post.studentIds}</li>)
-			})}
+			<h2>Course Name: {data.name}</h2>
+			<li>ID: {data._id}</li>
+			{(data.instructorIds && data.instructorIds.length > 0) ? (
+				data.instructorIds.map(id => <li key={id}>Instructor Id: {id}</li>)
+			) : (
+				<li>No instructor IDs available</li>
+			)}
+			{(data.studentIds && data.studentIds.length > 0) ? (
+				data.studentIds.map(id => <li key={id}>Student Id: {id}</li>)
+			) : (
+				<li>No student IDs available</li>
+			)}
 		</div>
-        ) : (
-            <div>
-				<label> Enter the course id:
-					<input type='text' onChange={handleChange}/>
-				</label>
-				<button onClick={handleClick}>Search Course</button>
-			</div>
-        )
-	)
+    )
 }
 
 export default CourseDataPage;
