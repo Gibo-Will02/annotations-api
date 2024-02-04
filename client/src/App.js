@@ -56,7 +56,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/institutionRosterPage' element={<InstitutionRosterPage />} />
-          <Route path='/courseListPage' element={<UserCourseListPage />} />
+          {/*<Route path='/courseListPage' element={<UserCourseListPage />} />*/}
           <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
           <Route path='/courseDataPage' element={<CourseDataPage />} />
          </Routes>

@@ -9,9 +9,9 @@ const Navbar = () => {
 					<NavLink to="/institutionRosterPage" activeStyle>
 						Institution Roster Page
 					</NavLink>
-					<NavLink to="/courseListPage" activeStyle>
+					{/*<NavLink to="/courseListPage" activeStyle>
 						User Course Page
-					</NavLink>
+					</NavLink>*/}
 					<NavLink to="/institutionCoursesPage" activeStyle>
 						Institution Courses Page
 					</NavLink>
