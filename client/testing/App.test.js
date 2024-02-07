@@ -5,7 +5,38 @@ import { NathanContainer } from '../src/views/TestPage';
 import { nathanClick } from '../src/views/TestPage';
 import App from '../src/App';
 import ButtonTest from '../src/views/TestPage';
+import CourseDataPage from '../src/views/CourseDataPage';
 
+
+//course data page tests
+test('course data page renders correctly', () => {
+  render(<CourseDataPage />)
+  expect(CourseDataPage()).toHaveBeenCalled();
+
+});
+
+test('course data page displays correct information', () => {
+  render(<CourseDataPage />)
+  const TextElement = screen.getByText("Perusall API Course Return:");
+  expect(TextElement).toBeInTheDocument();
+ 
+
+});
+
+test('course data page displays correct information', () => {
+  render(<CourseDataPage />)
+  const TextElement = screen.getByText("Course Name:");
+  expect(TextElement).toBeInTheDocument();
+ 
+
+});
+
+test('course data page has search button and activates', ()=> {
+  render(<CourseDataPage />)
+  const nButton1 = screen.getByText('Search Course');
+    fireEvent.click(nButton1);
+    expect(nButton1.toHaveBeenCalled);
+})
 
 const buttontypes = ['one', 'two', 'three'];
 

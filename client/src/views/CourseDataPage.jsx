@@ -36,7 +36,7 @@ function CourseDataPage() {
 			</label>
 			<button onClick={handleClick}>Search Course</button>
 			<h1>Perusall API Course Return:</h1>
-			<h2>Course Name: {data.name}</h2>
+			<h2>Course Name: {data.name}</h2>client/src/views/CourseDataPage.jsx
 			<li>ID: {data._id}</li>
 			{(data.instructorIds && data.instructorIds.length > 0) ? (
 				data.instructorIds.map(id => <li key={id}>Instructor Id: {id}</li>)
