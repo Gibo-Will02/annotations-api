@@ -6,17 +6,19 @@ import { nathanClick } from '../src/views/TestPage';
 import App from '../src/App';
 import ButtonTest from '../src/views/TestPage';
 import CourseDataPage from '../src/views/CourseDataPage';
+import InstitutionCoursesPage from '../src/views/InstitutionCoursesPage';
+import InstitutionRosterPage from '../src/views/InstitutionRosterPage';
 
 
-//course data page tests
+//#region course data page tests
 test('course data page renders correctly', () => {
-  render(<CourseDataPage />)
+  render(<CourseDataPage />);
   expect(CourseDataPage()).toHaveBeenCalled();
 
 });
 
 test('course data page displays correct information', () => {
-  render(<CourseDataPage />)
+  render(<CourseDataPage />);
   const TextElement = screen.getByText("Perusall API Course Return:");
   expect(TextElement).toBeInTheDocument();
  
@@ -24,7 +26,7 @@ test('course data page displays correct information', () => {
 });
 
 test('course data page displays correct information', () => {
-  render(<CourseDataPage />)
+  render(<CourseDataPage />);
   const TextElement = screen.getByText("Course Name:");
   expect(TextElement).toBeInTheDocument();
  
@@ -32,12 +34,83 @@ test('course data page displays correct information', () => {
 });
 
 test('course data page has search button and activates', ()=> {
-  render(<CourseDataPage />)
-  const nButton1 = screen.getByText('Search Course');
+    render(<CourseDataPage />);
+    const nButton1 = screen.getByText('Search Course');
     fireEvent.click(nButton1);
     expect(nButton1.toHaveBeenCalled);
-})
+});
 
+test('course data page performs its api call', ()=> {
+  render(<CourseDataPage />);
+  //something
+  expect();
+});
+//#endregion
+
+//#region Institution courses page tests
+test('Institution courses page has its text', ()=> {
+    render(<InstitutionCoursesPage />);
+    const TextElement = screen.getByText("Perusall API Course Return:");
+    expect(TextElement.toBeInTheDocument());
+});
+
+test('Institution courses page performs its api call', ()=> {
+  render(<InstitutionCoursesPage />);
+  //something
+  expect();
+});
+//#endregion
+
+//#region Institution Roster page Tests
+test('Institution courses page has its text', ()=> {
+  render(<InstitutionRosterPage />);
+  const TextElement = screen.getByText("Perusall API User Return:");
+  expect(TextElement.toBeInTheDocument());
+});
+
+describe('Api Testing using Fake Data', () => {
+  beforeEach(() => {
+    fetchMock.resetMocks();
+  })
+
+  test('renders info when API call succeeds', async ()=> {
+    const fakeUsers = [
+      {_id: 1 , firstName: 'Jack', lastName: 'Bicker', email: 'JBiker@nou.com'},
+      {_id: 2 , firstName: 'Noah', lastName: 'Way', email: 'NWay2@nuhuh.com'},
+    ];
+    fetchMock.mockResolvedValue({ status: 200, json: jest.fn(() => fakeUsers) });
+
+    render(<InstitutionRosterPage />);
+
+    expect(await screen.findByText('Jack')).toBeInTheDocument();
+    expect(await screen.findByText('Bicker')).toBeInTheDocument();
+    expect(await screen.findByText('JBiker@nou.com')).toBeInTheDocument();
+    expect(await screen.findByText('Noah')).toBeInTheDocument();
+    expect(await screen.findByText('Way')).toBeInTheDocument();
+    expect(await screen.findByText('NWay2@nuhuh.com')).toBeInTheDocument();
+  });
+
+  //if needed
+  /*
+  test('renders info when API call fails', async ()=> {
+    fetchMock.mockReject(() => Promise.reject('API Error'));
+    
+    render(<InstitutionRosterPage />);
+
+    expect(await screen.findByText('Something went wrong!')).toBeInTheDocument()
+    expect(await screen.findByText('No users found')).toBeInTheDocument()
+  });
+  */
+});
+
+
+//#endregion
+
+
+
+
+//old tests
+//#region old Tests
 const buttontypes = ['one', 'two', 'three'];
 
 test('ButtonTest component renders and toggles buttons correctly', () => {
@@ -170,4 +243,4 @@ describe('description', () => {
     expect(window.location.href).toBe(expectedUrl);
   });
 });
-
+//#endregion
