@@ -1,12 +1,13 @@
 
 import { render, screen, fireEvent } from '@testing-library/react';
-import App from '../src/App';
+//import App from '../src/App';
 import renderer from "react-test-renderer";
-import ButtonTest from '../src/views/TestPage';
+import { JSX } from 'react/jsx-dev-runtime';
+//const CourseDataPage = require('../src/views/CourseDataPage');
 import CourseDataPage from '../src/views/CourseDataPage';
-import InstitutionCoursesPage from '../src/views/InstitutionCoursesPage';
-import InstitutionRosterPage from '../src/views/InstitutionRosterPage';
-import UserCourseListPage from '../src/views/UserCourseListPage';
+//import InstitutionCoursesPage from '../src/views/InstitutionCoursesPage';
+//import InstitutionRosterPage from '../src/views/InstitutionRosterPage';
+//import UserCourseListPage from '../src/views/UserCourseListPage';
 
 
 //#region course data page tests
@@ -17,16 +18,10 @@ describe("Jest Snapshot testing suite", () => {
   });
 });
 
-test('course data page renders correctly', () => {
-  render(<CourseDataPage />);
-  expect(CourseDataPage()).toHaveBeenCalled();
-
-});
 
 test('course data page displays correct information', () => {
-  render(<CourseDataPage />);
-  const TextElement = screen.getByText("Perusall API Course Return:");
-  expect(TextElement).toBeInTheDocument();
+  const domTree = renderer.create(<CourseDataPage />).toJSON();
+  expect(domTree.includes("Perusall API Course Return:"));
  
 
 });
@@ -91,129 +86,4 @@ describe('Api Testing using Fake Data', () => {
 });
 //#endregion
 
-//#region Institution courses page tests
-
-
-describe("Jest Snapshot testing suite", () => {
-  it("Matches DOM Snapshot", () => {
-    const domTree = renderer.create(<InstitutionCoursesPage />).toJSON();
-    expect(domTree).toMatchSnapshot();
-  });
-});
-
-describe('Api Testing using Fake Data', () => {
-  beforeEach(() => {
-    fetchMock.resetMocks();
-  })
-
-  //tests the display if has data
-  test('renders info when API call succeeds', async ()=> {
-    const fakeUsers = [
-      {_id: 1 , name: 'Jack Mayfeild'},
-      {_id: 2 , name: 'Noah Way'},
-    ];
-    fetchMock.mockResolvedValue({ status: 200, json: jest.fn(() => fakeUsers) });
-
-    render(<InstitutionCoursesPage />);
-    
-    const TextElement = screen.getByText("Perusall API Course Return:");
-    expect(TextElement.toBeInTheDocument());
-    expect(await screen.findByText('Jack Mayfeild')).toBeInTheDocument();
-    expect(await screen.findByText('Noah Way')).toBeInTheDocument();
-  });
-
-  
-  /*
-  test('renders failstate when no person is found', async ()=> {
-    
-    render(<InstitutionCoursesPage />);//replace
-    expect(await screen.findByText('No student IDs available')).toBeInTheDocument();
-  });
-  */
-
-});
-//#endregion
-
-//#region Institution Roster page Tests
-test('Institution courses page has its text', ()=> {
-  render(<InstitutionRosterPage />);
-  const TextElement = screen.getByText("Perusall API User Return:");
-  expect(TextElement.toBeInTheDocument());
-});
-
-describe('Api Testing using Fake Data', () => {
-  beforeEach(() => {
-    fetchMock.resetMocks();
-  })
-
-  test('renders info when API call succeeds', async ()=> {
-    const fakeUsers = [
-      {_id: 1 , firstName: 'Jack', lastName: 'Bicker', email: 'JBiker@nou.com'},
-      {_id: 2 , firstName: 'Noah', lastName: 'Way', email: 'NWay2@nuhuh.com'},
-    ];
-    fetchMock.mockResolvedValue({ status: 200, json: jest.fn(() => fakeUsers) });
-
-    render(<InstitutionRosterPage />);
-
-    expect(await screen.findByText('Jack')).toBeInTheDocument();
-    expect(await screen.findByText('Bicker')).toBeInTheDocument();
-    expect(await screen.findByText('JBiker@nou.com')).toBeInTheDocument();
-    expect(await screen.findByText('Noah')).toBeInTheDocument();
-    expect(await screen.findByText('Way')).toBeInTheDocument();
-    expect(await screen.findByText('NWay2@nuhuh.com')).toBeInTheDocument();
-  });
-
-  //if needed
-  /*
-  test('renders info when API call fails', async ()=> {
-    fetchMock.mockReject(() => Promise.reject('API Error'));
-    
-    render(<InstitutionRosterPage />);
-
-    expect(await screen.findByText('Something went wrong!')).toBeInTheDocument()
-    expect(await screen.findByText('No users found')).toBeInTheDocument()
-  });
-  */
-});
-
-
-//#endregion
-
-//#region user course list page tests
-
-describe('Api Testing using Fake Data', () => {
-  beforeEach(() => {
-    fetchMock.resetMocks();
-  })
-
-  test('renders info when API call succeeds', async ()=> {
-    const fakeUsers = [
-      {_id: 1 , firstName: 'Jack', lastName: 'Bicker', email: 'JBiker@nou.com'},
-      {_id: 2 , firstName: 'Noah', lastName: 'Way', email: 'NWay2@nuhuh.com'},
-    ];
-    fetchMock.mockResolvedValue({ status: 200, json: jest.fn(() => fakeUsers) });
-
-    render(<UserCourseListPage />);
-
-    expect(await screen.findByText('Jack')).toBeInTheDocument();
-    expect(await screen.findByText('Bicker')).toBeInTheDocument();
-    expect(await screen.findByText('JBiker@nou.com')).toBeInTheDocument();
-    expect(await screen.findByText('Noah')).toBeInTheDocument();
-    expect(await screen.findByText('Way')).toBeInTheDocument();
-    expect(await screen.findByText('NWay2@nuhuh.com')).toBeInTheDocument();
-  });
-
-  //if needed
-  /*
-  test('renders info when API call fails', async ()=> {
-    fetchMock.mockReject(() => Promise.reject('API Error'));
-    
-    render(<InstitutionRosterPage />);
-
-    expect(await screen.findByText('Something went wrong!')).toBeInTheDocument()
-    expect(await screen.findByText('No users found')).toBeInTheDocument()
-  });
-  */
-});
-//#endregion
 

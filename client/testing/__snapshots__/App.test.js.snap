@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Jest Snapshot testing suite Matches DOM Snapshot 1`] = `
+<div>
+  <label>
+     Enter the course id:
+    <input
+      onChange={[Function]}
+      type="text"
+    />
+  </label>
+  <button
+    onClick={[Function]}
+  >
+    Search Course
+  </button>
+  <h1>
+    Perusall API Course Return:
+  </h1>
+  <h2>
+    Course Name: 
+  </h2>
+  client/src/views/CourseDataPage.jsx
+  <li>
+    ID: 
+  </li>
+  <li>
+    No instructor IDs available
+  </li>
+  <li>
+    No student IDs available
+  </li>
+</div>
+`;
