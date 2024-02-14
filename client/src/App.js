@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import InstitutionRosterPage from './views/InstitutionRosterPage';
-import UserCourseListPage from './views/UserCourseListPage';
+import CourseAssignmentInfoPage from './views/CourseAssignmentInfoPage';
 import InstitutionCoursesPage from './views/InstitutionCoursesPage';
 import CourseDataPage from './views/CourseDataPage';
 import Navbar from './components/NavBar/index';
@@ -56,7 +56,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/institutionRosterPage' element={<InstitutionRosterPage />} />
-          {<Route path='/courseListPage' element={<UserCourseListPage />} />}
+          <Route path='/courseAssignmentInfoPage' element={<CourseAssignmentInfoPage />} />
           <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
           <Route path='/courseDataPage' element={<CourseDataPage />} />
          </Routes>
