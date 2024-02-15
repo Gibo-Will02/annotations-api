@@ -1,5 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Jest Snapshot testing suite Matches CourseAssignmentPage Snapshot 1`] = `
+<div
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "flexDirection": "column",
+    }
+  }
+>
+  <div>
+    <label>
+       Enter the course id:
+      <input
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <button
+      onClick={[Function]}
+    >
+      Search Course
+    </button>
+  </div>
+  <h1
+    style={
+      Object {
+        "borderBottom": "1px solid black",
+        "display": "inline-block",
+      }
+    }
+  >
+    Assignments (From Perusall):
+  </h1>
+  <label>
+    No assignments to display
+  </label>
+</div>
+`;
+
 exports[`Jest Snapshot testing suite Matches DOM Snapshot 1`] = `
 <div>
   <label>
@@ -47,45 +87,5 @@ exports[`Jest Snapshot testing suite Matches InstitutionRosterPage Snapshot 1`] 
   <h1>
     Perusall API User Return:
   </h1>
-</div>
-`;
-
-exports[`Jest Snapshot testing suite Matches InstitutionRosterPage Snapshot 2`] = `
-<div
-  style={
-    Object {
-      "alignItems": "center",
-      "display": "flex",
-      "flexDirection": "column",
-    }
-  }
->
-  <div>
-    <label>
-       Enter the course id:
-      <input
-        onChange={[Function]}
-        type="text"
-      />
-    </label>
-    <button
-      onClick={[Function]}
-    >
-      Search Course
-    </button>
-  </div>
-  <h1
-    style={
-      Object {
-        "borderBottom": "1px solid black",
-        "display": "inline-block",
-      }
-    }
-  >
-    Assignments (From Perusall):
-  </h1>
-  <label>
-    No assignments to display
-  </label>
 </div>
 `;

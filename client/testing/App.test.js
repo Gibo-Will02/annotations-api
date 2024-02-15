@@ -49,12 +49,12 @@ describe('Api Testing using Fake Data', () => {
     fetchMock.resetMocks();
   })
 
-  //wrong value
-  /*
+  
   test('renders info when API call succeeds', async ()=> {
 
     render(<CourseDataPage />);
     const input = screen.getByPlaceholderText('Course Id Here');
+    //wrong value
     const value = 'MNZtvxJYmY5GQ4w6z';
     fireEvent.change(input, {
       target: {value}
@@ -68,19 +68,12 @@ describe('Api Testing using Fake Data', () => {
     //expect(await screen.findByText('Jack')).toBeInTheDocument();
     //expect(await screen.findByText('Noah')).toBeInTheDocument();
   });
-  */
+  
   
   
   test('renders failstate when no person is found', async ()=> {
     
     render(<CourseDataPage />);
-    //const input = screen.getByPlaceholderText('Enter the course id:');
-    //const value = 'blank';
-    /*
-    fireEvent.change(input, {
-      target: {value}
-    });
-    */
     const nButton1 = screen.getByText('Search Course');
     fireEvent.click(nButton1);
 
