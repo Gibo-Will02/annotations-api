@@ -32,7 +32,7 @@ function CourseDataPage() {
 	return (
 		<div>
 			<label> Enter the course id:
-				<input type='text' onChange={handleChange}/>
+				<input placeholder='Course Id Here' type='text' onChange={handleChange}/>
 			</label>
 			<button onClick={handleClick}>Search Course</button>
 			<h1>Perusall API Course Return:</h1>

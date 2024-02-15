@@ -6,6 +6,7 @@ exports[`Jest Snapshot testing suite Matches DOM Snapshot 1`] = `
      Enter the course id:
     <input
       onChange={[Function]}
+      placeholder="Course Id Here"
       type="text"
     />
   </label>
@@ -50,27 +51,41 @@ exports[`Jest Snapshot testing suite Matches InstitutionRosterPage Snapshot 1`] 
 `;
 
 exports[`Jest Snapshot testing suite Matches InstitutionRosterPage Snapshot 2`] = `
-<div>
-  <label>
-     Enter the course id:
-    <input
-      onChange={[Function]}
-      type="text"
-    />
-  </label>
-  <button
-    onClick={[Function]}
+<div
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "flexDirection": "column",
+    }
+  }
+>
+  <div>
+    <label>
+       Enter the course id:
+      <input
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <button
+      onClick={[Function]}
+    >
+      Search Course
+    </button>
+  </div>
+  <h1
+    style={
+      Object {
+        "borderBottom": "1px solid black",
+        "display": "inline-block",
+      }
+    }
   >
-    Search Course
-  </button>
-  <h1>
-    Perusall API Course Return:
+    Assignments (From Perusall):
   </h1>
-  <li>
-    ID: 
-     / First Name: 
-     / Last Name: 
-     / Email: 
-  </li>
+  <label>
+    No assignments to display
+  </label>
 </div>
 `;
