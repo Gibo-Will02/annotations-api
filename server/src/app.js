@@ -34,5 +34,4 @@ app.use(session({
 //Establish the router to be off of the /api route
 app.use('/api', require('./routers/api')) //Put in routers folder in a file
 
-
 module.exports = app;

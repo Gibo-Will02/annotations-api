@@ -1,0 +1,38 @@
+[
+    {
+      "_id": "MNZtvxJYmY5GQ4w6z",
+      "firstName": "Nicholas",
+      "lastName": "Sternecker",
+      "email": "nsternecker@ksu.edu"
+    },
+    {
+      "_id": "QrALMiztKSx3YzDTv",
+      "firstName": "Student",
+      "lastName": "Gibson",
+      "email": "gibson.williams2020@gmail.com"
+    },
+    {
+      "_id": "XH7rtnv44jtkRcBEr",
+      "firstName": "Test",
+      "lastName": "Student",
+      "email": "student+LQRXWcdc4PpjY72bf@perusall.com"
+    },
+    {
+      "_id": "ba8FE5bnAZtB6x254",
+      "firstName": "Nate",
+      "lastName": "Lillich",
+      "email": "nlillich@ksu.edu"
+    },
+    {
+      "_id": "jdGGwy2z58RCrmQCh",
+      "firstName": "Nathan",
+      "lastName": "Herscovici",
+      "email": "nherscovici@ksu.edu"
+    },
+    {
+      "_id": "yj6ngEo5ybTevTDag",
+      "firstName": "Gibson",
+      "lastName": "Williams",
+      "email": "gibbs060502@ksu.edu"
+    }
+  ]
