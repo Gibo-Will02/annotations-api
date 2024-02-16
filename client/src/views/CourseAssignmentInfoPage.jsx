@@ -41,7 +41,7 @@ function CourseAssignmentInfoPage() {
             <div style={{display:"flex", flexDirection:"column", alignItems: "center"}}>
 				<div>
 					<label> Enter the course id:
-						<input type='text' onChange={handleCourseChange}/>
+						<input placeholder='Course Id Here' type='text' onChange={handleCourseChange}/>
 					</label>
 					{/* <label> Enter the assignment id:
 						<input type='text' onChange={handleAssignmentChange}/>

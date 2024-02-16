@@ -15,6 +15,7 @@ exports[`Jest Snapshot testing suite Matches CourseAssignmentPage Snapshot 1`] =
        Enter the course id:
       <input
         onChange={[Function]}
+        placeholder="Course Id Here"
         type="text"
       />
     </label>
@@ -61,7 +62,6 @@ exports[`Jest Snapshot testing suite Matches DOM Snapshot 1`] = `
   <h2>
     Course Name: 
   </h2>
-  client/src/views/CourseDataPage.jsx
   <li>
     ID: 
   </li>

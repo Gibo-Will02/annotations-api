@@ -1,5 +1,5 @@
 
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, getByPlaceholderText } from '@testing-library/react';
 import '@testing-library/jest-dom';
 //import App from '../src/App';
 import renderer from "react-test-renderer";
@@ -10,10 +10,12 @@ import InstitutionCoursesPage from '../src/views/InstitutionCoursesPage';
 import InstitutionRosterPage from '../src/views/InstitutionRosterPage';
 import CourseAssignmentInfoPage from '../src/views/CourseAssignmentInfoPage';
 
+
+
 //#region course data page tests
 describe("Jest Snapshot testing suite", () => {
   it("Matches DOM Snapshot", () => {
-    const domTree = renderer.create(<CourseDataPage />).toJSON();
+    const domTree = renderer.create(<CourseDataPage wait />).toJSON();
     expect(domTree).toMatchSnapshot();
   });
 });
@@ -44,29 +46,22 @@ test('course data page has search button and activates', ()=> {
     expect(nButton1.toHaveBeenCalled);
 });
 
-describe('Api Testing using Fake Data', () => {
-  beforeEach(() => {
-    fetchMock.resetMocks();
-  })
-
+describe('Api Testing course data page', () => {
   
-  test('renders info when API call succeeds', async ()=> {
+  test('renders info when API call succeeds',  ()=> {
+    const page = render(<CourseDataPage />);
+    const { getByPlaceholderText } = page;
+    const myinput = getByPlaceholderText('Course Id Here');
 
-    render(<CourseDataPage />);
-    const input = screen.getByPlaceholderText('Course Id Here');
-    //wrong value
-    const value = 'MNZtvxJYmY5GQ4w6z';
-    fireEvent.change(input, {
-      target: {value}
+    fireEvent.change(myinput, {
+      target: {value: 'BRhk8oFtsmnsBHKo4' }
     });
-    const nButton1 = screen.getByText('Search Course');
-    fireEvent.click(nButton1);
+    expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
+    const cdpButton1 = screen.getByText('Search Course');
+    fireEvent.click(cdpButton1);
+    
+    expect(screen.findByText('Textbook Team')).toBeInTheDocument();
 
-    expect(await screen.findByText('Nicholas')).toBeInTheDocument();
-    expect(await screen.findByText('Sternecker')).toBeInTheDocument();
-    expect(await screen.findByText('nsternecker@ksu.edu')).toBeInTheDocument();
-    //expect(await screen.findByText('Jack')).toBeInTheDocument();
-    //expect(await screen.findByText('Noah')).toBeInTheDocument();
   });
   
   
@@ -80,43 +75,36 @@ describe('Api Testing using Fake Data', () => {
     expect(await screen.findByText('No instructor IDs available')).toBeInTheDocument();
     expect(await screen.findByText('No student IDs available')).toBeInTheDocument();
   });
-  
+
 });
 //#endregion
+
 
 //#region Institution courses page tests
 
 
 describe("Jest Snapshot testing suite", () => {
   it("Matches DOM Snapshot", () => {
-    const instPage = renderer.create(<InstitutionCoursesPage />).toJSON();
+    const instPage = renderer.create(<InstitutionCoursesPage showAfterDelay={500} />).toJSON();
     expect(instPage).toMatchSnapshot();
   });
 });
 
 
-//wont fully function yet
-/*
+
+//useEffect isn't working
 describe('Api Testing using Fake Data', () => {
-  beforeEach(() => {
-    fetchMock.resetMocks();
-  })
-
   //tests the display if has data
-  test('renders info when API call succeeds', async ()=> {
+  test('renders info when API call succeeds', ()=> {
     render(<InstitutionCoursesPage />);
-
+    window.location.reload();
     const TextElement = screen.getByText("Perusall API Course Return:");
-    expect(TextElement.toBeInTheDocument());
-    //expect(await screen.findByText('Jack Mayfeild')).toBeInTheDocument();
-    //expect(await screen.findByText('Noah Way')).toBeInTheDocument();
+    expect(TextElement).toBeInTheDocument();
+
   });
 
-  
-  
-
 });
-*/
+
 //#endregion
 
 //#region Institution Roster page Tests
@@ -133,27 +121,12 @@ test('Institution courses page has its text', ()=> {
   expect(TextElement).toBeInTheDocument();
 });
 
-//doesn't function yet
-describe('Api Testing using Fake Data', () => {
-  beforeEach(() => {
-    fetchMock.resetMocks();
-    fetchMock.mockResponse('[]');
-  })
-
+//responce exists but expirences a network error
+describe('Api sends information through', () => {
   //responce goes through but nothing is displayed
   test('renders info when API call succeeds', async ()=> {
-    fetch.mockResponse(JSON.stringify([
-      {_id: 1, firstName: 'Jack', lastName: 'Bicker', email: 'JBiker@nou.com'},
-      {_id: 2, firstName: 'Noah', lastName: 'Way', email: 'NWay2@nuhuh.com'}
-    ]));
     render(<InstitutionRosterPage />);
-
-    expect(await screen.findByText('Jack')).toBeInTheDocument();
-    expect(await screen.findByText('Bicker')).toBeInTheDocument();
-    expect(await screen.findByText('JBiker@nou.com')).toBeInTheDocument();
-    expect(await screen.findByText('Noah')).toBeInTheDocument();
-    expect(await screen.findByText('Way')).toBeInTheDocument();
-    expect(await screen.findByText('NWay2@nuhuh.com')).toBeInTheDocument();
+    window.location.reload();
 
     expect(await screen.findByText('Nicholas')).toBeInTheDocument();
     expect(await screen.findByText('Sternecker')).toBeInTheDocument();
@@ -176,31 +149,35 @@ describe("Jest Snapshot testing suite", () => {
 });
 
 //doesn't function yet
-/*
+
 describe('Api Testing using Fake Data', () => {
   beforeEach(() => {
     fetchMock.resetMocks();
   })
 
   test('renders info when API call succeeds', async ()=> {
-    const fakeUsers = [
-      {_id: 1 , firstName: 'Jack', lastName: 'Bicker', email: 'JBiker@nou.com'},
-      {_id: 2 , firstName: 'Noah', lastName: 'Way', email: 'NWay2@nuhuh.com'},
-    ];
-    fetchMock.mockResolvedValue({ status: 200, json: jest.fn(() => fakeUsers) });
+    
+    const page = render(<CourseAssignmentInfoPage />);
+    const { getByPlaceholderText } = page;
+    const myinput = getByPlaceholderText('Course Id Here');
 
-    render(<CourseAssignmentInfoPage />);
+    fireEvent.change(myinput, {
+      target: {value: 'BRhk8oFtsmnsBHKo4' }
+    });
+    expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
+    const cdpButton1 = screen.getByText('Search Course');
+    fireEvent.click(cdpButton1);
 
-    expect(await screen.findByText('Jack')).toBeInTheDocument();
-    expect(await screen.findByText('Bicker')).toBeInTheDocument();
-    expect(await screen.findByText('JBiker@nou.com')).toBeInTheDocument();
-    expect(await screen.findByText('Noah')).toBeInTheDocument();
-    expect(await screen.findByText('Way')).toBeInTheDocument();
-    expect(await screen.findByText('NWay2@nuhuh.com')).toBeInTheDocument();
+
+    expect(await screen.findByText('Name:')).toBeInTheDocument();
+    expect(await screen.findByText('Assignment ID:')).toBeInTheDocument();
+    expect(await screen.findByText('Deadline:')).toBeInTheDocument();
+
   });
 
   
 });
-*/
+
 //#endregion
+
 

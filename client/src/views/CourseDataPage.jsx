@@ -28,15 +28,16 @@ function CourseDataPage() {
 			});
         }
 	}, [updated]); //[] updates page if value changes, if empty it only updates on entry to the page
-
+	
+	/*client/src/views/CourseDataPage.jsx*/
 	return (
 		<div>
 			<label> Enter the course id:
-				<input placeholder='Course Id Here' type='text' onChange={handleChange}/>
+				<input placeholder="Course Id Here" type='text' onChange={handleChange}/>
 			</label>
 			<button onClick={handleClick}>Search Course</button>
 			<h1>Perusall API Course Return:</h1>
-			<h2>Course Name: {data.name}</h2>client/src/views/CourseDataPage.jsx
+			<h2>Course Name: {data.name}</h2> 
 			<li>ID: {data._id}</li>
 			{(data.instructorIds && data.instructorIds.length > 0) ? (
 				data.instructorIds.map(id => <li key={id}>Instructor Id: {id}</li>)
