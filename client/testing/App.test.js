@@ -1,7 +1,7 @@
 
 import { render, screen, fireEvent, getByPlaceholderText } from '@testing-library/react';
 import '@testing-library/jest-dom';
-//import App from '../src/App';
+import App from '../src/App';
 import renderer from "react-test-renderer";
 import { JSX } from 'react/jsx-dev-runtime';
 //const CourseDataPage = require('../src/views/CourseDataPage');
@@ -96,8 +96,8 @@ describe("Jest Snapshot testing suite", () => {
 describe('Api Testing using Fake Data', () => {
   //tests the display if has data
   test('renders info when API call succeeds', ()=> {
-    render(<InstitutionCoursesPage />);
-    window.location.reload();
+    const {rerender} = render(<InstitutionCoursesPage />);
+    rerender(<InstitutionCoursesPage />);
     const TextElement = screen.getByText("Perusall API Course Return:");
     expect(TextElement).toBeInTheDocument();
 
@@ -126,7 +126,6 @@ describe('Api sends information through', () => {
   //responce goes through but nothing is displayed
   test('renders info when API call succeeds', async ()=> {
     render(<InstitutionRosterPage />);
-    window.location.reload();
 
     expect(await screen.findByText('Nicholas')).toBeInTheDocument();
     expect(await screen.findByText('Sternecker')).toBeInTheDocument();

@@ -8,7 +8,9 @@ const config = {
         "^axios$": "axios/dist/node/axios.cjs"
     },
     testEnvironment: "jsdom",
-    setupFilesAfterEnv: ['<rootDir>/setupJest.js'],
+    setupFilesAfterEnv: ['<rootDir>/setupJest.js'] ,
+    setupFiles: ["dotenv/config"],
+    
   };
   
   module.exports = config;
