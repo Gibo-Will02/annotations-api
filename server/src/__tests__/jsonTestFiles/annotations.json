@@ -1,0 +1,389 @@
+[
+    {
+        "id": "wH3HSnFqwE39LugBs",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p>Needs to be hard</p>",
+        "plainText": "Needs to be hard",
+        "score": 0,
+        "createdAt": "2023-10-25T15:01:21.605Z",
+        "editedAt": "2023-10-25T15:01:21.605Z"
+    },
+    {
+        "id": "DCZAxnYbpP23xFWiB",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>Computers Yay</p>",
+        "plainText": "Computers Yay",
+        "score": 0,
+        "createdAt": "2023-10-25T15:01:30.320Z",
+        "editedAt": "2023-10-25T15:01:30.320Z"
+    },
+    {
+        "id": "hQQhF6oeqnDDTK8kd",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>bean</p>",
+        "plainText": "bean",
+        "score": 0,
+        "createdAt": "2023-10-30T15:48:53.230Z",
+        "editedAt": "2023-10-30T15:48:53.230Z"
+    },
+    {
+        "id": "hQBwpuhMcet4ZTXjZ",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p>Goodbye</p>",
+        "plainText": "Goodbye",
+        "score": 0,
+        "createdAt": "2023-10-25T15:01:37.877Z",
+        "editedAt": "2023-10-25T15:01:37.877Z"
+    },
+    {
+        "id": "JoftxmQJwoCunCpY8",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>Walter White</p>",
+        "plainText": "Walter White",
+        "score": 0,
+        "createdAt": "2023-10-25T15:02:14.510Z",
+        "editedAt": "2023-10-25T15:02:14.510Z"
+    },
+    {
+        "id": "5w7cGf9Y9MLFZ3R3e",
+        "studentId": "XH7rtnv44jtkRcBEr",
+        "text": "<p>What is this book?</p>",
+        "plainText": "What is this book?",
+        "score": 0,
+        "createdAt": "2023-11-10T16:57:50.065Z",
+        "editedAt": "2023-11-10T16:57:50.064Z"
+    },
+    {
+        "id": "BDieJdFNYj3Dovurx",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p><img src=\"https://s3.amazonaws.com/public.perusall/annotations/jdGGwy2z58RCrmQCh/7l-44Our3FHbV_eekPf4VNzrA9pCuYoL3s0VMBwtl9a-image_2023-10-25_100210035.png\" /></p>",
+        "plainText": "",
+        "score": 0,
+        "createdAt": "2023-10-25T15:02:14.845Z",
+        "editedAt": "2023-10-25T15:02:14.845Z"
+    },
+    {
+        "id": "LJ9HCCFzesZQnFR3x",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p><span style=\"background-color:rgb(255, 255, 255);color:rgb(32, 33, 36)\">the programs and other operating information used by a computer</span></p>",
+        "plainText": "the programs and other operating information used by a computer",
+        "score": 1,
+        "createdAt": "2023-10-25T15:03:00.143Z",
+        "editedAt": "2023-10-25T15:03:00.143Z"
+    },
+    {
+        "id": "GxMWNgZRvFMcXfN5y",
+        "studentId": "XH7rtnv44jtkRcBEr",
+        "text": "<p>How long would these meetings be?</p>",
+        "plainText": "How long would these meetings be?",
+        "score": 0,
+        "createdAt": "2023-11-10T16:58:37.555Z",
+        "editedAt": "2023-11-10T16:58:37.555Z"
+    },
+    {
+        "id": "MHrSxnti48xM4mcbG",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p>Man I do NOT want to have to actually talk to people in this class, they're icky</p>",
+        "plainText": "Man I do NOT want to have to actually talk to people in this class, they're icky",
+        "score": 0,
+        "createdAt": "2023-10-25T15:03:07.999Z",
+        "editedAt": "2023-10-25T15:03:07.999Z"
+    },
+    {
+        "id": "8ccY4snF46f9B3TTv",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>The Gates</p>",
+        "plainText": "The Gates",
+        "score": 0,
+        "createdAt": "2023-10-25T15:03:57.818Z",
+        "editedAt": "2023-10-25T15:03:57.818Z"
+    },
+    {
+        "id": "hnaEJK6iAEGgzvAi6",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>10/10 quality</p>",
+        "plainText": "10/10 quality",
+        "score": 0,
+        "createdAt": "2023-10-25T15:04:45.438Z",
+        "editedAt": "2023-10-25T15:04:45.438Z"
+    },
+    {
+        "id": "RQttmxqNcf8nQTydK",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>I Da best</p>",
+        "plainText": "I Da best",
+        "score": 0,
+        "createdAt": "2023-10-25T15:05:05.221Z",
+        "editedAt": "2023-10-25T15:05:05.220Z"
+    },
+    {
+        "id": "vxcHeSGd59Drn2X5v",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>Document thine code or face thy wrath of thy mandate</p>",
+        "plainText": "Document thine code or face thy wrath of thy mandate",
+        "score": 1,
+        "createdAt": "2023-10-25T15:06:09.586Z",
+        "editedAt": "2023-10-25T15:06:09.586Z"
+    },
+    {
+        "id": "Qpmf2sGiLSGu4ukkn",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>No violating copyright in the halls</p>",
+        "plainText": "No violating copyright in the halls",
+        "score": 0,
+        "createdAt": "2023-10-25T15:06:29.735Z",
+        "editedAt": "2023-10-25T15:06:29.735Z"
+    },
+    {
+        "id": "uh2GuY98gFHTASAnN",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>Develop thy inscribed tongue</p>",
+        "plainText": "Develop thy inscribed tongue",
+        "score": 0,
+        "createdAt": "2023-10-25T15:07:36.544Z",
+        "editedAt": "2023-10-25T15:07:36.543Z"
+    },
+    {
+        "id": "jK5CZK8WxENma8Mu8",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>test</p>",
+        "plainText": "test",
+        "score": 0,
+        "createdAt": "2023-10-25T16:02:17.208Z",
+        "editedAt": "2023-10-25T16:02:17.208Z"
+    },
+    {
+        "id": "oQk9iCx8sAqkEMn2R",
+        "studentId": "XH7rtnv44jtkRcBEr",
+        "text": "<p>This is important for me, I should come look back at this later.</p>",
+        "plainText": "This is important for me, I should come look back at this later.",
+        "score": 1,
+        "createdAt": "2023-11-10T17:05:22.416Z",
+        "editedAt": "2023-11-10T17:05:22.416Z"
+    },
+    {
+        "id": "joqBdYfNdt7ofjCz3",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>RIP</p>",
+        "plainText": "RIP",
+        "score": 0,
+        "createdAt": "2023-10-25T15:10:42.170Z",
+        "editedAt": "2023-10-25T15:10:42.170Z"
+    },
+    {
+        "id": "RGzJrDcjJM4eq36fS",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>NO Chat gpt</p>",
+        "plainText": "NO Chat gpt",
+        "score": 0,
+        "createdAt": "2023-10-25T15:11:12.303Z",
+        "editedAt": "2023-10-25T15:11:12.302Z"
+    },
+    {
+        "id": "THSeksauNaCRx6ZSj",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>I would like to thank our sponsor NordVPN </p>",
+        "plainText": "I would like to thank our sponsor NordVPN ",
+        "score": 0,
+        "createdAt": "2023-10-25T15:12:02.518Z",
+        "editedAt": "2023-10-25T15:12:02.518Z"
+    },
+    {
+        "id": "pfpgd9uoPPukk6vR2",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p>I don't need any help I will simply get through the things and figure it out without help</p>",
+        "plainText": "I don't need any help I will simply get through the things and figure it out without help",
+        "score": 0,
+        "createdAt": "2023-10-25T15:06:45.350Z",
+        "editedAt": "2023-10-25T15:06:45.350Z"
+    },
+    {
+        "id": "gowGhDMieWpaTWGNJ",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>aLL</p>",
+        "plainText": "aLL",
+        "score": 0,
+        "createdAt": "2023-10-25T15:13:39.094Z",
+        "editedAt": "2023-10-25T15:13:39.093Z"
+    },
+    {
+        "id": "3jMmFpDshkDHSvGJx",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>Silence</p>",
+        "plainText": "Silence",
+        "score": 0,
+        "createdAt": "2023-10-25T15:09:12.175Z",
+        "editedAt": "2023-10-25T15:09:12.174Z"
+    },
+    {
+        "id": "AyAJPnR5qJCyCd2iP",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>Exersise</p>",
+        "plainText": "Exersise",
+        "score": 0,
+        "createdAt": "2023-10-25T15:13:53.394Z",
+        "editedAt": "2023-10-25T15:13:53.393Z"
+    },
+    {
+        "id": "ui38MnMCeg4mfh6wB",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>u</p>",
+        "plainText": "u",
+        "score": 0,
+        "createdAt": "2023-10-25T15:14:38.803Z",
+        "editedAt": "2023-10-25T15:14:38.803Z"
+    },
+    {
+        "id": "8Nc4iXjFPfTtR9RBx",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>Dungeon Master</p>",
+        "plainText": "Dungeon Master",
+        "score": 0,
+        "createdAt": "2023-10-25T15:12:36.781Z",
+        "editedAt": "2023-10-25T15:12:36.781Z"
+    },
+    {
+        "id": "KiDfAwrABowgwFbBR",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>Dungeon Master</p>",
+        "plainText": "Dungeon Master",
+        "score": 0,
+        "createdAt": "2023-10-25T15:12:27.953Z",
+        "editedAt": "2023-10-25T15:12:27.953Z"
+    },
+    {
+        "id": "EE3bAG8itm5gChBGD",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p>The Rothschilds</p>",
+        "plainText": "The Rothschilds",
+        "score": 0,
+        "createdAt": "2023-10-25T15:07:49.610Z",
+        "editedAt": "2023-10-25T15:07:49.610Z"
+    },
+    {
+        "id": "csSWWiSSrvkXzNzCX",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p>:thumbsup:</p>",
+        "plainText": ":thumbsup:",
+        "score": 0,
+        "createdAt": "2023-10-25T15:04:18.013Z",
+        "editedAt": "2023-10-25T15:04:18.013Z"
+    },
+    {
+        "id": "xdx8vDxupJJDu7kNL",
+        "studentId": "XH7rtnv44jtkRcBEr",
+        "text": "<p>Computers are fun indeed</p>",
+        "plainText": "Computers are fun indeed",
+        "score": 0,
+        "createdAt": "2023-11-10T16:56:57.219Z",
+        "editedAt": "2023-11-10T16:56:57.219Z"
+    },
+    {
+        "id": "qmDbbWZvrmnBEcx5K",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p>I am NOT going to get close to anyone they're so icky I don't want anything to do with them <span class=\"mention\" data-denotation-char=\"#\" data-value=\"logistics\">﻿<span><span class=\"ql-mention-denotation-char\">#</span>logistics</span>﻿</span> </p>",
+        "plainText": "I am NOT going to get close to anyone they're so icky I don't want anything to do with them ﻿#logistics﻿ ",
+        "score": 1,
+        "createdAt": "2023-10-25T15:21:02.905Z",
+        "editedAt": "2023-10-25T15:21:02.904Z"
+    },
+    {
+        "id": "rJzyQFTx2Avi9fySR",
+        "studentId": "ba8FE5bnAZtB6x254",
+        "text": "<p>You are required to do peer reviews in order to pass the class.</p>",
+        "plainText": "You are required to do peer reviews in order to pass the class.",
+        "score": 1,
+        "createdAt": "2023-10-25T15:05:50.493Z",
+        "editedAt": "2023-10-25T15:05:50.493Z"
+    },
+    {
+        "id": "NfHFqcrSq3E5KzQZS",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>Well that too Bad you gotta</p>",
+        "plainText": "Well that too Bad you gotta",
+        "score": 0,
+        "createdAt": "2023-10-25T15:03:40.273Z",
+        "editedAt": "2023-10-25T15:03:40.273Z"
+    },
+    {
+        "id": "3s6nuNtvMsL9ShKXW",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>have some slime *throws a slime*</p>",
+        "plainText": "have some slime *throws a slime*",
+        "score": 0,
+        "createdAt": "2023-10-25T15:25:11.526Z",
+        "editedAt": "2023-10-25T15:25:11.526Z"
+    },
+    {
+        "id": "dmcaLTsYY9omNub8r",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p>I Da best</p>",
+        "plainText": "I Da best",
+        "score": 0,
+        "createdAt": "2023-10-25T15:24:19.234Z",
+        "editedAt": "2023-10-25T15:24:19.234Z"
+    },
+    {
+        "id": "HWv4CCfKws7wBwKXA",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>I Da best</p>",
+        "plainText": "I Da best",
+        "score": 0,
+        "createdAt": "2023-10-25T15:41:34.146Z",
+        "editedAt": "2023-10-25T15:41:34.146Z"
+    },
+    {
+        "id": "u9jfzx8bL6Z8FbECm",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>no</p>",
+        "plainText": "no",
+        "score": 0,
+        "createdAt": "2023-10-25T15:01:52.394Z",
+        "editedAt": "2023-10-25T15:01:52.394Z"
+    },
+    {
+        "id": "xoAoPBv5Gab8pMa6v",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p>10/10 quality</p>",
+        "plainText": "10/10 quality",
+        "score": 0,
+        "createdAt": "2023-10-25T15:23:57.086Z",
+        "editedAt": "2023-10-25T15:23:57.086Z"
+    },
+    {
+        "id": "baZwroXK6ZyRrfT2i",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>meh</p>",
+        "plainText": "meh",
+        "score": 0,
+        "createdAt": "2023-10-25T15:08:16.782Z",
+        "editedAt": "2023-10-25T15:08:16.781Z"
+    },
+    {
+        "id": "sY7gZPQ4CiGJ2FwiR",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p><span class=\"mention\" data-denotation-char=\"#\" data-value=\"grades\">﻿<span><span class=\"ql-mention-denotation-char\">#</span>grades</span>﻿</span> </p>",
+        "plainText": "﻿#grades﻿ ",
+        "score": 0,
+        "createdAt": "2023-10-25T15:19:33.157Z",
+        "editedAt": "2023-10-25T15:19:33.157Z"
+    },
+    {
+        "id": "czm8kRSWp8okKtDf2",
+        "studentId": "jdGGwy2z58RCrmQCh",
+        "text": "<p>;lasdjf</p>",
+        "plainText": ";lasdjf",
+        "score": 0,
+        "createdAt": "2023-10-25T16:01:57.475Z",
+        "editedAt": "2023-10-25T16:01:57.475Z"
+    },
+    {
+        "id": "4Kdjh2s58DZaXRw4s",
+        "studentId": "MNZtvxJYmY5GQ4w6z",
+        "text": "<p>has computer dysfunction</p>",
+        "plainText": "has computer dysfunction",
+        "score": 0,
+        "createdAt": "2023-10-25T15:09:50.727Z",
+        "editedAt": "2023-10-25T15:09:50.727Z"
+    }
+]

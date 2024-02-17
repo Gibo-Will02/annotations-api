@@ -1,0 +1,31 @@
+[
+    {
+        "_id": "qB83qbw8vnAPYNEwm",
+        "name": "K-State CIS 642_643 Textbook - Pages 1-11",
+        "documentIds": [
+            "iRvEpfcv9r9ecrEsE"
+        ],
+        "deadline": "2023-10-25T16:30:00.000Z",
+        "assignTo": "all",
+        "studentIds": [
+            "MNZtvxJYmY5GQ4w6z",
+            "jdGGwy2z58RCrmQCh",
+            "XH7rtnv44jtkRcBEr"
+        ]
+    },
+    {
+        "_id": "dQNPoRBd2PBH52ABp",
+        "name": "Coding Assignment",
+        "documentIds": [
+            "ADzMrbFTYtKmvrnAk",
+            "aE8M4oW8e9nEhSnLd"
+        ],
+        "deadline": "2023-10-27T15:30:00.000Z",
+        "assignTo": "all",
+        "studentIds": [
+            "MNZtvxJYmY5GQ4w6z",
+            "jdGGwy2z58RCrmQCh",
+            "XH7rtnv44jtkRcBEr"
+        ]
+    }
+]
