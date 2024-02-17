@@ -24,8 +24,8 @@ describe('Checks the API call for the courses in the institution', () => {
         const response = await axios.get("https://app.perusall.com/api/v1/courses/", config);
         assert.strictEqual(response.status, 200);
         assert.deepStrictEqual(response.data, require('./jsonTestFiles/courses.json')) // json data from postman
-    })
-})
+    });
+});
 
 describe('Checks the data of a course API call based on course ID', () => {
     it ('Gets the IDs for each course and checks for the expected course data', async () => {
@@ -38,7 +38,7 @@ describe('Checks the data of a course API call based on course ID', () => {
                 assert.deepStrictEqual(response.data, require('./jsonTestFiles/courseData.json')); // json data from postman
             }
         }
-    })
+    });
 });
 
 describe('Checks the scores of an assignment API call based on course ID and assignment ID', () => {
@@ -46,12 +46,12 @@ describe('Checks the scores of an assignment API call based on course ID and ass
         const response = await axios.get('https://app.perusall.com/api/v1/courses/' + "BRhk8oFtsmnsBHKo4" + "/assignments/" + "qB83qbw8vnAPYNEwm" + "/scores", config); //API call for the given courseID
         assert.strictEqual(response.status, 200)
         assert.deepStrictEqual(response.data, require('./jsonTestFiles/assignmentScores.json')); // json data from postman
-    })
+    });
     it ('Checks for the expected scores of the given course with a second given assignment', async () => {
         const response = await axios.get('https://app.perusall.com/api/v1/courses/' + "BRhk8oFtsmnsBHKo4" + "/assignments/" + "dQNPoRBd2PBH52ABp" + "/scores", config); //API call for the given courseID
         assert.strictEqual(response.status, 200)
         assert.deepStrictEqual(response.data, require('./jsonTestFiles/assignmentScores.json')); // json data from postman
-    })
+    });
 });
 
 describe('Checks the analytics of an assigment API call', () => {
@@ -59,12 +59,12 @@ describe('Checks the analytics of an assigment API call', () => {
         const response = await axios.get('https://app.perusall.com/api/v1/courses/' + "BRhk8oFtsmnsBHKo4" + "/assignments/" + "qB83qbw8vnAPYNEwm" + "/analytics/" + "grades" + "/" + "1", config); //API call for the given courseID
         assert.strictEqual(response.status, 200);
         assert.deepStrictEqual(response.data.grades, require('./jsonTestFiles/gradeAnalytics.json')); // json data from postman
-    })
+    });
     it('Checks for the expected student activity report of the assignment', async () => {
         const response = await axios.get('https://app.perusall.com/api/v1/courses/' + "BRhk8oFtsmnsBHKo4" + "/assignments/" + "dQNPoRBd2PBH52ABp" + "/analytics/" + "studentActivity" + "/" + "1", config); //API call for the given courseID
         assert.strictEqual(response.status, 200);
         assert.deepStrictEqual(response.data.report, require('./jsonTestFiles/activityAnalytics.json')); // json data from postman
-    })
+    });
 });
 
 describe('API call checks the list of courses of a user', () => {
@@ -72,7 +72,7 @@ describe('API call checks the list of courses of a user', () => {
         const response = await axios.get("https://app.perusall.com/api/v1/courses/" + "BRhk8oFtsmnsBHKo4" + "/assignments", config); //API call for the given courseID
         assert.strictEqual(response.status, 200)
         assert.deepStrictEqual(response.data, require('./jsonTestFiles/assignments.json')); // json data from postman
-    })
+    });
 });
 
 describe('API call for the annotations of a course assignment', () => {
@@ -80,5 +80,5 @@ describe('API call for the annotations of a course assignment', () => {
         const response = await axios.get("https://app.perusall.com/api/v1/courses/" + "BRhk8oFtsmnsBHKo4" + "/assignments/" + "qB83qbw8vnAPYNEwm" + "/annotations", config); //API call for the given courseID
         assert.strictEqual(response.status, 200)
         assert.deepStrictEqual(response.data, require('./jsonTestFiles/annotations.json')); // json data from postman
-    })
+    });
 });
