@@ -10,7 +10,7 @@ const config = {
     testEnvironment: "jsdom",
     setupFilesAfterEnv: ['<rootDir>/setupJest.js'] ,
     setupFiles: ["dotenv/config"],
-    
+    testURL: 'http://localhost:3000/', 
   };
   
   module.exports = config;
