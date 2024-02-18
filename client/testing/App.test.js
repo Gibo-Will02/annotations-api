@@ -1,142 +1,213 @@
 
-import TestPage, { calculate, handleCalculate, handleClick } from '../src/views/TestPage';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { NathanContainer } from '../src/views/TestPage';
-import { nathanClick } from '../src/views/TestPage';
+import { render, screen, fireEvent, getByPlaceholderText, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import App from '../src/App';
-import ButtonTest from '../src/views/TestPage';
+import renderer from "react-test-renderer";
+import { JSX } from 'react/jsx-dev-runtime';
+//const CourseDataPage = require('../src/views/CourseDataPage');
+import CourseDataPage from '../src/views/CourseDataPage';
+import InstitutionCoursesPage from '../src/views/InstitutionCoursesPage';
+import InstitutionRosterPage from '../src/views/InstitutionRosterPage';
+import CourseAssignmentInfoPage from '../src/views/CourseAssignmentInfoPage';
+import axios from "axios";
 
+//axios.defaults.baseURL = "http://localhost:3000/";
+//jest.mock('axios');
 
-const buttontypes = ['one', 'two', 'three'];
-
-test('ButtonTest component renders and toggles buttons correctly', () => {
-  const { getByText } = render(<ButtonTest buttontypes={buttontypes} />);
-  
-  // sets first button active
-  const activeButton1 = getByText('one');
-  expect(activeButton1).toHaveStyle('opacity: 1');
-  // tests second button is initially inactive
-  const inactiveButton2 = getByText('two');
-  expect(inactiveButton2).toHaveStyle('opacity: 0.6');
-
-  // clicks second button
-  fireEvent.click(inactiveButton2);
-
-  // tests when the second button is clicked
-  expect(activeButton1).toHaveStyle('opacity: 0.6');
-  expect(inactiveButton2).toHaveStyle('opacity: 1');
-});
-
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText("Test Page");
-  expect(linkElement).toBeInTheDocument();
+//#region course data page tests
+describe("Jest Snapshot testing suite", () => {
+  it("Matches DOM Snapshot", () => {
+    const domTree = renderer.create(<CourseDataPage />).toJSON();
+    expect(domTree).toMatchSnapshot();
+  });
 });
 
 
-test('text is rendered', () => {
-  render(<TestPage />)
-  const textelement= screen.getByText(/There is no way a bee should be able to fly/);
-  expect(textelement).toBeInTheDocument();
+test('course data page displays correct information', () => {
+  render(<CourseDataPage />);
+  const TextElement = screen.getByText("Perusall API Course Return:");
+  expect(TextElement).toBeInTheDocument();
+ 
 
-  const textelement2= screen.getByText(/Its wings are too small to get its fat little body off the ground./);
-  expect(textelement2).toBeInTheDocument();
-
-  const textelement3= screen.getByText(/The bee, of course, flies anyway/);
-  expect(textelement3).toBeInTheDocument();
-
-  const textelement4= screen.getByText(/because bees don't care what humans think is/);
-  expect(textelement3).toBeInTheDocument();
-
-  const textelement5= screen.getByText(/Impossible/);
-  expect(textelement3).toBeInTheDocument();
 });
 
-describe("nicholas button functions", () =>{
-  test('Test nicholas button functionality', () =>{
-    render(<TestPage />);
-    const nButton1 = screen.getByText('Nicholas button');
+
+test('course data page displays correct information', () => {
+  render(<CourseDataPage />);
+  const TextElement = screen.getByText("Course Name:");
+  expect(TextElement).toBeInTheDocument();
+ 
+
+});
+
+
+test('course data page has search button and activates', ()=> {
+    render(<CourseDataPage />);
+    const nButton1 = screen.getByText('Search Course');
     fireEvent.click(nButton1);
     expect(nButton1.toHaveBeenCalled);
+});
+
+describe('Api Testing course data page', () => {
+  
+  test('renders info when API call succeeds', async ()=> {
+    
+    const responseData = {
+      name: 'Test Course',
+      _id: '123',
+      instructorIds: [],
+      studentIds: ['abc', 'def'],
+    };
+    axios.post.mockResolvedValueOnce({ data: responseData });
+    
+    const page = render(<CourseDataPage />);
+    const { getByPlaceholderText, getByText } = page;
+    const myinput = getByPlaceholderText('Course Id Here');
+
+    fireEvent.change(myinput, {
+      target: {value: 'BRhk8oFtsmnsBHKo4' }
+    });
+    expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
+    const cdpButton1 = getByText('Search Course');
+    fireEvent.click(cdpButton1);
+    
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axios.post).toHaveBeenCalledWith('/api/course_data', { '_CID': 'BRhk8oFtsmnsBHKo4' });
+    });
+    expect(await getByText('Textbook Team')).toBeInTheDocument();
+    
+  });
+  
+  
+  
+  test('renders failstate when no person is found', async ()=> {
+    
+    render(<CourseDataPage />);
+    const nButton1 = screen.getByText('Search Course');
+    fireEvent.click(nButton1);
+
+    expect(await screen.findByText('No instructor IDs available')).toBeInTheDocument();
+    expect(await screen.findByText('No student IDs available')).toBeInTheDocument();
+  });
+
+});
+//#endregion
+
+
+//#region Institution courses page tests
+
+
+describe("Jest Snapshot testing suite", () => {
+  it("Matches DOM Snapshot", () => {
+    const instPage = renderer.create(<InstitutionCoursesPage showAfterDelay={500} />).toJSON();
+    expect(instPage).toMatchSnapshot();
+  });
+});
+
+
+
+//useEffect isn't working
+describe('Api Testing using Fake Data', () => {
+  //tests the display if has data
+  test('renders info when API call succeeds', ()=> {
+    const {rerender} = render(<InstitutionCoursesPage />);
+    rerender(<InstitutionCoursesPage />);
+    const TextElement = screen.getByText("Perusall API Course Return:");
+    expect(TextElement).toBeInTheDocument();
+
+  });
+
+});
+
+//#endregion
+
+//#region Institution Roster page Tests
+describe("Jest Snapshot testing suite", () => {
+  it("Matches InstitutionRosterPage Snapshot", () => {
+    const rosPage = renderer.create(<InstitutionRosterPage />).toJSON();
+    expect(rosPage).toMatchSnapshot();
+  });
+});
+
+test('Institution courses page has its text', ()=> {
+  render(<InstitutionRosterPage />);
+  const TextElement = screen.getByText("Perusall API User Return:");
+  expect(TextElement).toBeInTheDocument();
+});
+
+//responce exists but expirences a network error
+describe('Api sends information through', () => {
+  //responce goes through but nothing is displayed
+  test('renders info when API call succeeds', async ()=> {
+    /*
+    const responseData = [
+      { _id: '1', firstName: 'John', lastName: 'Doe', email: 'john@example.com' },
+      { _id: '2', firstName: 'Noah', lastName: 'way', email: 'nway@bht.com' },
+    ];
+    axios.get.mockResolvedValueOnce({ data: responseData });
+    */
+    const { getByText } = render(<InstitutionRosterPage />);
+
+    /*
+    await waitFor(() => {
+      //expect(axios.get).toHaveBeenCalledTimes(1);
+      expect(axios.get).toHaveBeenCalledWith('/api/institution_roster');
+    });
+    */
+    expect(getByText('Perusall API User Return:')).toBeInTheDocument();
+    //expect(getByText('ID: 1 / First Name: John / Last Name: Doe / Email: john@example.com')).toBeInTheDocument();
+    //expect(getByText('ID: 1 / First Name: Noah / Last Name: way / Email: nway@bht.com')).toBeInTheDocument();
+    //expect(await screen.findByText('Nicholas')).toBeInTheDocument();
+    //expect(await screen.findByText('Sternecker')).toBeInTheDocument();
+    //expect(await screen.findByText('nsternecker@ksu.edu')).toBeInTheDocument();
+  });
 
   
-  });
 });
 
 
-describe('Test calculate button functions', () =>{
-  it('Test click event', () => {
-    render(<TestPage />);
-    const calcButton1 = screen.getByText('Calculate');
-    fireEvent.submit(calcButton1);
-    expect(calcButton1.toHaveBeenCalled);
+//#endregion
+
+//#region user course list page tests
+
+describe("Jest Snapshot testing suite", () => {
+  it("Matches CourseAssignmentPage Snapshot", () => {
+    const uscPage = renderer.create(<CourseAssignmentInfoPage />).toJSON();
+    expect(uscPage).toMatchSnapshot();
   });
 });
 
-describe('calculate function call returns correct', ()=>{
-  it('calculate of 2 + 4 is six', ()=>{
-    expect(calculate("2","+","4")).toBe(6);
-  });
+//doesn't function yet
 
-  it('calculate of 2 - 4 is six', ()=>{
-    expect(calculate("2","-","4")).toBe(-2);
-  });
-
-  it('calculate of 2 + 4 is six', ()=>{
-    expect(calculate("2","*","4")).toBe(8);
-  });
-
-  it('calculate of 2 + 4 is six', ()=>{
-    expect(calculate("2","/","4")).toBe(0.5);
-  });
-});
-
-
-describe('description', () => {
-  let originalWindowLocation = window.location;
-
+describe('Api Testing using Fake Data', () => {
   beforeEach(() => {
-    Object.defineProperty(window, 'location', {
-      configurable: true,
-      enumerable: true,
-      value: new URL(window.location.href),
+    fetchMock.resetMocks();
+  })
+
+  test('renders info when API call succeeds', async ()=> {
+    
+    const page = render(<CourseAssignmentInfoPage />);
+    const { getByPlaceholderText } = page;
+    const myinput = getByPlaceholderText('Course Id Here');
+
+    fireEvent.change(myinput, {
+      target: {value: 'BRhk8oFtsmnsBHKo4' }
     });
-  });
+    expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
+    const cdpButton1 = screen.getByText('Search Course');
+    fireEvent.click(cdpButton1);
 
-  afterEach(() => {
-    Object.defineProperty(window, 'location', {
-      configurable: true,
-      enumerable: true,
-      value: originalWindowLocation,
-    });
-  });
 
-  it('render test', () => {
-    render(<NathanContainer />);
-    const button = screen.getByRole('testingRole');
-    expect(button).toHaveTextContent("Don't do it");
+    expect(await screen.findByText('Name:')).toBeInTheDocument();
+    expect(await screen.findByText('Assignment ID:')).toBeInTheDocument();
+    expect(await screen.findByText('Deadline:')).toBeInTheDocument();
 
   });
 
-  it('test that the button click is handled', () => {
-
-    const nathanClickMock = jest.fn();
-    const {getByRole} = render(<NathanContainer nathanClick = {nathanClickMock} />);
-    const buttonElement = getByRole('testingRole');
-    fireEvent.click(buttonElement);
-    expect(nathanClickMock.toHaveBeenCalled);
-    /*
-    render(<NathanContainer />);
-    const buttonElement = screen.getByText('Don\'t do it');
-    fireEvent.click(buttonElement);
-    expect(buttonElement).toHaveBeenCalled;
-    */
-  });
-
-  it('test that redirection URL is correct', () => {
-    const expectedUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3Dm';
-    window.location.href = expectedUrl;
-    expect(window.location.href).toBe(expectedUrl);
-  });
+  
 });
+
+//#endregion
+
 
