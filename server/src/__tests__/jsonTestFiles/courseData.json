@@ -1,0 +1,25 @@
+{
+    "_id": "BRhk8oFtsmnsBHKo4",
+    "name": "Textbook Team",
+    "instructorIds": [
+        "yj6ngEo5ybTevTDag",
+        "ba8FE5bnAZtB6x254"
+    ],
+    "studentIds": [
+        "MNZtvxJYmY5GQ4w6z",
+        "jdGGwy2z58RCrmQCh",
+        "XH7rtnv44jtkRcBEr"
+    ],
+    "inactiveStudentIds": [],
+    "lti": {
+        "version": "1.1",
+        "institutionId": "9RFriSoEyL8PuvJh6",
+        "instanceId": "7db438071375c02373713c12c73869ff2f470b68.k-state.instructure.com",
+        "contextId": "97b4be803cd06efa24f5f02dbc008e8917103cc6",
+        "lmsName": "canvas"
+    },
+    "lowestPossibleScore": 0,
+    "highestPossibleScore": 3,
+    "ltiInstanceId": "7db438071375c02373713c12c73869ff2f470b68.k-state.instructure.com",
+    "ltiContextId": "97b4be803cd06efa24f5f02dbc008e8917103cc6"
+}
