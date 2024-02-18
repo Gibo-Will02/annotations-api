@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import InstitutionRosterPage from './views/InstitutionRosterPage';
-import UserCourseListPage from './views/UserCourseListPage';
+import CourseAssignmentInfoPage from './views/CourseAssignmentInfoPage';
 import InstitutionCoursesPage from './views/InstitutionCoursesPage';
 import CourseDataPage from './views/CourseDataPage';
 import Navbar from './components/NavBar/index';
@@ -31,11 +31,19 @@ function App() {
     if (!user) {
       console.log("Inside !user conditional") //Don't need logs
       fetch('/api/whoami') //Switch this to axios or switch axios to base commands, reccomended to not use axios
-      .then(response => response.json())
-      .then(user => setUser(user))
-      .catch(err => window.location = "/api/login")
+      .then(response => {
+        if (response.status == "403") {
+          window.location = "/api/login";
+        }else {
+          response.json().then(user => setUser(user))
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        window.location = "/api/login";
+      })
     }
-    
+
   }, []);
 
   // Display a wait message or spinner if the user is 
@@ -56,7 +64,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/institutionRosterPage' element={<InstitutionRosterPage />} />
-          {/*<Route path='/courseListPage' element={<UserCourseListPage />} />*/}
+          <Route path='/courseAssignmentInfoPage' element={<CourseAssignmentInfoPage />} />
           <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
           <Route path='/courseDataPage' element={<CourseDataPage />} />
          </Routes>
