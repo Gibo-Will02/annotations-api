@@ -1,6 +1,11 @@
 const axios = require('axios')
 const express = require( "express" )
 
+var dotenv = require('dotenv')
+var dotenvExpand = require('dotenv-expand')
+var myEnv = dotenv.config()
+dotenvExpand.expand(myEnv)
+
 const router = express.Router()
 var serviceHost = encodeURIComponent(process.env.DOMAIN_NAME); //.env variable
 console.log("Inside of auth.js")
@@ -9,7 +14,7 @@ var casHost = 'https://testcas.cs.ksu.edu/'; //.env variable
 //The /login route that will reroute to outside cashost for login
 router.get('/login', (req, res) => {
   console.log("Inside /login") //Don't need logs
-  res.redirect(`${casHost}login?service=${serviceHost}api/ticket`)
+  res.redirect(`${casHost}login?service=${serviceHost}api%2Fticket`)
 });
 
 //The /logout route which will log the user out of the CAS server, and kill the session

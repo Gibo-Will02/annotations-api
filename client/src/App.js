@@ -31,11 +31,19 @@ function App() {
     if (!user) {
       console.log("Inside !user conditional") //Don't need logs
       fetch('/api/whoami') //Switch this to axios or switch axios to base commands, reccomended to not use axios
-      .then(response => response.json())
-      .then(user => setUser(user))
-      .catch(err => window.location = "/api/login")
+      .then(response => {
+        if (response.status == "403") {
+          window.location = "/api/login";
+        }else {
+          response.json().then(user => setUser(user))
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        window.location = "/api/login";
+      })
     }
-    
+
   }, []);
 
   // Display a wait message or spinner if the user is 
