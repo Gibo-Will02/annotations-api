@@ -1,44 +1,114 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Jest Snapshot testing suite Matches CourseAssignmentPage Snapshot 1`] = `
-<div
-  style={
-    Object {
-      "alignItems": "center",
-      "display": "flex",
-      "flexDirection": "column",
-    }
-  }
->
-  <div>
-    <label>
-       Enter the course id:
-      <input
-        onChange={[Function]}
-        placeholder="Course Id Here"
-        type="text"
-      />
-    </label>
-    <button
-      onClick={[Function]}
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        style="display: flex; flex-direction: column; align-items: center;"
+      >
+        <div>
+          <label>
+             Enter the course id:
+            <input
+              placeholder="Course Id Here"
+              type="text"
+            />
+          </label>
+          <button>
+            Search Course
+          </button>
+        </div>
+        <h1
+          style="border-bottom: 1px solid black; display: inline-block;"
+        >
+          Assignments (From Perusall):
+        </h1>
+        <label>
+          No assignments to display
+        </label>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      style="display: flex; flex-direction: column; align-items: center;"
     >
-      Search Course
-    </button>
-  </div>
-  <h1
-    style={
-      Object {
-        "borderBottom": "1px solid black",
-        "display": "inline-block",
-      }
-    }
-  >
-    Assignments (From Perusall):
-  </h1>
-  <label>
-    No assignments to display
-  </label>
-</div>
+      <div>
+        <label>
+           Enter the course id:
+          <input
+            placeholder="Course Id Here"
+            type="text"
+          />
+        </label>
+        <button>
+          Search Course
+        </button>
+      </div>
+      <h1
+        style="border-bottom: 1px solid black; display: inline-block;"
+      >
+        Assignments (From Perusall):
+      </h1>
+      <label>
+        No assignments to display
+      </label>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`Jest Snapshot testing suite Matches DOM Snapshot 1`] = `
@@ -79,13 +149,5 @@ exports[`Jest Snapshot testing suite Matches DOM Snapshot 2`] = `
   <label>
     Loading data
   </label>
-</div>
-`;
-
-exports[`Jest Snapshot testing suite Matches InstitutionRosterPage Snapshot 1`] = `
-<div>
-  <h1>
-    Perusall API User Return:
-  </h1>
 </div>
 `;
