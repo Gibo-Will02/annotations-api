@@ -16,18 +16,20 @@ function InstitutionCoursesPage() {
 	}, []); //[] updates page if value changes, if empty it only updates on entry to the page
 
 	return (
-        posts.length !== 0 ? (
-		<div>
-			<h1>Perusall API Course Return:</h1>
-			{posts.map((post) => {
-				return(<li>ID: {post._id} / Course Name: {post.name}</li>)
-			})}
-		</div>
-        ) : (
-            <div>
-				<label >Loading data</label>
+		<div style={{display:"flex", flexDirection:"column", alignItems: "center"}}>
+			{posts.length !== 0 ? (
+			<div>
+				<h1>Perusall API Course Return:</h1>
+				{posts.map((post) => {
+					return(<li>ID: {post._id} / Course Name: {post.name}</li>)
+				})}
 			</div>
-        )
+			) : (
+				<div>
+					<label >Loading data</label>
+				</div>
+			)}
+		</div>
 	)
 }
 

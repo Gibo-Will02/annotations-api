@@ -55,7 +55,7 @@ function App() {
   // components.
   return (
     <div className="App">
-      <h1 style={{backgroundColor: "lightgray"}}>
+      <h1 style={{backgroundColor: "lightgray", display:"flex", flexDirection:"column", alignItems: "center"}}>
         <label>Welcome {user.username}!
           <a href="/api/logout">Logout</a>
         </label>
