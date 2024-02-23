@@ -147,27 +147,12 @@ describe('Api Testing using Fake Data', () => {
 //#endregion
 
 //#region Institution Roster page Tests
-/*
-describe("Jest Snapshot testing suite", () => {
-  it("Matches InstitutionRosterPage Snapshot", () => {
-    const rosPage = render(<InstitutionRosterPage />);
-    expect(rosPage).toMatchSnapshot();
-  });
-});
 
-
-test('Institution courses page has its text', ()=> {
-  const {getByText} = render(<InstitutionRosterPage />);
-  const TextElement = getByText("Perusall API User Return:");
-  expect(TextElement).toBeInTheDocument();
-});
-*/
-//responce exists but expirences a network error
 describe('Api sends information through', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  //responce goes through but nothing is displayed
+  
   test('renders info when API call succeeds', async ()=> {
     
     const responseData = [
@@ -186,6 +171,7 @@ describe('Api sends information through', () => {
     });
     
     expect(getByText('Perusall API User Return:')).toBeInTheDocument();
+    expect(page).toMatchSnapshot();
     //expect(getByText('ID: 1 / First Name: John / Last Name: Doe / Email: john@example.com')).toBeInTheDocument();
     //expect(getByText('ID: 1 / First Name: Noah / Last Name: way / Email: nway@bht.com')).toBeInTheDocument();
     //expect(await screen.findByText('Nicholas')).toBeInTheDocument();

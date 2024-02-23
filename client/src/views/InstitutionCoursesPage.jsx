@@ -9,6 +9,7 @@ function InstitutionCoursesPage() {
         axios.get('/api/institution_courses')
         .then(response => {
             setPosts(response.data);
+			//console.log(response.data);
         })
         .catch(error => {
             console.error(error);

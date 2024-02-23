@@ -49,8 +49,8 @@
     "babel-jest": "^29.7.0",
     "jest": "^27.5.1",
     "jest-fetch-mock": "^3.0.3",
+    "jest-svg-transformer": "^1.0.0",
     "m": "^1.8.9",
     "react-test-renderer": "^18.2.0"
   }
-  
 }

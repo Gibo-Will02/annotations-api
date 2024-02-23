@@ -1,5 +1,6 @@
 type on command line | 
                      V
+cd client
 npm install --save-dev jest
 npm install --save-dev babel-jest
 npm install --save-dev jest-fetch-mock
