@@ -31,6 +31,14 @@ app.use(session({
   },
 }))
 
+const db = require("../db")
+
+db('department').insert({departmentName: "Engineering"})
+
+setTimeout(function(){
+  db.select().table('department').then(function(rows){console.log(rows)})
+}, 1000)
+
 //Establish the router to be off of the /api route
 app.use('/api', require('./routers/api')) //Put in routers folder in a file
 
