@@ -17,6 +17,7 @@ export const NavLink = styled(Link)`
 	display: flex;
 	align-items: center;
 	text-decoration: none;
+	font-size: 13px;
 	padding: 0 1rem;
 	height: 100%;
 	cursor: pointer;

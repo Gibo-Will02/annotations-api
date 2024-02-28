@@ -4,8 +4,10 @@ import InstitutionRosterPage from './views/InstitutionRosterPage';
 import CourseAssignmentInfoPage from './views/CourseAssignmentInfoPage';
 import InstitutionCoursesPage from './views/InstitutionCoursesPage';
 import CourseDataPage from './views/CourseDataPage';
+import AssignmentGradesPage from './views/AssignmentGradesPage';
+import AssignmentAnnotationsPage from './views/AssignmentAnnotationsPage';
 import Navbar from './components/NavBar/index';
-import { BrowserRouter as Router, Routes, Route, useHref }
+import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
@@ -67,6 +69,8 @@ function App() {
           <Route path='/courseAssignmentInfoPage' element={<CourseAssignmentInfoPage />} />
           <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
           <Route path='/courseDataPage' element={<CourseDataPage />} />
+          <Route path='/assignmentGradesPage' element={<AssignmentGradesPage />} />
+          <Route path='assignmentAnnotationsPage' element={<AssignmentAnnotationsPage />} />
          </Routes>
        </Router>
     </div>
