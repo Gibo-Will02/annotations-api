@@ -9,6 +9,7 @@ function InstitutionRosterPage() {
 		axios.get('/api/institution_roster')
 		.then(response => {
 			setPosts(response.data);
+			//console.log(response.data);
 		})
 		.catch(error => {
 			console.error(error);
