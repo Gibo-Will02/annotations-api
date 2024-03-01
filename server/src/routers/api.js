@@ -73,15 +73,5 @@ router.post('/assignment_annotations', (req,res) => {
     axios.get("https://app.perusall.com/api/v1/courses/" + courseId + "/assignments/" + assignmentId + "/annotations", config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
 })
 
-router.get('/', async (req, res) => {
-    try {
-      const result = await db.query('SELECT * FROM department');
-      res.json(result.rows);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Internal Server Error');
-    }
-  })
-
 // exports the router
 module.exports = router;
