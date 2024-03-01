@@ -59,7 +59,7 @@ function AssignmentAnnotationsPage() {
 						<input placeholder='Course Id Here' type='text' onChange={handleCourseChange}/>
 					</label>
 					<label> Enter the assignment id:
-						<input type='text' onChange={handleAssignmentChange}/>
+						<input placeholder='Assignment Id Here' type='text' onChange={handleAssignmentChange}/>
 					</label>
 					<button onClick={handleClick}>Search Assignment</button>
 				</div>

@@ -70,7 +70,7 @@ function App() {
           <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
           <Route path='/courseDataPage' element={<CourseDataPage />} />
           <Route path='/assignmentGradesPage' element={<AssignmentGradesPage />} />
-          <Route path='assignmentAnnotationsPage' element={<AssignmentAnnotationsPage />} />
+          <Route path='/assignmentAnnotationsPage' element={<AssignmentAnnotationsPage />} />
          </Routes>
        </Router>
     </div>

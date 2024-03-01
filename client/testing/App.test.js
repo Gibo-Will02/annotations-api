@@ -8,7 +8,10 @@ import CourseDataPage from '../src/views/CourseDataPage';
 import InstitutionCoursesPage from '../src/views/InstitutionCoursesPage';
 import InstitutionRosterPage from '../src/views/InstitutionRosterPage';
 import CourseAssignmentInfoPage from '../src/views/CourseAssignmentInfoPage';
+import AssignmentGradesPage from '../src/views/AssignmentGradesPage';
+import AssignmentAnnotationsPage from '../src/views/AssignmentAnnotationsPage';
 import axios from "axios";
+
 
 // allows us to mock an Axios call function for API Testing
 jest.mock('axios');
@@ -126,12 +129,11 @@ describe('Api Testing using Fake Data', () => {
       expect(axios.get).toHaveBeenCalledWith('/api/institution_courses');
     });
 
-//   });
+   });
 
-// });
+});
 
 //#endregion
-
 
 
 //#region Institution Roster page Tests
@@ -164,8 +166,7 @@ describe('Api sends information through', () => {
 
   });
 
-  
-// });
+});
 
 
 //#endregion
@@ -212,7 +213,7 @@ describe('Api Testing using Fake Data', () => {
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
       expect(axios.post).toHaveBeenCalledWith('/api/course_assignments', { '_CID': 'BRhk8oFtsmnsBHKo4' });
-
+    });
 
    });
 
@@ -221,3 +222,114 @@ describe('Api Testing using Fake Data', () => {
 //#endregion
 
 
+//#region AssignmentGradesPage tests
+
+describe("Jest Snapshot testing suite", () => {
+  it("Matches AssignmentGradesPage Snapshot", () => {
+    const agpPage = render(<AssignmentGradesPage />);
+    expect(agpPage).toMatchSnapshot();
+  });
+});
+
+
+describe('Api Testing using Fake Data for AssignmentGrades Page', () => {
+  
+  beforeEach(() => {
+    //clears the Axios mock so that it doesn't leak into other Axios API call tests
+    jest.clearAllMocks();
+  });
+
+  test('renders info when API call succeeds for AssignmentGrades', async ()=> {
+    
+    const responseData = {
+      studentId: "PrbNxbp98xHHpmuAH",
+      score: 2,
+      released: true,
+    };
+    //mocks the api call with set data
+    axios.post.mockResolvedValueOnce({ data: responseData });
+
+    const page = render(<AssignmentGradesPage />);
+    const { getByPlaceholderText, getByText } = page;
+    const myinput = getByPlaceholderText('Course Id Here');
+    const inputTwo = getByPlaceholderText('Assignment Id Here');
+
+    fireEvent.change(myinput, {
+      target: {value: 'BRhk8oFtsmnsBHKo4' }
+    });
+    fireEvent.change(inputTwo, {
+      target: {value: 'qB83qbw8vnAPYNEwm' }
+    });
+    expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
+    expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
+    const cdpButton1 = getByText('Search Assignment');
+    fireEvent.click(cdpButton1);
+
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axios.post).toHaveBeenCalledWith('/api/assignment_grades', { '_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm'});
+    });
+
+   });
+
+  
+});
+//#endregion
+
+
+//#region AssignmentAnnotationsPage tests
+describe("Jest Snapshot testing suite", () => {
+  it("Matches AssignmentAnnotationsPage Snapshot", () => {
+    const aapPage = render(<AssignmentAnnotationsPage />);
+    expect(aapPage).toMatchSnapshot();
+  });
+});
+
+
+describe('Api Testing using Fake Data for AssignmentAnnotations Page', () => {
+  
+  beforeEach(() => {
+    //clears the Axios mock so that it doesn't leak into other Axios API call tests
+    jest.clearAllMocks();
+  });
+
+  test('renders info when API call succeeds for AssignmentAnnotations', async ()=> {
+    
+    const responseData = {
+      id: "W5Cer9NdrPKwQSeHK",
+      studentId: "PrbNxbp98xHHpmuAH",
+      text: "<p>I agree - good point!</p>",
+      plainText: "I agree - good point!",
+      score: 0,
+      createdAt: "2022-10-19T16:02:03.980Z",
+      editedAt: "2022-10-19T16:02:03.979Z"
+    };
+    //mocks the api call with set data
+    axios.post.mockResolvedValueOnce({ data: responseData });
+
+    const page = render(<AssignmentAnnotationsPage />);
+    const { getByPlaceholderText, getByText } = page;
+    const myinput = getByPlaceholderText('Course Id Here');
+    const inputTwo = getByPlaceholderText('Assignment Id Here');
+
+    fireEvent.change(myinput, {
+      target: {value: 'BRhk8oFtsmnsBHKo4' }
+    });
+    fireEvent.change(inputTwo, {
+      target: {value: 'qB83qbw8vnAPYNEwm' }
+    });
+    expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
+    expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
+    const cdpButton1 = getByText('Search Assignment');
+    fireEvent.click(cdpButton1);
+
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axios.post).toHaveBeenCalledWith('/api/assignment_annotations', { '_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm'});
+    });
+
+   });
+
+  
+});
+//#endregion
