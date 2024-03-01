@@ -33,11 +33,33 @@ app.use(session({
 
 const db = require("../db")
 
-db('department').insert({departmentName: "Engineering"})
+//db('department').insert({departmentName: "Engineering"})
+//var x = db('department').insert({departmentName: "Engineering"})
+//console.log(x)
 
-setTimeout(function(){
-  db.select().table('department').then(function(rows){console.log(rows)})
-}, 1000)
+/*
+db.migrate.currentVersion()
+    .then(function(version) {
+        console.log("Database Migration Version: " + version)
+        if(version == 'none') {
+            console.log("Database Empty - Migrating and Seeding")
+            db.migrate.latest() //Looking in server, how to move to db/migrations
+            .then(function() {
+                return db.seed.run();
+            })
+            .then(function() {
+                console.log("Complete!");
+            })
+        } else {
+            console.log("Database Exists - Migrating")
+            db.migrate.latest()
+            .then(function() {
+                console.log("Complete!");
+            })
+        }
+    })
+*/
+db('department').insert({departmentName: "Engineering"}).then(db.select().table('department').then(function(rows){console.log(rows)}))
 
 //Establish the router to be off of the /api route
 app.use('/api', require('./routers/api')) //Put in routers folder in a file
