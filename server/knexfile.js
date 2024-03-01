@@ -11,8 +11,12 @@ module.exports = {
       host: process.env.POSTGRES_HOST,
       password: process.env.POSTGRES_PASSWORD,
       user: process.env.POSTGRES_USER,
-      database: process.env.POSTGRES_DB
-    }
+      database: process.env.POSTGRES_DB,
+      port: 5432,
+    },
+    migrations: {
+      tableName: 'migrations',
+    },
   },
 
   staging: {
