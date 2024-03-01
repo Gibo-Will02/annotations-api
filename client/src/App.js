@@ -4,8 +4,10 @@ import InstitutionRosterPage from './views/InstitutionRosterPage';
 import CourseAssignmentInfoPage from './views/CourseAssignmentInfoPage';
 import InstitutionCoursesPage from './views/InstitutionCoursesPage';
 import CourseDataPage from './views/CourseDataPage';
+import AssignmentGradesPage from './views/AssignmentGradesPage';
+import AssignmentAnnotationsPage from './views/AssignmentAnnotationsPage';
 import Navbar from './components/NavBar/index';
-import { BrowserRouter as Router, Routes, Route, useHref }
+import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
@@ -31,11 +33,19 @@ function App() {
     if (!user) {
       console.log("Inside !user conditional") //Don't need logs
       fetch('/api/whoami') //Switch this to axios or switch axios to base commands, reccomended to not use axios
-      .then(response => response.json())
-      .then(user => setUser(user))
-      .catch(err => window.location = "/api/login")
+      .then(response => {
+        if (response.status == "403") {
+          window.location = "/api/login";
+        }else {
+          response.json().then(user => setUser(user))
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        window.location = "/api/login";
+      })
     }
-    
+
   }, []);
 
   // Display a wait message or spinner if the user is 
@@ -47,7 +57,7 @@ function App() {
   // components.
   return (
     <div className="App">
-      <h1 style={{backgroundColor: "lightgray"}}>
+      <h1 style={{backgroundColor: "lightgray", display:"flex", flexDirection:"column", alignItems: "center"}}>
         <label>Welcome {user.username}!
           <a href="/api/logout">Logout</a>
         </label>
@@ -59,6 +69,8 @@ function App() {
           <Route path='/courseAssignmentInfoPage' element={<CourseAssignmentInfoPage />} />
           <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
           <Route path='/courseDataPage' element={<CourseDataPage />} />
+          <Route path='/assignmentGradesPage' element={<AssignmentGradesPage />} />
+          <Route path='assignmentAnnotationsPage' element={<AssignmentAnnotationsPage />} />
          </Routes>
        </Router>
     </div>

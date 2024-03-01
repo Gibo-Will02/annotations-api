@@ -9,7 +9,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: "http://coding-textbook-server:3050",
+      target: "http://localhost:3050",
       changeOrigin: true,
       autoRewrite: true,
     })

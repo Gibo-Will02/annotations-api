@@ -31,7 +31,7 @@ function CourseDataPage() {
 	
 	/*client/src/views/CourseDataPage.jsx*/
 	return (
-		<div>
+		<div style={{display:"flex", flexDirection:"column", alignItems: "center"}}>
 			<label> Enter the course id:
 				<input placeholder="Course Id Here" type='text' onChange={handleChange}/>
 			</label>

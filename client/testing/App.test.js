@@ -42,7 +42,6 @@ test('course data page has search button and activates', ()=> {
 });
 
 describe('Api Testing course data page', () => {
-
   beforeEach(() => {
     //clears the Axios mock so that it doesn't leak into other Axios API call tests
     jest.clearAllMocks();
@@ -78,6 +77,7 @@ describe('Api Testing course data page', () => {
     expect(getByText('Course Name:')).toBeInTheDocument();
     expect(getByText('ID:')).toBeInTheDocument();
   });
+
   
   
   test('renders failstate when no person is found', async ()=> {
@@ -103,6 +103,7 @@ describe("Jest Snapshot testing suite", () => {
   });
 });
 
+
 describe('Api Testing using Fake Data', () => {
   beforeEach(() => {
     //clears the Axios mock so that it doesn't leak into other Axios API call tests
@@ -125,11 +126,12 @@ describe('Api Testing using Fake Data', () => {
       expect(axios.get).toHaveBeenCalledWith('/api/institution_courses');
     });
 
-  });
+//   });
 
-});
+// });
 
 //#endregion
+
 
 
 //#region Institution Roster page Tests
@@ -163,7 +165,7 @@ describe('Api sends information through', () => {
   });
 
   
-});
+// });
 
 
 //#endregion
@@ -176,6 +178,7 @@ describe("Jest Snapshot testing suite", () => {
     expect(uscPage).toMatchSnapshot();
   });
 });
+
 
 describe('Api Testing using Fake Data', () => {
   
@@ -209,9 +212,9 @@ describe('Api Testing using Fake Data', () => {
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
       expect(axios.post).toHaveBeenCalledWith('/api/course_assignments', { '_CID': 'BRhk8oFtsmnsBHKo4' });
-    });
 
-  });
+
+   });
 
   
 });

@@ -1,6 +1,6 @@
 const axios = require( "axios" )
 const express = require( "express" )
-const auth = require("../endpoints/auth")
+const auth = require("./auth")
 const loginRequired = require("../middleware/login-required")
 
 const router = express.Router();

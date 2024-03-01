@@ -2,7 +2,7 @@ const axios = require( "axios" )
 const express = require( "express" )
 const bodyParser = require( "body-parser" )
 const uid = require( "uid-safe" )
-const auth = require("./endpoints/auth")
+const auth = require("./routers/auth")
 const session = require('express-session')
 const loginRequired = require('./middleware/login-required')
 
@@ -33,6 +33,5 @@ app.use(session({
 
 //Establish the router to be off of the /api route
 app.use('/api', require('./routers/api')) //Put in routers folder in a file
-
 
 module.exports = app;

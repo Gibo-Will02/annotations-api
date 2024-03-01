@@ -9,17 +9,12 @@ function CourseAssignmentInfoPage() {
 
 	const [updated, setUpdated] = useState(courseId);
 
-	// const handleAssignmentChange = (event) => {
-	// 	setAssignmentId(event.target.value);
-
-	// };
 
 	const handleCourseChange = (event) => {
 		setCourseId(event.target.value);
 	}
 
 	const handleClick = () => {
-		//setUpdated(prevAssignmentId => prevAssignmentId !== assignmentId ? assignmentId : prevAssignmentId);
 		setUpdated(prevCourseId => prevCourseId !== courseId ? courseId : prevCourseId);
 	};
 
