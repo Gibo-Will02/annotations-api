@@ -59,7 +59,7 @@ db.migrate.currentVersion()
         }
     })
 */
-db('department').insert({departmentName: "Engineering"}).then(db.select().table('department').then(function(rows){console.log(rows)}))
+//db('department').insert({departmentName: "Engineering"}).then(db.select().table('department').then(function(rows){console.log(rows)}))
 
 //Establish the router to be off of the /api route
 app.use('/api', require('./routers/api')) //Put in routers folder in a file
