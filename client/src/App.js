@@ -6,6 +6,7 @@ import InstitutionCoursesPage from './views/InstitutionCoursesPage';
 import CourseDataPage from './views/CourseDataPage';
 import AssignmentGradesPage from './views/AssignmentGradesPage';
 import AssignmentAnnotationsPage from './views/AssignmentAnnotationsPage';
+import AssignmentReportsPage from './views/AssignmentReportsPage';
 import Navbar from './components/NavBar/index';
 import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
@@ -70,7 +71,8 @@ function App() {
           <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
           <Route path='/courseDataPage' element={<CourseDataPage />} />
           <Route path='/assignmentGradesPage' element={<AssignmentGradesPage />} />
-          <Route path='assignmentAnnotationsPage' element={<AssignmentAnnotationsPage />} />
+          <Route path='/assignmentAnnotationsPage' element={<AssignmentAnnotationsPage />} />
+          {/*<Route path='/assignmentReportsPage' element={<AssignmentReportsPage />} /> */}
          </Routes>
        </Router>
     </div>

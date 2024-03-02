@@ -21,9 +21,12 @@ const Navbar = () => {
 					<NavLink to='/assignmentGradesPage' activeStyle>
 						Assignment Grades Page
 					</NavLink>
-					<NavLink to='assignmentAnnotationsPage' activeStyle>
+					<NavLink to='/assignmentAnnotationsPage' activeStyle>
 						Assignment Annotations Page
 					</NavLink>
+					{/*<NavLink to='/assignmentReportsPage' activeStyle>
+						Assignment} Reports Page
+					</NavLink>*/}
 				</NavMenu>
 			</Nav>
 		</>
