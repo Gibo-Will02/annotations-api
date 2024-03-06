@@ -45,7 +45,7 @@ router.post('/assignment_analytics', (req, res) => {
     var assignmentId = req.body._AID;
     var report = req.body._REP;
     var part = req.body._P;
-    axios.get("https://app.perusall.com/api/v1/courses/"+ courseId +"/assignments/"+ assignmentId +"/report/"+ report +"/" + part, config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
+    axios.get("https://app.perusall.com/api/v1/courses/"+ courseId +"/assignments/"+ assignmentId +"/analytics/"+ report +"/" + part, config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
 })
   
 //Application API call to send a get to receive the list of courses of the given user id in an institution from the Perusall API
