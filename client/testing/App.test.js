@@ -1,6 +1,7 @@
 
 import { render, screen, fireEvent, getByPlaceholderText, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+//import userEvent from "@testing-library/user-event";
 import App from '../src/App';
 import renderer from "react-test-renderer";
 import { JSX } from 'react/jsx-dev-runtime';
@@ -10,6 +11,7 @@ import InstitutionRosterPage from '../src/views/InstitutionRosterPage';
 import CourseAssignmentInfoPage from '../src/views/CourseAssignmentInfoPage';
 import AssignmentGradesPage from '../src/views/AssignmentGradesPage';
 import AssignmentAnnotationsPage from '../src/views/AssignmentAnnotationsPage';
+import AssignmentReportsPage from '../src/views/AssignmentReportsPage';
 import axios from "axios";
 
 
@@ -172,7 +174,7 @@ describe('Api sends information through', () => {
 //#endregion
 
 
-//#region user course list page tests
+//#region course Assignment info page tests
 describe("Jest Snapshot testing suite", () => {
   it("Matches CourseAssignmentPage Snapshot", () => {
     const uscPage = render(<CourseAssignmentInfoPage />);
@@ -326,6 +328,81 @@ describe('Api Testing using Fake Data for AssignmentAnnotations Page', () => {
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
       expect(axios.post).toHaveBeenCalledWith('/api/assignment_annotations', { '_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm'});
+    });
+
+   });
+
+  
+});
+//#endregion
+
+
+//#region AssignmentReportsPage Tests 
+describe("Jest Snapshot testing suite", () => {
+  it("Matches AssignmentReportsPage Snapshot", () => {
+    const aapPage = render(<AssignmentReportsPage />);
+    expect(aapPage).toMatchSnapshot();
+  });
+});
+
+
+describe('Api Testing using Fake Data for AssignmentReports Page', () => {
+  
+  beforeEach(() => {
+    //clears the Axios mock so that it doesn't leak into other Axios API call tests
+    jest.clearAllMocks();
+  });
+
+  test('renders info when API call succeeds for AssignmentAnnotations', async ()=> {
+    
+    const responseData = {
+      id: "W5Cer9NdrPKwQSeHK",
+      studentId: "PrbNxbp98xHHpmuAH",
+      text: "<p>I agree - good point!</p>",
+      plainText: "I agree - good point!",
+      score: 0,
+      createdAt: "2022-10-19T16:02:03.980Z",
+      editedAt: "2022-10-19T16:02:03.979Z"
+    };
+    //mocks the api call with set data
+    axios.post.mockResolvedValueOnce({ data: responseData });
+
+    const page = render(<AssignmentReportsPage />);
+    const { getByPlaceholderText, getByText } = page;
+    const myinput = getByPlaceholderText('Course Id Here');
+    const inputTwo = getByPlaceholderText('Assignment Id Here');
+    const selectDropdown = await waitFor(
+      () => screen.getByTestId("dropTest"),
+      {
+        timeout: 3000,
+      }
+    );
+
+    expect(selectDropdown).toBeInTheDocument();
+
+    fireEvent.change(myinput, {
+      target: {value: 'BRhk8oFtsmnsBHKo4' }
+    });
+    fireEvent.change(inputTwo, {
+      target: {value: 'qB83qbw8vnAPYNEwm' }
+    });
+    fireEvent.click(screen.getByText("Report Type"));
+    
+
+    /*
+    userEvent.selectOptions(screen.getByTestId("dropTest"), [
+      "submissionTime",
+    ]);
+    */
+
+    expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
+    expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
+    const cdpButton1 = getByText('Search Assignment');
+    fireEvent.click(cdpButton1);
+
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'submissionTime'});
     });
 
    });
