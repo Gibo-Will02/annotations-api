@@ -353,7 +353,7 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     jest.clearAllMocks();
   });
 
-  test('renders info when API call succeeds for AssignmentAnnotations', async ()=> {
+  test('checks to see if the API call succeeds for AssignmentReports with report type Submission Time', async ()=> {
     
     const responseData = {
       id: "W5Cer9NdrPKwQSeHK",
@@ -379,21 +379,16 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     );
 
     expect(selectDropdown).toBeInTheDocument();
-
+    //these firevents change the two places where you input data to look for information
+    //this one is for course ID
     fireEvent.change(myinput, {
       target: {value: 'BRhk8oFtsmnsBHKo4' }
     });
+    //this one is for Assignment ID
     fireEvent.change(inputTwo, {
       target: {value: 'qB83qbw8vnAPYNEwm' }
     });
     fireEvent.click(screen.getByText("Report Type"));
-    
-
-    /*
-    userEvent.selectOptions(screen.getByTestId("dropTest"), [
-      "submissionTime",
-    ]);
-    */
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
     expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
@@ -405,8 +400,157 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
       expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'submissionTime'});
     });
 
-   });
+  });
 
+
+  test('checks to see if the API call succeeds for AssignmentReports with report type Page Views', async ()=> {
+    
+    const responseData = {
+      id: "W5Cer9NdrPKwQSeHK",
+      studentId: "PrbNxbp98xHHpmuAH",
+      text: "<p>I agree - good point!</p>",
+      plainText: "I agree - good point!",
+      score: 0,
+      createdAt: "2022-10-19T16:02:03.980Z",
+      editedAt: "2022-10-19T16:02:03.979Z"
+    };
+    //mocks the api call with set data
+    axios.post.mockResolvedValueOnce({ data: responseData });
+
+    const page = render(<AssignmentReportsPage />);
+    const { getByPlaceholderText, getByText } = page;
+    const myinput = getByPlaceholderText('Course Id Here');
+    const inputTwo = getByPlaceholderText('Assignment Id Here');
+    const selectDropdown = await waitFor(
+      () => screen.getByTestId("dropTest"),
+      {
+        timeout: 3000,
+      }
+    );
+    //these firevents change the two places where you input data to look for information
+    //this one is for course ID
+    fireEvent.change(myinput, {
+      target: {value: 'BRhk8oFtsmnsBHKo4' }
+    });
+    //this one is for Assignment ID
+    fireEvent.change(inputTwo, {
+      target: {value: 'qB83qbw8vnAPYNEwm' }
+    });
+    fireEvent.click(screen.getByText("Report Type"));
+    fireEvent.click(screen.getByText("Page Views"));
+    
+
+    expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
+    expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
+    const cdpButton1 = getByText('Search Assignment');
+    fireEvent.click(cdpButton1);
+
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'pageViews'});
+    });
+
+  });
   
+
+  test('checks to see if the API call succeeds for AssignmentReports with report type Student Activity', async ()=> {
+    
+    const responseData = {
+      id: "W5Cer9NdrPKwQSeHK",
+      studentId: "PrbNxbp98xHHpmuAH",
+      text: "<p>I agree - good point!</p>",
+      plainText: "I agree - good point!",
+      score: 0,
+      createdAt: "2022-10-19T16:02:03.980Z",
+      editedAt: "2022-10-19T16:02:03.979Z"
+    };
+    //mocks the api call with set data
+    axios.post.mockResolvedValueOnce({ data: responseData });
+
+    const page = render(<AssignmentReportsPage />);
+    const { getByPlaceholderText, getByText } = page;
+    const myinput = getByPlaceholderText('Course Id Here');
+    const inputTwo = getByPlaceholderText('Assignment Id Here');
+    const selectDropdown = await waitFor(
+      () => screen.getByTestId("dropTest"),
+      {
+        timeout: 3000,
+      }
+    );
+    //these firevents change the two places where you input data to look for information
+    //this one is for course ID
+    fireEvent.change(myinput, {
+      target: {value: 'BRhk8oFtsmnsBHKo4' }
+    });
+    //this one is for Assignment ID
+    fireEvent.change(inputTwo, {
+      target: {value: 'qB83qbw8vnAPYNEwm' }
+    });
+    fireEvent.click(screen.getByText("Report Type"));
+    fireEvent.click(screen.getByText("Student Activity"));
+    
+
+    expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
+    expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
+    const cdpButton1 = getByText('Search Assignment');
+    fireEvent.click(cdpButton1);
+
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'studentActivity'});
+    });
+
+  });
+
+
+  test('checks to see if the API call succeeds for AssignmentReports with report type Grades', async ()=> {
+    
+    const responseData = {
+      id: "W5Cer9NdrPKwQSeHK",
+      studentId: "PrbNxbp98xHHpmuAH",
+      text: "<p>I agree - good point!</p>",
+      plainText: "I agree - good point!",
+      score: 0,
+      createdAt: "2022-10-19T16:02:03.980Z",
+      editedAt: "2022-10-19T16:02:03.979Z"
+    };
+    //mocks the api call with set data
+    axios.post.mockResolvedValueOnce({ data: responseData });
+
+    const page = render(<AssignmentReportsPage />);
+    const { getByPlaceholderText, getByText } = page;
+    const myinput = getByPlaceholderText('Course Id Here');
+    const inputTwo = getByPlaceholderText('Assignment Id Here');
+    const selectDropdown = await waitFor(
+      () => screen.getByTestId("dropTest"),
+      {
+        timeout: 3000,
+      }
+    );
+    //these firevents change the two places where you input data to look for information
+    //this one is for course ID
+    fireEvent.change(myinput, {
+      target: {value: 'BRhk8oFtsmnsBHKo4' }
+    });
+    //this one is for Assignment ID
+    fireEvent.change(inputTwo, {
+      target: {value: 'qB83qbw8vnAPYNEwm' }
+    });
+    fireEvent.click(screen.getByText("Report Type"));
+    fireEvent.click(screen.getByText("Grades"));
+    
+
+    expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
+    expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
+    const cdpButton1 = getByText('Search Assignment');
+    fireEvent.click(cdpButton1);
+
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'grades'});
+    });
+
+  });
+
 });
 //#endregion

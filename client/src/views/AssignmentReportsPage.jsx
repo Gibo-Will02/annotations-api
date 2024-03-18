@@ -58,7 +58,7 @@ function AssignmentReportsPage() {
     const ReportTypeDropDown = () => {
         return(
 			<DropdownButton data-testid="dropTest" id="reportTypeDropdown" title="Report Type" align='start'>
-				<Dropdown.Item onClick={handleReportTypeChange} id="submissionTime">Submission Time</Dropdown.Item>
+				<Dropdown.Item onClick={handleReportTypeChange}  id="submissionTime">Submission Time</Dropdown.Item>
 				<Dropdown.Item onClick={handleReportTypeChange} id="pageViews">Page Views</Dropdown.Item>
 				<Dropdown.Item onClick={handleReportTypeChange} id="studentActivity">Student Activity</Dropdown.Item>
 				<Dropdown.Item onClick={handleReportTypeChange} id="grades">Grades</Dropdown.Item>
