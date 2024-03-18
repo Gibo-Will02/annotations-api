@@ -37,13 +37,13 @@ const db = require("../db")
 //var x = db('department').insert({departmentName: "Engineering"})
 //console.log(x)
 
-/*
+
 db.migrate.currentVersion()
     .then(function(version) {
         console.log("Database Migration Version: " + version)
         if(version == 'none') {
             console.log("Database Empty - Migrating and Seeding")
-            db.migrate.latest() //Looking in server, how to move to db/migrations
+            db.migrate.latest()
             .then(function() {
                 return db.seed.run();
             })
@@ -54,11 +54,14 @@ db.migrate.currentVersion()
             console.log("Database Exists - Migrating")
             db.migrate.latest()
             .then(function() {
+                return db.seed.run();
+            })
+            .then(db.select().table('department').then(function(rows){console.log(rows)}))
+            .then(function() {
                 console.log("Complete!");
             })
         }
     })
-*/
 //db('department').insert({departmentName: "Engineering"}).then(db.select().table('department').then(function(rows){console.log(rows)}))
 
 //Establish the router to be off of the /api route
