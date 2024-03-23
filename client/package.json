@@ -13,7 +13,6 @@
     "jsdom": "^24.0.0",
     "primereact": "^10.5.1",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.10.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
@@ -53,6 +52,7 @@
     "jest-fetch-mock": "^3.0.3",
     "jest-svg-transformer": "^1.0.0",
     "m": "^1.8.9",
+    "react-bootstrap": "^2.10.1",
     "react-test-renderer": "^18.2.0"
   }
 }
