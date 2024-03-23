@@ -72,7 +72,7 @@ function App() {
           <Route path='/courseDataPage' element={<CourseDataPage />} />
           <Route path='/assignmentGradesPage' element={<AssignmentGradesPage />} />
           <Route path='/assignmentAnnotationsPage' element={<AssignmentAnnotationsPage />} />
-          {/*<Route path='/assignmentReportsPage' element={<AssignmentReportsPage />} /> */}
+          <Route path='/assignmentReportsPage' element={<AssignmentReportsPage />} />
          </Routes>
        </Router>
     </div>

@@ -8,13 +8,13 @@ function AssignmentReportsPage() {
 	const [data,setData] = useState([]);
     const [assignmentId, setAssignmentId] = useState("");
 	const [courseId, setCourseId] = useState("");
-    const [reportType, setReportType] = useState("submissionTime");
+    const [reportType, setReportType] = useState("grades");
 	const [reportPage, setReportPage] = useState("");
+	const [search, setSearch] = useState(false);
 
 	const [courseUpdated, setCourseUpdated] = useState(courseId);
     const [assignmentUpdated, setAssignmentUpdated] = useState(assignmentId);
 
-    const [reportTypeUpdated, setReportTypeUpdated] = useState(reportType);
 	const [reportPageUpdated, setReportPageUpdated] = useState(reportPage);
 
 	const handleAssignmentChange = (event) => {
@@ -30,15 +30,14 @@ function AssignmentReportsPage() {
 	}
 
     const handleReportTypeChange = (report) => {
-		console.log(report.target.id);
         setReportType(report.target.id);
     }
 
 	const handleClick = () => {
 		setAssignmentUpdated(prevAssignmentId => prevAssignmentId !== assignmentId ? assignmentId : prevAssignmentId);
 		setCourseUpdated(prevCourseId => prevCourseId !== courseId ? courseId : prevCourseId);
-		setReportTypeUpdated(prevReportType => prevReportType !== reportType ? reportType : prevReportType);
 		setReportPageUpdated(prevReportPage => prevReportPage !== reportPage ? reportPage : prevReportPage);
+		setSearch(!search);
 	};
 
     const dateTimeParser = (time_string) => {
@@ -58,7 +57,6 @@ function AssignmentReportsPage() {
     const ReportTypeDropDown = () => {
         return(
 			<DropdownButton id="reportTypeDropdown" title="Report Type" align='start'>
-				<Dropdown.Item onClick={handleReportTypeChange} id="submissionTime">Submission Time</Dropdown.Item>
 				<Dropdown.Item onClick={handleReportTypeChange} id="pageViews">Page Views</Dropdown.Item>
 				<Dropdown.Item onClick={handleReportTypeChange} id="studentActivity">Student Activity</Dropdown.Item>
 				<Dropdown.Item onClick={handleReportTypeChange} id="grades">Grades</Dropdown.Item>
@@ -66,120 +64,121 @@ function AssignmentReportsPage() {
 		)
     }
 
-	const ReportInfoDisplay = (object) => {
+	const timeConvertor = (time_string) => {
+		let hours = Math.floor(time_string / 3600);
+		let minutes = Math.floor((time_string - (hours * 3600)) / 60);
+		let seconds = time_string - (hours * 3600) - (minutes * 60);
+		return(hours + " Hours, " + minutes + " Minutes, " + seconds + " Seconds");
+	}
+
+	const ReportInfoDisplay = () => {
 		switch (reportType) {
-			// case "pageViews":
-			// 	return (
-			// 		<>
-			// 			{(data.length > 0) ?
-			// 			data.map((assignment) => {
-			// 				return(
-			// 					<>
-			// 						<li></li>
-			// 					</>
-			// 				)
-			// 			})
-			// 			:
-			// 			<label>No assignments to display</label>}
-			// 		</>
-			// 	);
-			case "studentActivity":
-				return(
-					<>
-						{(data.length > 0) ?
-						data.map((assignment) => {
-							return(
-								<>
-									<li>Annotation ID: {assignment.id} / Student ID: {assignment.studentId} / Text: {assignment.plainText} / Score: {assignment.score ? assignment.score : "No Score"} / 
-									Created At: {dateTimeParser(assignment.createdAt)} / Edited At: {dateTimeParser(assignment.editedAt)} </li>
-								</>
-							)
-						})
-						:
-						<label>No assignments to display</label>}
-					</>
-				);
-			case "grades":
-				return(
-					<>
-						{(data.length > 0) ?
-						data.map((assignment) => {
-							return(
-								<>
-									<li>Annotation ID: {assignment.id} / Student ID: {assignment.studentId} / Text: {assignment.plainText} / Score: {assignment.score ? assignment.score : "No Score"} / 
-									Created At: {dateTimeParser(assignment.createdAt)} / Edited At: {dateTimeParser(assignment.editedAt)} </li>
-								</>
-							)
-						})
-						:
-						<label>No assignments to display</label>}
-					</>
-				);
-			default:
+			case "pageViews":
 				return (
 					<>
 						{(data.length > 0) ?
-						data.map((assignment) => {
+						data.map((page) => {
 							return(
 								<>
-									<li>Annotation ID: {assignment.id} / Student ID: {assignment.studentId} / Text: {assignment.plainText} / Score: {assignment.score ? assignment.score : "No Score"} / 
-									Created At: {dateTimeParser(assignment.createdAt)} / Edited At: {dateTimeParser(assignment.editedAt)} </li>
+									<li>Page ID: {page._id} / Page Views: {page.views} / Average Interaction Time: {timeConvertor(Math.floor(page.averageTime))}</li>
 								</>
 							)
 						})
 						:
-						<label>No assignments to display</label>}
+						<label>No page analytics to display</label>}
+					</>
+				);
+			case "studentActivity":
+				const rows = [];
+				for(var id in data) {
+					rows.push({'id': id, 'readingTime': data[id].readingTime, 'viewingTime': data[id].viewingTime,
+						'numAnnotations': data[id].numAnnotations, 'totalWordCount': data[id].totalWordCount});
+				}
+				return(
+					<>
+						{
+							(rows.length > 0) ? 
+							rows.map((row) => {
+								return(
+									<>
+										<li>Student ID: {row.id} / Reading Time: {timeConvertor(Math.floor(row.readingTime))} / Viewing Time: {timeConvertor(Math.floor(row.viewingTime))} / Number of Annotations: {row.numAnnotations}</li>
+									</>
+								)
+							})
+							: 
+							<label>No student activity to display</label>
+						}
+					</>
+				);
+			default:
+				return(
+					<>
+						{(data.length > 0) ?
+						data.map((grades) => {
+							return(
+								<>
+									<li>Grade ID: {grades._id} / Student ID: {grades.userId} / Score: {grades.score}</li>
+								</>
+							)
+						})
+						:
+						<label>No grades to display</label>}
 					</>
 				);
 		}
 	}
 
 	useEffect(() => {
-        if (courseId !== "") {
-            axios.post('/api/assignment_analytics', {'_CID': courseId, '_AID': assignmentId, '_REP': reportType})
+        if (courseId !== "" && assignmentId !=="" && reportPage !== "") {
+			console.log("reportType: "+ reportType);
+            axios.post('/api/assignment_analytics', {'_CID': courseId, '_AID': assignmentId, '_REP': reportType, '_P': reportPage})
 			.then(response => {
-				setData(response.data);
-				console.log(response.data);
+				console.log(response);
+				if(reportType === "grades"){
+					console.log("GRADES")
+					setData(response.data.grades);
+					console.log(response.data.grades);
+				}
+				else {
+					console.log("REPORT")
+					setData(response.data.report);
+					console.log(response.data.report);
+				}
 			})
 			.catch(error => {
 				console.error(error);
 			});
         }
-	}, [assignmentUpdated, courseUpdated, reportTypeUpdated, reportPageUpdated]); //[] updates page if value changes, if empty it only updates on entry to the page
+	}, [reportType]); //[] updates page if value changes, if empty it only updates on entry to the page
+
+
 
 	return (
         (
             <div style={{display:"flex", flexDirection:"column", alignItems: "center"}}>
 				<div>
 					<label> Enter the course id:
-						<input placeholder='Course Id Here' type='text' onChange={handleCourseChange}/>
+						<input style={{'margin': '0 1rem 0 0'}} placeholder='Course Id Here' type='text' onChange={handleCourseChange}/>
 					</label>
 					<label> Enter the assignment id:
-						<input type='text' onChange={handleAssignmentChange}/>
+						<input type='text' placeholder='Assignment Id Here' onChange={handleAssignmentChange}/>
 					</label>
-					
-					<button onClick={handleClick}>Search Assignment</button>
 				</div>
-				<label> Select the report type: 
-						<ReportTypeDropDown />
-				</label>
+				<span />
+				<div>
+					<label> Select the report type: 
+							<ReportTypeDropDown />
+					</label>
+					<label style={{'margin': '0 0 0 1rem'}}> Enter the report page:
+						<input type='text' placeholder='Report Page Here' onChange={handleReportPageChange}/>
+					</label>
+				</div>
 				<label>
-					Current report type: {reportType}
+						Current report type: {reportType}
 				</label>
+				{/*<button onClick={handleClick}>Search Assignment</button>*/}
 				<h1 style={{borderBottom: "1px solid black", display: 'inline-block'}}>Assignment Annotations:</h1>
-				{
-					(data.length > 0) ?
-					data.map((assignment) => {
-						return(
-							<>
-								<li>Annotation ID: {assignment.id} / Student ID: {assignment.studentId} / Text: {assignment.plainText} / Score: {assignment.score ? assignment.score : "No Score"} / 
-                                Created At: {dateTimeParser(assignment.createdAt)} / Edited At: {dateTimeParser(assignment.editedAt)} </li>
-							</>
-						)
-					})
-					:
-					<label>No assignments to display</label>
-				}
+				<ReportInfoDisplay />
 			</div>
         )
 	)
