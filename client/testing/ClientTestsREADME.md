@@ -9,6 +9,7 @@ npm install --save-dev @babel/preset-react
 npm install --save-dev @babel/plugin-transform-react-jsx-development
 npm install --save-dev @babel/plugin-syntax-jsx
 npm install --save-dev jsdom
+npm install --save-dev react-bootstrap
 
 run tests with
 npm test -- -u
