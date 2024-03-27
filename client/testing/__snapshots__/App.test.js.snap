@@ -340,6 +340,7 @@ Object {
              Enter the course id:
             <input
               placeholder="Course Id Here"
+              style="margin: 0px 1rem 0px 0px;"
               type="text"
             />
           </label>
@@ -350,10 +351,72 @@ Object {
               type="text"
             />
           </label>
-          <button>
-            Search Assignment
-          </button>
         </div>
+        <span />
+        <div>
+          <label>
+             Select the report type:
+            <div
+              class="dropdown"
+              data-testid="dropTest"
+            >
+              <button
+                aria-expanded="false"
+                class="dropdown-toggle btn btn-primary"
+                id="reportTypeDropdown"
+                type="button"
+              >
+                Report Type
+              </button>
+            </div>
+          </label>
+          <label
+            style="margin: 0px 0px 0px 1rem;"
+          >
+             Enter the report page:
+            <input
+              placeholder="Report Page Here"
+              type="text"
+            />
+          </label>
+        </div>
+        <label>
+          Current report type: 
+        </label>
+        <h1
+          style="border-bottom: 1px solid black; display: inline-block;"
+        >
+          Assignment Annotations:
+        </h1>
+        <label>
+          No grades to display
+        </label>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      style="display: flex; flex-direction: column; align-items: center;"
+    >
+      <div>
+        <label>
+           Enter the course id:
+          <input
+            placeholder="Course Id Here"
+            style="margin: 0px 1rem 0px 0px;"
+            type="text"
+          />
+        </label>
+        <label>
+           Enter the assignment id:
+          <input
+            placeholder="Assignment Id Here"
+            type="text"
+          />
+        </label>
+      </div>
+      <span />
+      <div>
         <label>
            Select the report type:
           <div
@@ -370,63 +433,18 @@ Object {
             </button>
           </div>
         </label>
-        <label>
-          Current report type: 
-          submissionTime
-        </label>
-        <h1
-          style="border-bottom: 1px solid black; display: inline-block;"
+        <label
+          style="margin: 0px 0px 0px 1rem;"
         >
-          Assignment Annotations:
-        </h1>
-        <label>
-          No assignments to display
-        </label>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      style="display: flex; flex-direction: column; align-items: center;"
-    >
-      <div>
-        <label>
-           Enter the course id:
+           Enter the report page:
           <input
-            placeholder="Course Id Here"
+            placeholder="Report Page Here"
             type="text"
           />
         </label>
-        <label>
-           Enter the assignment id:
-          <input
-            placeholder="Assignment Id Here"
-            type="text"
-          />
-        </label>
-        <button>
-          Search Assignment
-        </button>
       </div>
-      <label>
-         Select the report type:
-        <div
-          class="dropdown"
-          data-testid="dropTest"
-        >
-          <button
-            aria-expanded="false"
-            class="dropdown-toggle btn btn-primary"
-            id="reportTypeDropdown"
-            type="button"
-          >
-            Report Type
-          </button>
-        </div>
-      </label>
       <label>
         Current report type: 
-        submissionTime
       </label>
       <h1
         style="border-bottom: 1px solid black; display: inline-block;"
@@ -434,7 +452,7 @@ Object {
         Assignment Annotations:
       </h1>
       <label>
-        No assignments to display
+        No grades to display
       </label>
     </div>
   </div>,

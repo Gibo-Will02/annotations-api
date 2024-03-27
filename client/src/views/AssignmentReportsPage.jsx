@@ -8,7 +8,7 @@ function AssignmentReportsPage() {
 	const [data,setData] = useState([]);
     const [assignmentId, setAssignmentId] = useState("");
 	const [courseId, setCourseId] = useState("");
-    const [reportType, setReportType] = useState("grades");
+    const [reportType, setReportType] = useState("");//pageViews or grades
 	const [reportPage, setReportPage] = useState("");
 	const [search, setSearch] = useState(false);
 
@@ -56,7 +56,7 @@ function AssignmentReportsPage() {
 
     const ReportTypeDropDown = () => {
         return(
-			<DropdownButton id="reportTypeDropdown" title="Report Type" align='start'>
+			<DropdownButton data-testid="dropTest" id="reportTypeDropdown" title="Report Type" align='start'>
 				<Dropdown.Item onClick={handleReportTypeChange} id="pageViews">Page Views</Dropdown.Item>
 				<Dropdown.Item onClick={handleReportTypeChange} id="studentActivity">Student Activity</Dropdown.Item>
 				<Dropdown.Item onClick={handleReportTypeChange} id="grades">Grades</Dropdown.Item>
