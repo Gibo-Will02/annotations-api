@@ -8,7 +8,7 @@ function AssignmentReportsPage() {
 	const [data,setData] = useState([]);
     const [assignmentId, setAssignmentId] = useState("");
 	const [courseId, setCourseId] = useState("");
-    const [reportType, setReportType] = useState("");//pageViews or grades
+    const [reportType, setReportType] = useState("");//pageViews or grades is also irrelavent
 	//KNOWN ISSUE if report type is set to currently selected report type it will NOT Change if reselected even if other fields are changed
 	//possible fix is if you also include the other fields in the useEffect update []
 	const [reportPage, setReportPage] = useState("");

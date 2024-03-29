@@ -2,6 +2,7 @@
 import { render, screen, fireEvent, getByPlaceholderText, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 //import userEvent from "@testing-library/user-event";
+import { act } from 'react-dom/test-utils';
 import App from '../src/App';
 import renderer from "react-test-renderer";
 import { JSX } from 'react/jsx-dev-runtime';
@@ -579,4 +580,62 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
   });
 
 });
+//#endregion
+
+//#region Sanity tests for the pages
+describe('Api Tests that confirm that the Api Return Structure is the same as described in perusalls API Documentation', () => {
+  
+  beforeEach(() => {
+    //clears the Axios mock so that it doesn't leak into other Axios API call tests
+    jest.clearAllMocks();
+  });
+
+  test('Sanity check for AssignmentReports with report type Page Views', async ()=> {
+    act(() => {
+      render(<AssignmentReportsPage />);
+    });
+    
+    act(() => {
+      const myinput = screen.getByPlaceholderText('Course Id Here');
+      const inputTwo = screen.getByPlaceholderText('Assignment Id Here');
+      const inputThree = screen.getByPlaceholderText('Report Page Here');
+      //these firevents change the two places where you input data to look for information
+      //this one is for course ID
+      fireEvent.change(myinput, {
+        target: {value: 'BRhk8oFtsmnsBHKo4' }
+      });
+      //this one is for Assignment ID
+      fireEvent.change(inputTwo, {
+        target: {value: 'qB83qbw8vnAPYNEwm' }
+      });
+      //this one changes the report page number
+      fireEvent.change(inputThree, {
+        target: {value: '1' }
+      });
+      expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
+      expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
+      expect(inputThree.value).toBe('1');
+    });
+
+    
+
+    fireEvent.click(screen.getByText("Report Type"));
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      fireEvent.click(screen.getByText("Page Views"));
+      
+    });
+    
+    //const cdpButton1 = getByText('Search Assignment');
+    //fireEvent.click(cdpButton1);
+
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'pageViews', '_P': '1'});
+    });
+
+  });
+});
+
+
 //#endregion
