@@ -76,6 +76,7 @@ function AssignmentReportsPage() {
 	const ReportInfoDisplay = () => {
 		switch (reportType) {
 			case "pageViews":
+				if(data !== undefined){
 				return (
 					<>
 						{(data.length > 0) ?
@@ -90,6 +91,14 @@ function AssignmentReportsPage() {
 						<label>No page analytics to display</label>}
 					</>
 				);
+				}
+				else{
+					return(
+						<>
+							<li></li>
+						</>
+					);
+				}
 			case "studentActivity":
 				const rows = [];
 				for(var id in data) {
@@ -113,6 +122,7 @@ function AssignmentReportsPage() {
 					</>
 				);
 			default:
+				if(data !== undefined){
 				return(
 					<>
 						{(data.length > 0) ?
@@ -127,6 +137,13 @@ function AssignmentReportsPage() {
 						<label>No grades to display</label>}
 					</>
 				);
+				} else{
+					return(
+						<>
+							<li></li>
+						</>
+					);
+				}
 		}
 	}
 
