@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-function InstitutionCoursesPage() {
+const InstitutionCoursesPage = () => {
 	const [posts,setPosts] = useState([]);
 
 	useEffect(() => {
