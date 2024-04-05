@@ -26,7 +26,7 @@ let config = {
  */
 function App() {
   const [user, setUser] = useState(undefined);
-  const [checked, setChecked] = useState(true);
+  const [toggleDarkMode, setToggleDarkMode] = useState(true);
 
   // This useEffet fetches the current user from the API server.
   // If there is no user yet, then we load the login page from 
@@ -59,7 +59,7 @@ function App() {
   // Note you may want to pass the user as props to children
   // components.
   return (
-    <div className={checked ? "App App-dark-page": "App App-light-page"}>
+    <div className={toggleDarkMode ? "App App-dark-page": "App App-light-page"}>
       <h1 style={{display:"flex", flexDirection:"column", alignItems: "center"}}>
         <div>
           <label>Welcome {user.username}!
@@ -68,7 +68,7 @@ function App() {
         </div>
         <div style={{ position: 'absolute', right: 10 }}>
           <ToggleButton onLabel="Dark" offLabel="Light"
-                checked={checked} onChange={(e) => setChecked(e.value)} />
+                checked={toggleDarkMode} onChange={(e) => setToggleDarkMode(e.value)} />
         </div>
       </h1>
       <Router>
