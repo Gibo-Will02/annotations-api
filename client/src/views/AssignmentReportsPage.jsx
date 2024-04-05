@@ -7,7 +7,10 @@ const AssignmentReportsPage = () => {
 	const [data,setData] = useState([]);
     const [assignmentId, setAssignmentId] = useState("");
 	const [courseId, setCourseId] = useState("");
-    const [reportType, setReportType] = useState("");
+    const [reportType, setReportType] = useState("");//pageViews or grades is also irrelavent
+	//KNOWN ISSUE if report type is set to currently selected report type it will NOT Change if reselected even if other fields are changed
+	//possible fix is if you also include the other fields in the useEffect update []
+
 	const [reportPage, setReportPage] = useState("");
 	const [search, setSearch] = useState(false);
 
@@ -66,6 +69,7 @@ const AssignmentReportsPage = () => {
 	const ReportInfoDisplay = () => {
 		switch (reportType) {
 			case "pageViews":
+				if(data !== undefined){
 				return (
 					<>
 						{(data.length > 0) ?
@@ -80,6 +84,14 @@ const AssignmentReportsPage = () => {
 						<label>No page analytics to display</label>}
 					</>
 				);
+				}
+				else{
+					return(
+						<>
+							<li></li>
+						</>
+					);
+				}
 			case "studentActivity":
 				const rows = [];
 				for(var id in data) {
@@ -103,6 +115,7 @@ const AssignmentReportsPage = () => {
 					</>
 				);
 			default:
+				if(data !== undefined){
 				return(
 					<>
 						{(data.length > 0) ?
@@ -117,6 +130,13 @@ const AssignmentReportsPage = () => {
 						<label>No grades to display</label>}
 					</>
 				);
+				} else{
+					return(
+						<>
+							<li></li>
+						</>
+					);
+				}
 		}
 	}
 

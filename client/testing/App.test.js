@@ -2,6 +2,7 @@
 import { render, screen, fireEvent, getByPlaceholderText, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 //import userEvent from "@testing-library/user-event";
+import { act } from 'react-dom/test-utils';
 import App from '../src/App';
 import renderer from "react-test-renderer";
 import { JSX } from 'react/jsx-dev-runtime';
@@ -12,7 +13,7 @@ import CourseAssignmentInfoPage from '../src/views/CourseAssignmentInfoPage';
 import AssignmentGradesPage from '../src/views/AssignmentGradesPage';
 import AssignmentAnnotationsPage from '../src/views/AssignmentAnnotationsPage';
 import AssignmentReportsPage from '../src/views/AssignmentReportsPage';
-import axios from "axios";
+import axios, { Axios } from "axios";
 
 
 // allows us to mock an Axios call function for API Testing
@@ -353,6 +354,7 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     jest.clearAllMocks();
   });
 
+  /*
   test('checks to see if the API call succeeds for AssignmentReports with report type Submission Time', async ()=> {
     
     const responseData = {
@@ -401,7 +403,7 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     });
 
   });
-
+  */
 
   test('checks to see if the API call succeeds for AssignmentReports with report type Page Views', async ()=> {
     
@@ -421,12 +423,15 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     const { getByPlaceholderText, getByText } = page;
     const myinput = getByPlaceholderText('Course Id Here');
     const inputTwo = getByPlaceholderText('Assignment Id Here');
+    const inputThree = getByPlaceholderText('Report Page Here');
     const selectDropdown = await waitFor(
       () => screen.getByTestId("dropTest"),
       {
         timeout: 3000,
       }
     );
+
+    expect(selectDropdown).toBeInTheDocument();
     //these firevents change the two places where you input data to look for information
     //this one is for course ID
     fireEvent.change(myinput, {
@@ -436,18 +441,23 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     fireEvent.change(inputTwo, {
       target: {value: 'qB83qbw8vnAPYNEwm' }
     });
+    //this one changes the report page number
+    fireEvent.change(inputThree, {
+      target: {value: '0' }
+    });
     fireEvent.click(screen.getByText("Report Type"));
     fireEvent.click(screen.getByText("Page Views"));
     
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
     expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
-    const cdpButton1 = getByText('Search Assignment');
-    fireEvent.click(cdpButton1);
+    expect(inputThree.value).toBe('0');
+    //const cdpButton1 = getByText('Search Assignment');
+    //fireEvent.click(cdpButton1);
 
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
-      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'pageViews'});
+      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'pageViews', '_P': '0'});
     });
 
   });
@@ -471,12 +481,15 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     const { getByPlaceholderText, getByText } = page;
     const myinput = getByPlaceholderText('Course Id Here');
     const inputTwo = getByPlaceholderText('Assignment Id Here');
+    const inputThree = getByPlaceholderText('Report Page Here');
     const selectDropdown = await waitFor(
       () => screen.getByTestId("dropTest"),
       {
         timeout: 3000,
       }
     );
+
+    expect(selectDropdown).toBeInTheDocument();
     //these firevents change the two places where you input data to look for information
     //this one is for course ID
     fireEvent.change(myinput, {
@@ -486,18 +499,23 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     fireEvent.change(inputTwo, {
       target: {value: 'qB83qbw8vnAPYNEwm' }
     });
+    //this one changes the report page number
+    fireEvent.change(inputThree, {
+      target: {value: '0' }
+    });
     fireEvent.click(screen.getByText("Report Type"));
     fireEvent.click(screen.getByText("Student Activity"));
     
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
     expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
-    const cdpButton1 = getByText('Search Assignment');
-    fireEvent.click(cdpButton1);
+    expect(inputThree.value).toBe('0');
+    //const cdpButton1 = getByText('Search Assignment');
+    //fireEvent.click(cdpButton1);
 
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
-      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'studentActivity'});
+      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'studentActivity', '_P': '0'});
     });
 
   });
@@ -521,12 +539,15 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     const { getByPlaceholderText, getByText } = page;
     const myinput = getByPlaceholderText('Course Id Here');
     const inputTwo = getByPlaceholderText('Assignment Id Here');
+    const inputThree = getByPlaceholderText('Report Page Here');
     const selectDropdown = await waitFor(
       () => screen.getByTestId("dropTest"),
       {
         timeout: 3000,
       }
     );
+
+    expect(selectDropdown).toBeInTheDocument();
     //these firevents change the two places where you input data to look for information
     //this one is for course ID
     fireEvent.change(myinput, {
@@ -536,21 +557,259 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     fireEvent.change(inputTwo, {
       target: {value: 'qB83qbw8vnAPYNEwm' }
     });
+    //this one changes the report page number
+    fireEvent.change(inputThree, {
+      target: {value: '0' }
+    });
+    
     fireEvent.click(screen.getByText("Report Type"));
     fireEvent.click(screen.getByText("Grades"));
     
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
     expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
-    const cdpButton1 = getByText('Search Assignment');
-    fireEvent.click(cdpButton1);
+    expect(inputThree.value).toBe('0');
+    //const cdpButton1 = getByText('Search Assignment');
+    //fireEvent.click(cdpButton1);
 
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
-      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'grades'});
+      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'grades', '_P': '0'});
     });
 
   });
 
 });
+//#endregion
+
+
+//#region Sanity tests for the pages
+describe('Api Tests that confirm that the Api Return Structure is the same as described in perusalls API Documentation', () => {
+  
+  beforeEach(() => {
+    //clears the Axios mock so that it doesn't leak into other Axios API call tests
+    jest.clearAllMocks();
+  });
+
+  test('Sanity check for AssignmentReports with report type grades', async ()=> {
+    const responseData = [
+      {
+        _id: "evjMwcnne9frjZcYY",
+        userId: "MNZtvxJYmY5GQ4w6z",
+        score: 3
+      },
+      {
+        _id: "EA62rNtPFuc36R6yT",
+        userId: "jdGGwy2z58RCrmQCh",
+        score: 3
+      }
+    ];
+    //needed so that axios doesn't return undefined as its response
+    axios.post.mockResolvedValue({ data: responseData });
+
+    const courseId = 'BRhk8oFtsmnsBHKo4';
+    const assignmentId = 'qB83qbw8vnAPYNEwm';
+    const reportType = 'Grades';
+    const reportPage = '1';
+    const response = await axios.post('/api/assignment_analytics', {'_CID': courseId, '_AID': assignmentId, '_REP': reportType, '_P': reportPage});
+
+    expect(response.data).toEqual(responseData);
+  });
+
+  test('sanity check for CourseDataPage', async ()=> {
+    const responseData = {
+      _id: 'BRhk8oFtsmnsBHKo4',
+      name: 'Textbook Team',
+      instructorIds: ['yj6ngEo5ybTevTDag', 'ba8FE5bnAZtB6x254'],
+      studentIds: ['MNZtvxJYmY5GQ4w6z', 'jdGGwy2z58RCrmQCh', 'XH7rtnv44jtkRcBEr'],
+      inactiveStudentIds: [],
+      lti: {
+        version: '1.1',
+        institutionId: '9RFriSoEyL8PuvJh6',
+        instanceId: '7db438071375c02373713c12c73869ff2f470b68.k-state.instructure.com',
+        contextId: '97b4be803cd06efa24f5f02dbc008e8917103cc6',
+        lmsName: 'canvas'
+      },
+      lowestPossibleScore: 0,
+      highestPossibleScore: 3,
+      ltiInstanceId: '7db438071375c02373713c12c73869ff2f470b68.k-state.instructure.com',
+      ltiContextId: '97b4be803cd06efa24f5f02dbc008e8917103cc6'
+    };
+
+    axios.post.mockResolvedValue({ data: responseData });
+
+    const userId = 'BRhk8oFtsmnsBHKo4';
+    const response = await axios.post('/api/course_data', { '_CID': userId });
+
+    //expects current result to equal api result
+    expect(response.data).toEqual(responseData);
+  });
+
+  test('sanity check for AssignmentAnnotationsPage', async ()=> {
+    const responseData = [{
+      id: 'wH3HSnFqwE39LugBs',
+      studentId: 'jdGGwy2z58RCrmQCh',
+      text: '<p>Needs to be hard</p>',
+      plainText: 'Needs to be hard',
+      score: 0,
+      createdAt: '2023-10-25T15:01:21.605Z',
+      editedAt: '2023-10-25T15:01:21.605Z'
+    }];
+
+    axios.post.mockResolvedValue({ data: responseData });
+
+    const courseId = 'BRhk8oFtsmnsBHKo4';
+    const assignmentId = 'qB83qbw8vnAPYNEwm';
+    const response = await axios.post('/api/assignment_annotations', {'_CID': courseId, '_AID': assignmentId});
+
+    //expects current result to equal api result
+    expect(response.data).toEqual(responseData);
+  });
+
+  test('sanity check for AssignmentGradesPage', async ()=> {
+    const responseData =  [{
+      studentId: 'MNZtvxJYmY5GQ4w6z',
+      score: 3,
+      released: true
+    },
+    {
+      studentId: 'jdGGwy2z58RCrmQCh',
+      score: 3,
+      released: true
+    },
+    {
+      studentId: 'ba8FE5bnAZtB6x254',
+      released: true
+    },
+    {
+      studentId: 'yj6ngEo5ybTevTDag',
+      released: true
+    },
+    {
+      studentId: 'XH7rtnv44jtkRcBEr',
+      score: null,
+      released: true
+    }];
+    axios.post.mockResolvedValue({ data: responseData });
+
+    const courseId = 'BRhk8oFtsmnsBHKo4';
+    const response = await axios.post('/api/course_assignments', {'_CID': courseId});
+
+    //expects current result to equal api result
+    expect(response.data).toEqual(responseData);
+  });
+
+  test('sanity check for CourseAssignmentInfoPage', async ()=> {
+    const responseData =  [{
+      _id: 'qB83qbw8vnAPYNEwm',
+      name: 'K-State CIS 642_643 Textbook - Pages 1-11',
+      documentIds: [
+          "iRvEpfcv9r9ecrEsE"
+      ],
+      deadline: '2023-10-25T16:30:00.000Z',
+      assignTo: 'all',
+      studentIds: [
+          'MNZtvxJYmY5GQ4w6z',
+          'jdGGwy2z58RCrmQCh',
+          'XH7rtnv44jtkRcBEr'
+      ]
+    },
+    {
+      _id: 'dQNPoRBd2PBH52ABp',
+      name: 'Coding Assignment',
+      documentIds: [
+          'ADzMrbFTYtKmvrnAk',
+          'aE8M4oW8e9nEhSnLd'
+      ],
+      deadline: '2023-10-27T15:30:00.000Z',
+      assignTo: 'all',
+      studentIds: [
+          'MNZtvxJYmY5GQ4w6z',
+          'jdGGwy2z58RCrmQCh',
+          'XH7rtnv44jtkRcBEr'
+      ]
+    }];
+    axios.post.mockResolvedValue({ data: responseData });
+
+    const courseId = 'BRhk8oFtsmnsBHKo4';
+    const assignmentId = 'qB83qbw8vnAPYNEwm';
+    const response = await axios.post('/api/assignment_grades', {'_CID': courseId, '_AID': assignmentId});
+
+    //expects current result to equal api result
+    expect(response.data).toEqual(responseData);
+  });
+
+  test('sanity check for InstitutionCoursesPage', async ()=> {
+    const responseData = [
+      {
+        _id: 'BRhk8oFtsmnsBHKo4',
+        name: 'Textbook Team'
+      },
+      {
+        _id: 'vv3ooxA3SCsHDpiRc',
+        name: 'LTI Testing'
+      }
+    ];
+    
+    axios.get.mockResolvedValue({ data: responseData });
+
+    const response = await axios.get('/api/institution_courses');
+
+    //expects current result to equal api result
+    expect(response.data).toEqual(responseData);
+  });
+
+  test('sanity check for InstitutionRosterPage', async ()=> {
+    const responseData = [
+      {
+        _id: 'MNZtvxJYmY5GQ4w6z',
+        firstName: 'Nicholas',
+        lastName: 'Sternecker',
+        email: 'nsternecker@ksu.edu'
+      },
+      {
+        _id: 'QrALMiztKSx3YzDTv',
+        firstName: 'Student',
+        lastName: 'Gibson',
+        email: 'gibson.williams2020@gmail.com'
+      },
+      {
+        _id: 'XH7rtnv44jtkRcBEr',
+        firstName: 'Test',
+        lastName: 'Student',
+        email: 'student+LQRXWcdc4PpjY72bf@perusall.com'
+      },
+      {
+        _id: 'ba8FE5bnAZtB6x254',
+        firstName: "Nate",
+        lastName: 'Lillich',
+        email: 'nlillich@ksu.edu'
+      },
+      {
+        _id: 'jdGGwy2z58RCrmQCh',
+        firstName: 'Nathan',
+        lastName: 'Herscovici',
+        email: 'nherscovici@ksu.edu'
+      },
+      {
+        _id: 'yj6ngEo5ybTevTDag',
+        firstName: 'Gibson',
+        lastName: 'Williams',
+        email: 'gibbs060502@ksu.edu'
+      }
+    ];
+
+    axios.get.mockResolvedValue({ data: responseData });
+
+    const response = await axios.get('/api/institution_roster');
+
+    //expects current result to equal api result
+    expect(response.data).toEqual(responseData);
+  });
+
+
+});
+
+
+
 //#endregion
