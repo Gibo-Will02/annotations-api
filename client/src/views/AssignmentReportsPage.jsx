@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { Dropdown } from 'primereact/dropdown';
 
-function AssignmentReportsPage() {
+const AssignmentReportsPage = () => {
 	const [data,setData] = useState([]);
     const [assignmentId, setAssignmentId] = useState("");
 	const [courseId, setCourseId] = useState("");
     const [reportType, setReportType] = useState("");//pageViews or grades is also irrelavent
 	//KNOWN ISSUE if report type is set to currently selected report type it will NOT Change if reselected even if other fields are changed
 	//possible fix is if you also include the other fields in the useEffect update []
+
 	const [reportPage, setReportPage] = useState("");
 	const [search, setSearch] = useState(false);
 
@@ -30,10 +30,6 @@ function AssignmentReportsPage() {
 	const handleReportPageChange = (event) => {
 		setReportPage(event.target.value);
 	}
-
-    const handleReportTypeChange = (report) => {
-        setReportType(report.target.id);
-    }
 
 	const handleClick = () => {
 		setAssignmentUpdated(prevAssignmentId => prevAssignmentId !== assignmentId ? assignmentId : prevAssignmentId);
@@ -58,11 +54,8 @@ function AssignmentReportsPage() {
 
     const ReportTypeDropDown = () => {
         return(
-			<DropdownButton data-testid="dropTest" id="reportTypeDropdown" title="Report Type" align='start'>
-				<Dropdown.Item onClick={handleReportTypeChange} id="pageViews">Page Views</Dropdown.Item>
-				<Dropdown.Item onClick={handleReportTypeChange} id="studentActivity">Student Activity</Dropdown.Item>
-				<Dropdown.Item onClick={handleReportTypeChange} id="grades">Grades</Dropdown.Item>
-			</DropdownButton>
+			<Dropdown id="reportTypeDropdown" value={reportType} onChange={(e) => setReportType(e.value)} options={['pageViews', 'studentActivity', 'grades']} 
+			placeholder="Select a report" className="w-full md:w-14rem" />
 		)
     }
 
@@ -166,9 +159,10 @@ function AssignmentReportsPage() {
 			})
 			.catch(error => {
 				console.error(error);
+				setData([]);
 			});
         }
-	}, [reportType]); //[] updates page if value changes, if empty it only updates on entry to the page
+	}, [reportType, reportPage, courseId, assignmentId]); //[x,...] updates page if values x,... changes, if empty it only updates on entry to the page
 
 
 
@@ -196,7 +190,7 @@ function AssignmentReportsPage() {
 						Current report type: {reportType}
 				</label>
 				{/*<button onClick={handleClick}>Search Assignment</button>*/}
-				<h1 style={{borderBottom: "1px solid black", display: 'inline-block'}}>Assignment Annotations:</h1>
+				<h1 style={{borderBottom: "1px solid black", display: 'inline-block'}}>Assignment Analytics:</h1>
 				<ReportInfoDisplay />
 			</div>
         )

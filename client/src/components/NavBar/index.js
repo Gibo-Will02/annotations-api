@@ -6,6 +6,9 @@ const Navbar = () => {
 		<>
 			<Nav>
 				<NavMenu>
+					<NavLink to="/institutionDataPage" activeStyle>
+						Institution Data Page
+					</NavLink>
 					<NavLink to="/institutionRosterPage" activeStyle>
 						Institution Roster Page
 					</NavLink>
