@@ -7,9 +7,7 @@ const AssignmentReportsPage = () => {
 	const [data,setData] = useState([]);
     const [assignmentId, setAssignmentId] = useState("");
 	const [courseId, setCourseId] = useState("");
-    const [reportType, setReportType] = useState("");//pageViews or grades is also irrelavent
-	//KNOWN ISSUE if report type is set to currently selected report type it will NOT Change if reselected even if other fields are changed
-	//possible fix is if you also include the other fields in the useEffect update []
+    const [reportType, setReportType] = useState("pageViews");
 
 	const [reportPage, setReportPage] = useState("");
 	const [search, setSearch] = useState(false);
@@ -31,6 +29,11 @@ const AssignmentReportsPage = () => {
 		setReportPage(event.target.value);
 	}
 
+	/*
+	const handleReportType = (event) => {
+		setReportType(event.target.value)
+	}
+	*/
 	const handleClick = () => {
 		setAssignmentUpdated(prevAssignmentId => prevAssignmentId !== assignmentId ? assignmentId : prevAssignmentId);
 		setCourseUpdated(prevCourseId => prevCourseId !== courseId ? courseId : prevCourseId);
@@ -52,9 +55,10 @@ const AssignmentReportsPage = () => {
 		return date.toLocaleDateString('en-US', options);
 	}
 
+	//(e) => setReportType(e.value) onSelect={handleReportType}
     const ReportTypeDropDown = () => {
         return(
-			<Dropdown id="reportTypeDropdown" value={reportType} onChange={(e) => setReportType(e.value)} options={['pageViews', 'studentActivity', 'grades']} 
+			<Dropdown data-testid="dropTest" id="reportTypeDropdown" value={reportType}  onChange={(e) => setReportType(e.value)} options={['pageViews', 'studentActivity', 'grades']} 
 			placeholder="Select a report" className="w-full md:w-14rem" />
 		)
     }
