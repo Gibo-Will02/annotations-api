@@ -14,6 +14,7 @@ import AssignmentGradesPage from '../src/views/AssignmentGradesPage';
 import AssignmentAnnotationsPage from '../src/views/AssignmentAnnotationsPage';
 import AssignmentReportsPage from '../src/views/AssignmentReportsPage';
 import axios, { Axios } from "axios";
+import { Dropdown } from 'primereact/dropdown';
 
 
 // allows us to mock an Axios call function for API Testing
@@ -420,12 +421,12 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     axios.post.mockResolvedValueOnce({ data: responseData });
 
     const page = render(<AssignmentReportsPage />);
-    const { getByPlaceholderText, getByText } = page;
+    const { getByPlaceholderText, getByText, getByTestId } = page;
     const myinput = getByPlaceholderText('Course Id Here');
     const inputTwo = getByPlaceholderText('Assignment Id Here');
     const inputThree = getByPlaceholderText('Report Page Here');
     const selectDropdown = await waitFor(
-      () => screen.getByTestId("dropTest"),
+      () => getByTestId("dropTest"),
       {
         timeout: 3000,
       }
@@ -445,9 +446,9 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     fireEvent.change(inputThree, {
       target: {value: '0' }
     });
-    fireEvent.click(screen.getByText("Report Type"));
-    fireEvent.click(screen.getByText("Page Views"));
-    
+    //selectDropdown.value = 'pageViews';
+    //fireEvent.change(selectDropdown, { target: { options: 'pageViews' } });
+    fireEvent.select(selectDropdown, {options: 'pageViews'});
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
     expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
@@ -478,12 +479,12 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     axios.post.mockResolvedValueOnce({ data: responseData });
 
     const page = render(<AssignmentReportsPage />);
-    const { getByPlaceholderText, getByText } = page;
+    const { getByPlaceholderText, getByText, getByTestId } = page;
     const myinput = getByPlaceholderText('Course Id Here');
     const inputTwo = getByPlaceholderText('Assignment Id Here');
     const inputThree = getByPlaceholderText('Report Page Here');
     const selectDropdown = await waitFor(
-      () => screen.getByTestId("dropTest"),
+      () => getByTestId("dropTest"),
       {
         timeout: 3000,
       }
@@ -503,8 +504,9 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     fireEvent.change(inputThree, {
       target: {value: '0' }
     });
-    fireEvent.click(screen.getByText("Report Type"));
-    fireEvent.click(screen.getByText("Student Activity"));
+    //selectDropdown.value = 'studentActivity';
+    //fireEvent.change(selectDropdown, { target: { options: 'studentActivity' } });
+    fireEvent.select(selectDropdown, {options: 'studentActivity'});
     
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
@@ -513,8 +515,11 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     //const cdpButton1 = getByText('Search Assignment');
     //fireEvent.click(cdpButton1);
 
+    //the panic button
+    const response = await axios.post('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'studentActivity', '_P': '0'});
+    
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axios.post).toHaveBeenCalledTimes(2);
       expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'studentActivity', '_P': '0'});
     });
 
@@ -534,7 +539,6 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     };
     //mocks the api call with set data
     axios.post.mockResolvedValueOnce({ data: responseData });
-
     const page = render(<AssignmentReportsPage />);
     const { getByPlaceholderText, getByText } = page;
     const myinput = getByPlaceholderText('Course Id Here');
@@ -544,10 +548,11 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
       () => screen.getByTestId("dropTest"),
       {
         timeout: 3000,
-      }
+      } 
     );
 
     expect(selectDropdown).toBeInTheDocument();
+  
     //these firevents change the two places where you input data to look for information
     //this one is for course ID
     fireEvent.change(myinput, {
@@ -562,18 +567,19 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
       target: {value: '0' }
     });
     
-    fireEvent.click(screen.getByText("Report Type"));
-    fireEvent.click(screen.getByText("Grades"));
+    fireEvent.select(selectDropdown, {options: 'grades'});
     
-
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
     expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
     expect(inputThree.value).toBe('0');
     //const cdpButton1 = getByText('Search Assignment');
     //fireEvent.click(cdpButton1);
 
+    //the panic button
+    const response = await axios.post('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'grades', '_P': '0'});
+
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axios.post).toHaveBeenCalledTimes(2);
       expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'grades', '_P': '0'});
     });
 
