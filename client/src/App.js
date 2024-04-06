@@ -7,11 +7,12 @@ import CourseDataPage from './views/CourseDataPage';
 import AssignmentGradesPage from './views/AssignmentGradesPage';
 import AssignmentAnnotationsPage from './views/AssignmentAnnotationsPage';
 import AssignmentReportsPage from './views/AssignmentReportsPage';
+import InstitutionDataPage from './views/InstitutionDataPage'
 import Navbar from './components/NavBar/index';
 import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios'
+import { ToggleButton } from 'primereact/togglebutton';
 
 let config = {
   headers: {
@@ -25,6 +26,7 @@ let config = {
  */
 function App() {
   const [user, setUser] = useState(undefined);
+  const [toggleDarkMode, setToggleDarkMode] = useState(true);
 
   // This useEffet fetches the current user from the API server.
   // If there is no user yet, then we load the login page from 
@@ -57,15 +59,23 @@ function App() {
   // Note you may want to pass the user as props to children
   // components.
   return (
-    <div className="App">
-      <h1 style={{backgroundColor: "lightgray", display:"flex", flexDirection:"column", alignItems: "center"}}>
-        <label>Welcome {user.username}!
-          <a href="/api/logout">Logout</a>
-        </label>
+    <div className={toggleDarkMode ? "App App-dark-page": "App App-light-page"}>
+      <h1 style={{display:"flex", flexDirection:"column", alignItems: "center"}}>
+        <div>
+          <label>Welcome {user.username}!
+            <a href="/api/logout">Logout</a>
+          </label>
+        </div>
+        <div style={{ position: 'absolute', right: 10 }}>
+          <ToggleButton onLabel="Dark" offLabel="Light"
+                checked={toggleDarkMode} onChange={(e) => setToggleDarkMode(e.value)} />
+        </div>
       </h1>
       <Router>
         <Navbar />
+        <br />
         <Routes>
+          <Route path='/institutionDataPage' element={<InstitutionDataPage />} />
           <Route path='/institutionRosterPage' element={<InstitutionRosterPage />} />
           <Route path='/courseAssignmentInfoPage' element={<CourseAssignmentInfoPage />} />
           <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-function InstitutionRosterPage() {
+const InstitutionRosterPage = () => {
 	const [posts,setPosts] = useState([]);
 
 	useEffect(() => {
