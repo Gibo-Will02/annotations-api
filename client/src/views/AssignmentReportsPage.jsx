@@ -29,10 +29,11 @@ const AssignmentReportsPage = () => {
 		setReportPage(event.target.value);
 	}
 
+	/*
 	const handleReportType = (event) => {
 		setReportType(event.target.value)
 	}
-
+	*/
 	const handleClick = () => {
 		setAssignmentUpdated(prevAssignmentId => prevAssignmentId !== assignmentId ? assignmentId : prevAssignmentId);
 		setCourseUpdated(prevCourseId => prevCourseId !== courseId ? courseId : prevCourseId);
@@ -54,10 +55,10 @@ const AssignmentReportsPage = () => {
 		return date.toLocaleDateString('en-US', options);
 	}
 
-	//(e) => setReportType(e.value)
+	//(e) => setReportType(e.value) onSelect={handleReportType}
     const ReportTypeDropDown = () => {
         return(
-			<Dropdown data-testid="dropTest" id="reportTypeDropdown" value={reportType} onSelect={handleReportType} onChange={handleReportType} options={['pageViews', 'studentActivity', 'grades']} 
+			<Dropdown data-testid="dropTest" id="reportTypeDropdown" value={reportType}  onChange={(e) => setReportType(e.value)} options={['pageViews', 'studentActivity', 'grades']} 
 			placeholder="Select a report" className="w-full md:w-14rem" />
 		)
     }
