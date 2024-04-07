@@ -6,8 +6,10 @@ exports.up = function(knex) {
     return knex.schema
     .createTable("student", function(table){
         table.increments("wid", {primaryKey: true}).unsigned().notNullable();
+        table.text("perusalStudentId").notNullable();
         table.integer("departmentId").unsigned().unique().notNullable();
         table.foreign("departmentId").references("department.departmentId");
+        table.text("email").unique().notNullable();
         table.text("notes").defaultTo("");
 
         table.timestamps(true, true);

@@ -6,6 +6,7 @@ exports.up = function(knex) {
     return knex.schema
     .createTable("annotations", function(table){
         table.increments("annotationId", {primaryKey: true}).unsigned().notNullable();
+        table.text("perusalAnnotationId")
         table.integer("courseId").notNullable().unique().unsigned();
         table.integer("studentId").notNullable().unique().unsigned();
         table.foreign("courseId").references("assignment.courseId");
@@ -22,5 +23,5 @@ exports.up = function(knex) {
  */
 exports.down = function(knex) {
     return knex.schema
-        .dropTableIfExists("department");
+        .dropTableIfExists("annotations");
 };
