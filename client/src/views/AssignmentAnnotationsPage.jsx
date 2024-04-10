@@ -2,28 +2,44 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+/**
+ * The AssignmentAnnotationsPage is used to show the annotations of a desired assignment
+ * @returns The react component to be viewed by the user
+ */
 const AssignmentAnnotationsPage = () => {
+	//data state variable is used for displaying the annotations gathered from an assignment
 	const [data,setData] = useState([]);
+
+	//assignmentId state variable is used for user input for which assignment to look at.
     const [assignmentId, setAssignmentId] = useState("");
+
+	//courseId state variable is used for setting which course to look under for the assignment.
 	const [courseId, setCourseId] = useState("");
 
+	//courseUpdated state variable is used for checking if the courseId has been modified for reloading the screen
 	const [courseUpdated, setCourseUpdated] = useState(courseId);
+
+	//assignmentUpdated state variable is used for checking if the assigmentId has been modified for reloading the screen
     const [assignmentUpdated, setAssignmentUpdated] = useState(assignmentId);
 
+	//Custom onChange method for assignment input box
 	const handleAssignmentChange = (event) => {
 		setAssignmentId(event.target.value);
 
 	};
 
+	//Custom onChange method for course input box
 	const handleCourseChange = (event) => {
 		setCourseId(event.target.value);
 	}
 
+	//Custom handleClick for the search button to cause a refresh of the screen only when clicked
 	const handleClick = () => {
 		setAssignmentUpdated(prevAssignmentId => prevAssignmentId !== assignmentId ? assignmentId : prevAssignmentId);
 		setCourseUpdated(prevCourseId => prevCourseId !== courseId ? courseId : prevCourseId);
 	};
 
+	//DateTime parser function for the string that is returned with the annotations, allows us to see when annotations were submitted
     const dateTimeParser = (time_string) => {
 		let date = new Date( Date.parse(time_string) );
 		const options = { 
@@ -38,8 +54,12 @@ const AssignmentAnnotationsPage = () => {
 		return date.toLocaleDateString('en-US', options);
 	}
 
+	/**
+	 * useEffect will get the assignment annotation data only when the the courseId and assignmentId have been inputted
+	 * Will reload page when assignment or course id is updated
+	 */
 	useEffect(() => {
-        if (courseId !== "") {
+        if (courseId !== "" && assignmentId !=="") {
             axios.post('/api/assignment_annotations', {'_CID': courseId, '_AID': assignmentId})
 			.then(response => {
 				setData(response.data);
