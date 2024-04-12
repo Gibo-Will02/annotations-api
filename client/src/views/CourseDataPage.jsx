@@ -2,23 +2,37 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+/**
+ * CourseDataPage component is used for viewing general data of a course
+ * @returns React component of a view for the general data of a course
+ */
 const CourseDataPage = () => {
-	const [data,setData] = useState({});
-    const [userId, setUserId] = useState("");
+	//data state variable is used for displaying the general data gathered from a course
+	const [data,setData] = useState([]);
 
-	const [updated, setUpdated] = useState(userId);
+	//courseId state variable is used for setting which course to look under for the general data.
+	const [courseId, setCourseId] = useState("");
 
-	const handleChange = (event) => {
-		setUserId(event.target.value);
-	};
+	//Updated state variable is for checking to see if the courseId has been updated for a screen reload using useEffect
+	const [updated, setUpdated] = useState(courseId);
 
+	//Custom onChange event for setting the courseId to the desired user input
+	const handleCourseChange = (event) => {
+		setCourseId(event.target.value);
+	}
+
+	//Custom click event for setting if the courseId has been updated for a screen reload if the search button is clicked
 	const handleClick = () => {
-		setUpdated(prevUserId => prevUserId !== userId ? userId : prevUserId);
+		setUpdated(prevCourseId => prevCourseId !== courseId ? courseId : prevCourseId);
 	};
 
+	/**
+	 * useEffect will get the general course data only when the the courseId has been inputted
+	 * Will reload page when course id is updated after search button click
+	 */
 	useEffect(() => {
-        if (userId !== "") {
-            axios.post('/api/course_data', {'_CID': userId})
+        if (courseId !== "") {
+            axios.post('/api/course_data', {'_CID': courseId})
 			.then(response => {
 				setData({...response.data});
 				console.log(response.data);
@@ -33,7 +47,7 @@ const CourseDataPage = () => {
 	return (
 		<div style={{display:"flex", flexDirection:"column", alignItems: "center"}}>
 			<label> Enter the course id:
-				<input placeholder="Course Id Here" type='text' onChange={handleChange}/>
+				<input placeholder="Course Id Here" type='text' onChange={handleCourseChange}/>
 			</label>
 			<button onClick={handleClick}>Search Course</button>
 			<h1>Perusall API Course Return:</h1>

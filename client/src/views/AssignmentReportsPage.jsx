@@ -4,58 +4,38 @@ import axios from 'axios';
 import { Dropdown } from 'primereact/dropdown';
 
 const AssignmentReportsPage = () => {
+	//data state variable is used for displaying the report data gathered from an assignment
 	const [data,setData] = useState([]);
+
+	//assignmentId state variable is used for user input for which assignment to look at.
     const [assignmentId, setAssignmentId] = useState("");
+
+	//courseId state variable is used for setting which course to look under for the assignment.
 	const [courseId, setCourseId] = useState("");
+	
+	//reportType state variable is used to configure which report the user should recieve to view
     const [reportType, setReportType] = useState("pageViews");
 
+	//reportPage state variable is used to see the multiple pages of a report if it allows multiple pages
 	const [reportPage, setReportPage] = useState("");
-	const [search, setSearch] = useState(false);
 
-	const [courseUpdated, setCourseUpdated] = useState(courseId);
-    const [assignmentUpdated, setAssignmentUpdated] = useState(assignmentId);
-
-	const [reportPageUpdated, setReportPageUpdated] = useState(reportPage);
-
+	//Custom onChange method for assignment input box
 	const handleAssignmentChange = (event) => {
 		setAssignmentId(event.target.value);
+
 	};
 
+	//Custom onChange method for course input box
 	const handleCourseChange = (event) => {
 		setCourseId(event.target.value);
 	}
-
+	
+	//Custom onChange method for the reportType dropdown
 	const handleReportPageChange = (event) => {
 		setReportPage(event.target.value);
 	}
 
-	/*
-	const handleReportType = (event) => {
-		setReportType(event.target.value)
-	}
-	*/
-	const handleClick = () => {
-		setAssignmentUpdated(prevAssignmentId => prevAssignmentId !== assignmentId ? assignmentId : prevAssignmentId);
-		setCourseUpdated(prevCourseId => prevCourseId !== courseId ? courseId : prevCourseId);
-		setReportPageUpdated(prevReportPage => prevReportPage !== reportPage ? reportPage : prevReportPage);
-		setSearch(!search);
-	};
-
-    const dateTimeParser = (time_string) => {
-		let date = new Date( Date.parse(time_string) );
-		const options = { 
-			year: 'numeric', 
-			month: 'long', 
-			day: 'numeric', 
-			hour: '2-digit', 
-			minute: '2-digit', 
-			second: '2-digit', 
-			timeZoneName: 'short' 
-		  };
-		return date.toLocaleDateString('en-US', options);
-	}
-
-	//(e) => setReportType(e.value) onSelect={handleReportType}
+	//ReportTypeDropDown custom component for seeing the different types of reports <utilizes @Prime-React>
     const ReportTypeDropDown = () => {
         return(
 			<Dropdown data-testid="dropTest" id="reportTypeDropdown" value={reportType}  onChange={(e) => setReportType(e.value)} options={['pageViews', 'studentActivity', 'grades']} 
@@ -63,6 +43,7 @@ const AssignmentReportsPage = () => {
 		)
     }
 
+	//timeConvertor for turning the returned seconds count to a reader viewable format: (hh, mm, ss)
 	const timeConvertor = (time_string) => {
 		let hours = Math.floor(time_string / 3600);
 		let minutes = Math.floor((time_string - (hours * 3600)) / 60);
@@ -70,6 +51,11 @@ const AssignmentReportsPage = () => {
 		return(hours + " Hours, " + minutes + " Minutes, " + seconds + " Seconds");
 	}
 
+	/**
+	 * ReportInfoDisplay custom component used for displaying the different types of reportTypes
+	 * Utilizes reportType state variable to determine what the reportType that should be displayed
+	 * @returns The react component for showing the desired reportType format
+	 */
 	const ReportInfoDisplay = () => {
 		switch (reportType) {
 			case "pageViews":
@@ -144,6 +130,10 @@ const AssignmentReportsPage = () => {
 		}
 	}
 
+	/**
+	 * useEffect will get the assignments report data only when the the courseId, assignmentId, and reportPage have valid inputs
+	 * Will reload page when reportType, reportPage, assignmentId, or courseId are updated
+	 */
 	useEffect(() => {
         if (courseId !== "" && assignmentId !=="" && reportPage !== "") {
 			console.log("reportType: "+ reportType);
@@ -193,7 +183,6 @@ const AssignmentReportsPage = () => {
 				<label>
 						Current report type: {reportType}
 				</label>
-				{/*<button onClick={handleClick}>Search Assignment</button>*/}
 				<h1 style={{borderBottom: "1px solid black", display: 'inline-block'}}>Assignment Analytics:</h1>
 				<ReportInfoDisplay />
 			</div>

@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import InstitutionRosterPage from './views/InstitutionRosterPage';
 import CourseAssignmentInfoPage from './views/CourseAssignmentInfoPage';
 import InstitutionCoursesPage from './views/InstitutionCoursesPage';
 import CourseDataPage from './views/CourseDataPage';
@@ -14,18 +13,15 @@ import { BrowserRouter as Router, Routes, Route }
 import { useEffect, useState } from 'react';
 import { ToggleButton } from 'primereact/togglebutton';
 
-let config = {
-  headers: {
-    'Access-Control-Allow-Origin': '*', //Don't need anymore
-  }
-}
-
 /**
  * The App that will be shown upon start up of the application
  * @returns React component to be viewed
  */
 function App() {
+  //User variable is used to store the user after a successful login, allowing access to the site
   const [user, setUser] = useState(undefined);
+
+  //toggleDarkMode varaible used to switch between dark and light mode
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
 
   // This useEffet fetches the current user from the API server.
@@ -34,7 +30,6 @@ function App() {
   useEffect(() => {
     console.log(user) //Don't need logs
     if (!user) {
-      console.log("Inside !user conditional") //Don't need logs
       fetch('/api/whoami') //Switch this to axios or switch axios to base commands, reccomended to not use axios
       .then(response => {
         if (response.status == "403") {
@@ -76,7 +71,6 @@ function App() {
         <br />
         <Routes>
           <Route path='/institutionDataPage' element={<InstitutionDataPage />} />
-          <Route path='/institutionRosterPage' element={<InstitutionRosterPage />} />
           <Route path='/courseAssignmentInfoPage' element={<CourseAssignmentInfoPage />} />
           <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
           <Route path='/courseDataPage' element={<CourseDataPage />} />

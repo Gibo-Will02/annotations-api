@@ -1,6 +1,10 @@
 import * as React from "react"
 import { Nav, NavLink, NavMenu } from "./NavbarElements";
 
+/**
+ * The custom navbar used for the app for switching between the different pages
+ * @returns NavBar react component
+ */
 const Navbar = () => {
 	return (
 		<>
@@ -8,9 +12,6 @@ const Navbar = () => {
 				<NavMenu>
 					<NavLink to="/institutionDataPage" activeStyle>
 						Institution Data Page
-					</NavLink>
-					<NavLink to="/institutionRosterPage" activeStyle>
-						Institution Roster Page
 					</NavLink>
 					<NavLink to="/courseAssignmentInfoPage" activeStyle>
 						Assignments Page
