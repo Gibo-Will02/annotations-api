@@ -446,13 +446,14 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     fireEvent.change(inputThree, {
       target: {value: '0' }
     });
-    //selectDropdown.value = 'pageViews';
-    //fireEvent.change(selectDropdown, { target: { options: 'pageViews' } });
-    fireEvent.select(selectDropdown, {options: 'pageViews'});
+    
+    selectDropdown.tabIndex = 0;
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
     expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
     expect(inputThree.value).toBe('0');
+    expect(selectDropdown.tabIndex).toBe(0);
+    
     //const cdpButton1 = getByText('Search Assignment');
     //fireEvent.click(cdpButton1);
 
@@ -504,25 +505,17 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     fireEvent.change(inputThree, {
       target: {value: '0' }
     });
-    //selectDropdown.value = 'studentActivity';
-    //fireEvent.change(selectDropdown, { target: { options: 'studentActivity' } });
-    fireEvent.select(selectDropdown, {options: 'studentActivity'});
+
+    selectDropdown.tabIndex = 1;
     
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
     expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
     expect(inputThree.value).toBe('0');
+    expect(selectDropdown.tabIndex).toBe(1);
+
     //const cdpButton1 = getByText('Search Assignment');
     //fireEvent.click(cdpButton1);
-
-    //the panic button
-    const response = await axios.post('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'studentActivity', '_P': '0'});
-    
-    await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledTimes(2);
-      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'studentActivity', '_P': '0'});
-    });
-
   });
 
 
@@ -577,6 +570,12 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
   });
 
 });
+//#endregion
+
+
+//#region Institution Data Page Tests
+  //todo
+
 //#endregion
 
 

@@ -12,5 +12,8 @@ npm install --save-dev jsdom
 npm install --save-dev react-bootstrap
 
 run tests with
-npm test -- -u
+$ npm test -- -u
 as that reloads the snapshots
+and 
+$ npm test
+for general testing

@@ -8,23 +8,24 @@ Currently, this repository is configured to run in a "development mode" where th
 
 First, you must install NodeJS version 16 on your system (recommend using [NVM](https://github.com/nvm-sh/nvm) to manage NodeJS versions). Then, clone the repository and run `npm install` from both the client and server directories:
 
+You need to have two instances of a bash terminals.
+For the first bash terminal
+type:
+
 ```
+
+$ cd server
+$ npm install
+$ npm start
+
+for the second terminal type:
+
+```
+
 $ cd client
 $ npm install
-$ cd ../server
-$ npm install
-```
+$ npm start
 
-Once the required software has been installed, build using the terminal command:
-
-```
-$ docker-compose build
-```
-
-And then launch the server and client with:
-
-```
-$ docker-compose up
 ```
 
 You should then be able to access the service at http://localhost:3000. 
@@ -40,23 +41,23 @@ Currently, this repository is configured to run in a "development mode" where th
 
 First, you must install NodeJS version 16 on your system (recommend using [NVM](https://github.com/nvm-sh/nvm) to manage NodeJS versions). Then, clone the repository and run `npm install` from both the client and server directories:
 
+You need to have two instances of a bash terminals.
+For the first bash terminal
+type:
+
 ```
+$ cd server
+$ npm install
+$ npm start
+
+for the second terminal type:
+
+```
+
 $ cd client
 $ npm install
-$ cd ../server
-$ npm install
-```
+$ npm start
 
-Once the required software has been installed, build using the terminal command:
-
-```
-$ docker-compose build
-```
-
-And then launch the server and client with:
-
-```
-$ docker-compose up
 ```
 
 You should then be able to access the service at http://localhost:3000. 
