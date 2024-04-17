@@ -13,6 +13,7 @@ import CourseAssignmentInfoPage from '../src/views/CourseAssignmentInfoPage';
 import AssignmentGradesPage from '../src/views/AssignmentGradesPage';
 import AssignmentAnnotationsPage from '../src/views/AssignmentAnnotationsPage';
 import AssignmentReportsPage from '../src/views/AssignmentReportsPage';
+import InstitutionDataPage from '../src/views/InstitutionDataPage';
 import axios, { Axios } from "axios";
 import { Dropdown } from 'primereact/dropdown';
 
@@ -574,7 +575,38 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
 
 
 //#region Institution Data Page Tests
-  //todo
+
+describe("Institution Data Page Tests", () => {
+  beforeEach(() => {
+    //clears the Axios mock so that it doesn't leak into other Axios API call tests
+    jest.clearAllMocks();
+  });
+
+  test('page does api calls when page loaded', async ()=> {
+    
+    const responseDataSunIsDown = [
+      { _id: '3', name: 'Test Installment' },
+      { _id: '4', name: 'False life high' }
+    ];
+    //mocks the api implementation once and ensures that the test data set is all that is returned
+    axios.get.mockImplementationOnce(() => Promise.resolve(responseDataSunIsDown));
+    //mocks the api call with set data
+    axios.get.mockResolvedValueOnce({ data: responseDataSunIsDown });
+
+    const page = render(<InstitutionDataPage />);
+   
+
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledTimes(2);
+      //expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axios.get).toHaveBeenCalledWith('/api/institution_roster');
+      expect(axios.get).toHaveBeenCalledWith('/api/institution_courses');
+    });
+
+   });
+});
+
+
 
 //#endregion
 
