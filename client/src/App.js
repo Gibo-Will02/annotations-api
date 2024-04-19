@@ -1,12 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import 'primeicons/primeicons.css';
 import CourseAssignmentInfoPage from './views/CourseAssignmentInfoPage';
 import InstitutionCoursesPage from './views/InstitutionCoursesPage';
 import CourseDataPage from './views/CourseDataPage';
 import AssignmentGradesPage from './views/AssignmentGradesPage';
 import AssignmentAnnotationsPage from './views/AssignmentAnnotationsPage';
 import AssignmentReportsPage from './views/AssignmentReportsPage';
-import InstitutionDataPage from './views/InstitutionDataPage'
+import InstitutionDataPage from './views/InstitutionDataPage';
+import MockAssignmentAnalytics from './views/MockAssignmentAnalytics';
+import MockCourseDataDropdown from './components/MockCourseDataDropdown';
+import MockAssignmentPageAnalytics from './views/MockAssignmentPageAnalytics';
 import Navbar from './components/NavBar/index';
 import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
@@ -66,19 +70,30 @@ function App() {
                 checked={toggleDarkMode} onChange={(e) => setToggleDarkMode(e.value)} />
         </div>
       </h1>
+      <div>
       <Router>
         <Navbar />
+        <row style={{ display: 'flex' }}>
+          <div>
+            <MockCourseDataDropdown />
+          </div>
+          <div>
+            <Routes>
+              <Route path='/institutionDataPage' element={<InstitutionDataPage />} />
+              <Route path='/courseAssignmentInfoPage' element={<CourseAssignmentInfoPage />} />
+              <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
+              <Route path='/courseDataPage' element={<CourseDataPage />} />
+              <Route path='/assignmentGradesPage' element={<AssignmentGradesPage />} />
+              <Route path='/assignmentAnnotationsPage' element={<AssignmentAnnotationsPage />} />
+              <Route path='/assignmentReportsPage' element={<AssignmentReportsPage />} />
+              <Route path='/mockAssignmentAnalytics' element={<MockAssignmentAnalytics />} />
+              <Route path='/mockAssignmentPageAnalytics' element={<MockAssignmentPageAnalytics />} />
+            </Routes>
+          </div>
+        </row>
         <br />
-        <Routes>
-          <Route path='/institutionDataPage' element={<InstitutionDataPage />} />
-          <Route path='/courseAssignmentInfoPage' element={<CourseAssignmentInfoPage />} />
-          <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
-          <Route path='/courseDataPage' element={<CourseDataPage />} />
-          <Route path='/assignmentGradesPage' element={<AssignmentGradesPage />} />
-          <Route path='/assignmentAnnotationsPage' element={<AssignmentAnnotationsPage />} />
-          <Route path='/assignmentReportsPage' element={<AssignmentReportsPage />} />
-         </Routes>
        </Router>
+      </div>
     </div>
   );
 }

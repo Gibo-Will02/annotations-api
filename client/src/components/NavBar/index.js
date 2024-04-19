@@ -13,6 +13,12 @@ const Navbar = () => {
 					<NavLink to="/institutionDataPage" activeStyle>
 						Institution Data Page
 					</NavLink>
+					<NavLink to='mockAssignmentAnalytics' activeStyle>
+						Mock Assignment Analytics
+					</NavLink>
+					<NavLink to='mockAssignmentPageAnalytics' activeStyle>
+						Mock Assignment Page Analytics
+					</NavLink>
 					<NavLink to="/courseAssignmentInfoPage" activeStyle>
 						Assignments Page
 					</NavLink>

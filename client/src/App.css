@@ -43,6 +43,12 @@ html {
   color: white;
 }
 
+.App-dark-page .p-tree
+{
+  background-color: rgb(51, 48, 48);
+  color: white;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
