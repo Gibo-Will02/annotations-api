@@ -2,13 +2,14 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> } 
  */
-
+/*
 const axios = require( "axios" )
 
 exports.seed = async function(knex) {
   
   await knex("annotations").del()
   await knex('assignment').del()
+  await knex('studentCourse').del()
   await knex('course').del()
   await knex('student').del()
   await knex('department').del()
@@ -49,21 +50,21 @@ exports.seed = async function(knex) {
   await knex('student').insert([
     {
       wid: 0,
-      perusalStudentId: incoming[0]._id,
+      perusallStudentId: incoming[0]._id,
       departmentId: 1,
       notes: 'Placeholder 2',
       email: incoming[0].email
     },
     {
       wid: 1,
-      perusalStudentId: incoming[1]._id,
+      perusallStudentId: incoming[1]._id,
       departmentId: 2,
       notes: 'Notes 2',
       email: incoming[1].email
     },
     {
       wid: 2,
-      perusalStudentId: incoming[2]._id,
+      perusallStudentId: incoming[2]._id,
       departmentId: 3,
       notes: 'Notes 3',
       email: incoming[2].email
@@ -80,12 +81,12 @@ exports.seed = async function(knex) {
   await knex('course').insert([
     {
       courseId: 0,
-      perusalCourseId: incoming[0]._id,
+      perusallCourseId: incoming[0]._id,
       courseName: incoming[0].name
     },
     {
       courseId: 1,
-      perusalCourseId: incoming[1]._id,
+      perusallCourseId: incoming[1]._id,
       courseName: incoming[1].name
     },
   ]);
@@ -101,15 +102,17 @@ exports.seed = async function(knex) {
   // Assignment seeding
   await knex('assignment').insert([
     {
-      assignmentId: 0,
-      perusalAssignmentId: "incoming[0]._id",
+      assignmentId: 300,
+      perusallAssignmentId: "incoming[0]._id",
+      perusallCourseId: "testing1",
       assignmentName: "incoming[0].name,",
       courseId: 0,
       studentId: 0
     },
     {
-      assignmentId: 1,
-      perusalAssignmentId: "incoming[1]._id",
+      assignmentId: 301,
+      perusallAssignmentId: "incoming[1]._id",
+      perusallCourseId: "testing2",
       assignmentName: "incoming[1].name",
       courseId: 1,
       studentId: 1
@@ -126,11 +129,12 @@ exports.seed = async function(knex) {
   // Annotation seeding
   await knex("annotations").insert([
     {
-      annotationId: 0,
-      perusalAnnotationId: "incoming[0]._id",
+      annotationId: 300,
+      perusallAnnotationId: "incoming[0]._id",
       courseId: 0,
       studentId: 0,
       annotationText: "incoming[0].text"
     },
   ]);
 };
+*/
