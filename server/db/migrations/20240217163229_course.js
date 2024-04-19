@@ -6,7 +6,7 @@ exports.up = function(knex) {
     return knex.schema
     .createTable("course", function(table){
         table.increments("courseId", {primaryKey: true}).unsigned().notNullable();
-        table.text("perusalCourseId").notNullable();
+        table.text("perusallCourseId").unique().notNullable();
         table.text("courseName").notNullable();
 
         table.timestamps(true, true);
