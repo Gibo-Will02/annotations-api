@@ -77,6 +77,453 @@ Object {
 }
 `;
 
+exports[`Institution Data Page Tests page does api calls when page loaded 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        style="align-items: center; flex-direction: column; display: flex;"
+      >
+        <div
+          class="p-datatable p-component p-datatable-scrollable p-datatable-responsive-scroll"
+          data-pc-name="datatable"
+          data-pc-section="root"
+          data-scrollselectors=".p-datatable-wrapper"
+          data-showgridlines="false"
+          data-testid="tableTest"
+          pr_id_2=""
+        >
+          <div
+            class="p-datatable-wrapper"
+            data-pc-section="wrapper"
+            style="overflow: auto;"
+          >
+            <table
+              class="p-datatable-table p-datatable-scrollable-table"
+              data-pc-section="table"
+              role="table"
+              style="min-width: 70rem; max-width: 100rem;"
+            >
+              <thead
+                class="p-datatable-thead"
+                data-pc-name="datatable"
+                data-pc-section="thead"
+                role="rowgroup"
+              >
+                <tr
+                  data-pc-section="headerrow"
+                  role="row"
+                >
+                  <th
+                    aria-sort="none"
+                    class="p-sortable-column"
+                    data-p-filter-column="false"
+                    data-p-frozen-column="false"
+                    data-p-reorderable-column="false"
+                    data-p-resizable-column="false"
+                    data-p-sortable-column="true"
+                    data-pc-name="datatable"
+                    data-pc-section="headercell"
+                    role="columnheader"
+                    style="width: 10%;"
+                    tabindex="0"
+                  >
+                    <div
+                      class="p-column-header-content"
+                      data-pc-section="headercontent"
+                    >
+                      <span
+                        class="p-column-title"
+                        data-pc-section="headertitle"
+                      >
+                        Course
+                      </span>
+                      <span
+                        data-pc-section="sort"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="p-icon p-sortable-column-icon"
+                          data-pc-section="sorticon"
+                          fill="none"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          width="14"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M5.64515 3.61291C5.47353 3.61291 5.30192 3.54968 5.16644 3.4142L3.38708 1.63484L1.60773 3.4142C1.34579 3.67613 0.912244 3.67613 0.650309 3.4142C0.388374 3.15226 0.388374 2.71871 0.650309 2.45678L2.90837 0.198712C3.17031 -0.0632236 3.60386 -0.0632236 3.86579 0.198712L6.12386 2.45678C6.38579 2.71871 6.38579 3.15226 6.12386 3.4142C5.98837 3.54968 5.81676 3.61291 5.64515 3.61291Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M3.38714 14C3.01681 14 2.70972 13.6929 2.70972 13.3226V0.677419C2.70972 0.307097 3.01681 0 3.38714 0C3.75746 0 4.06456 0.307097 4.06456 0.677419V13.3226C4.06456 13.6929 3.75746 14 3.38714 14Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M10.6129 14C10.4413 14 10.2697 13.9368 10.1342 13.8013L7.87611 11.5432C7.61418 11.2813 7.61418 10.8477 7.87611 10.5858C8.13805 10.3239 8.5716 10.3239 8.83353 10.5858L10.6129 12.3652L12.3922 10.5858C12.6542 10.3239 13.0877 10.3239 13.3497 10.5858C13.6116 10.8477 13.6116 11.2813 13.3497 11.5432L11.0916 13.8013C10.9561 13.9368 10.7845 14 10.6129 14Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M10.6129 14C10.2426 14 9.93552 13.6929 9.93552 13.3226V0.677419C9.93552 0.307097 10.2426 0 10.6129 0C10.9833 0 11.2904 0.307097 11.2904 0.677419V13.3226C11.2904 13.6929 10.9832 14 10.6129 14Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </span>
+                      <div
+                        class="p-column-filter p-fluid p-column-filter-menu"
+                        data-pc-section="columnfilter"
+                      >
+                        <button
+                          aria-controls="pr_id_1"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          aria-label="Show Filter Menu"
+                          class="p-column-filter-menu-button p-link"
+                          data-pc-section="filtermenubutton"
+                          type="button"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="p-icon"
+                            data-pc-section="filtericon"
+                            fill="none"
+                            height="14"
+                            viewBox="0 0 14 14"
+                            width="14"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8.64708 14H5.35296C5.18981 13.9979 5.03395 13.9321 4.91858 13.8167C4.8032 13.7014 4.73745 13.5455 4.73531 13.3824V7L0.329431 0.98C0.259794 0.889466 0.217389 0.780968 0.20718 0.667208C0.19697 0.553448 0.219379 0.439133 0.271783 0.337647C0.324282 0.236453 0.403423 0.151519 0.500663 0.0920138C0.597903 0.0325088 0.709548 0.000692754 0.823548 0H13.1765C13.2905 0.000692754 13.4021 0.0325088 13.4994 0.0920138C13.5966 0.151519 13.6758 0.236453 13.7283 0.337647C13.7807 0.439133 13.8031 0.553448 13.7929 0.667208C13.7826 0.780968 13.7402 0.889466 13.6706 0.98L9.26472 7V13.3824C9.26259 13.5455 9.19683 13.7014 9.08146 13.8167C8.96609 13.9321 8.81022 13.9979 8.64708 14ZM5.97061 12.7647H8.02943V6.79412C8.02878 6.66289 8.07229 6.53527 8.15296 6.43177L11.9412 1.23529H2.05884L5.86355 6.43177C5.94422 6.53527 5.98773 6.66289 5.98708 6.79412L5.97061 12.7647Z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </th>
+                  <th
+                    data-p-filter-column="false"
+                    data-p-frozen-column="false"
+                    data-p-reorderable-column="false"
+                    data-p-resizable-column="false"
+                    data-p-sortable-column="false"
+                    data-pc-name="datatable"
+                    data-pc-section="headercell"
+                    role="columnheader"
+                    style="width: 10%;"
+                  >
+                    <div
+                      class="p-column-header-content"
+                      data-pc-section="headercontent"
+                    >
+                      <span
+                        class="p-column-title"
+                        data-pc-section="headertitle"
+                      >
+                        Name
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    data-p-filter-column="false"
+                    data-p-frozen-column="false"
+                    data-p-reorderable-column="false"
+                    data-p-resizable-column="false"
+                    data-p-sortable-column="false"
+                    data-pc-name="datatable"
+                    data-pc-section="headercell"
+                    role="columnheader"
+                    style="width: 10%;"
+                  >
+                    <div
+                      class="p-column-header-content"
+                      data-pc-section="headercontent"
+                    >
+                      <span
+                        class="p-column-title"
+                        data-pc-section="headertitle"
+                      >
+                        Role
+                      </span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                class="p-datatable-tbody"
+                data-pc-section="tbody"
+                role=" rowgroup"
+              >
+                <tr
+                  class="p-datatable-emptymessage"
+                  data-pc-section="emptymessage"
+                  role="row"
+                >
+                  <td
+                    colspan="3"
+                    data-pc-name="datatable"
+                    data-pc-section="bodycell"
+                    role="cell"
+                  >
+                    No results found
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      style="align-items: center; flex-direction: column; display: flex;"
+    >
+      <div
+        class="p-datatable p-component p-datatable-scrollable p-datatable-responsive-scroll"
+        data-pc-name="datatable"
+        data-pc-section="root"
+        data-scrollselectors=".p-datatable-wrapper"
+        data-showgridlines="false"
+        data-testid="tableTest"
+        pr_id_2=""
+      >
+        <div
+          class="p-datatable-wrapper"
+          data-pc-section="wrapper"
+          style="overflow: auto;"
+        >
+          <table
+            class="p-datatable-table p-datatable-scrollable-table"
+            data-pc-section="table"
+            role="table"
+            style="min-width: 70rem; max-width: 100rem;"
+          >
+            <thead
+              class="p-datatable-thead"
+              data-pc-name="datatable"
+              data-pc-section="thead"
+              role="rowgroup"
+            >
+              <tr
+                data-pc-section="headerrow"
+                role="row"
+              >
+                <th
+                  aria-sort="none"
+                  class="p-sortable-column"
+                  data-p-filter-column="false"
+                  data-p-frozen-column="false"
+                  data-p-reorderable-column="false"
+                  data-p-resizable-column="false"
+                  data-p-sortable-column="true"
+                  data-pc-name="datatable"
+                  data-pc-section="headercell"
+                  role="columnheader"
+                  style="width: 10%;"
+                  tabindex="0"
+                >
+                  <div
+                    class="p-column-header-content"
+                    data-pc-section="headercontent"
+                  >
+                    <span
+                      class="p-column-title"
+                      data-pc-section="headertitle"
+                    >
+                      Course
+                    </span>
+                    <span
+                      data-pc-section="sort"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="p-icon p-sortable-column-icon"
+                        data-pc-section="sorticon"
+                        fill="none"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        width="14"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M5.64515 3.61291C5.47353 3.61291 5.30192 3.54968 5.16644 3.4142L3.38708 1.63484L1.60773 3.4142C1.34579 3.67613 0.912244 3.67613 0.650309 3.4142C0.388374 3.15226 0.388374 2.71871 0.650309 2.45678L2.90837 0.198712C3.17031 -0.0632236 3.60386 -0.0632236 3.86579 0.198712L6.12386 2.45678C6.38579 2.71871 6.38579 3.15226 6.12386 3.4142C5.98837 3.54968 5.81676 3.61291 5.64515 3.61291Z"
+                          fill="currentColor"
+                        />
+                        <path
+                          d="M3.38714 14C3.01681 14 2.70972 13.6929 2.70972 13.3226V0.677419C2.70972 0.307097 3.01681 0 3.38714 0C3.75746 0 4.06456 0.307097 4.06456 0.677419V13.3226C4.06456 13.6929 3.75746 14 3.38714 14Z"
+                          fill="currentColor"
+                        />
+                        <path
+                          d="M10.6129 14C10.4413 14 10.2697 13.9368 10.1342 13.8013L7.87611 11.5432C7.61418 11.2813 7.61418 10.8477 7.87611 10.5858C8.13805 10.3239 8.5716 10.3239 8.83353 10.5858L10.6129 12.3652L12.3922 10.5858C12.6542 10.3239 13.0877 10.3239 13.3497 10.5858C13.6116 10.8477 13.6116 11.2813 13.3497 11.5432L11.0916 13.8013C10.9561 13.9368 10.7845 14 10.6129 14Z"
+                          fill="currentColor"
+                        />
+                        <path
+                          d="M10.6129 14C10.2426 14 9.93552 13.6929 9.93552 13.3226V0.677419C9.93552 0.307097 10.2426 0 10.6129 0C10.9833 0 11.2904 0.307097 11.2904 0.677419V13.3226C11.2904 13.6929 10.9832 14 10.6129 14Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                    <div
+                      class="p-column-filter p-fluid p-column-filter-menu"
+                      data-pc-section="columnfilter"
+                    >
+                      <button
+                        aria-controls="pr_id_1"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                        aria-label="Show Filter Menu"
+                        class="p-column-filter-menu-button p-link"
+                        data-pc-section="filtermenubutton"
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="p-icon"
+                          data-pc-section="filtericon"
+                          fill="none"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          width="14"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M8.64708 14H5.35296C5.18981 13.9979 5.03395 13.9321 4.91858 13.8167C4.8032 13.7014 4.73745 13.5455 4.73531 13.3824V7L0.329431 0.98C0.259794 0.889466 0.217389 0.780968 0.20718 0.667208C0.19697 0.553448 0.219379 0.439133 0.271783 0.337647C0.324282 0.236453 0.403423 0.151519 0.500663 0.0920138C0.597903 0.0325088 0.709548 0.000692754 0.823548 0H13.1765C13.2905 0.000692754 13.4021 0.0325088 13.4994 0.0920138C13.5966 0.151519 13.6758 0.236453 13.7283 0.337647C13.7807 0.439133 13.8031 0.553448 13.7929 0.667208C13.7826 0.780968 13.7402 0.889466 13.6706 0.98L9.26472 7V13.3824C9.26259 13.5455 9.19683 13.7014 9.08146 13.8167C8.96609 13.9321 8.81022 13.9979 8.64708 14ZM5.97061 12.7647H8.02943V6.79412C8.02878 6.66289 8.07229 6.53527 8.15296 6.43177L11.9412 1.23529H2.05884L5.86355 6.43177C5.94422 6.53527 5.98773 6.66289 5.98708 6.79412L5.97061 12.7647Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </th>
+                <th
+                  data-p-filter-column="false"
+                  data-p-frozen-column="false"
+                  data-p-reorderable-column="false"
+                  data-p-resizable-column="false"
+                  data-p-sortable-column="false"
+                  data-pc-name="datatable"
+                  data-pc-section="headercell"
+                  role="columnheader"
+                  style="width: 10%;"
+                >
+                  <div
+                    class="p-column-header-content"
+                    data-pc-section="headercontent"
+                  >
+                    <span
+                      class="p-column-title"
+                      data-pc-section="headertitle"
+                    >
+                      Name
+                    </span>
+                  </div>
+                </th>
+                <th
+                  data-p-filter-column="false"
+                  data-p-frozen-column="false"
+                  data-p-reorderable-column="false"
+                  data-p-resizable-column="false"
+                  data-p-sortable-column="false"
+                  data-pc-name="datatable"
+                  data-pc-section="headercell"
+                  role="columnheader"
+                  style="width: 10%;"
+                >
+                  <div
+                    class="p-column-header-content"
+                    data-pc-section="headercontent"
+                  >
+                    <span
+                      class="p-column-title"
+                      data-pc-section="headertitle"
+                    >
+                      Role
+                    </span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              class="p-datatable-tbody"
+              data-pc-section="tbody"
+              role=" rowgroup"
+            >
+              <tr
+                class="p-datatable-emptymessage"
+                data-pc-section="emptymessage"
+                role="row"
+              >
+                <td
+                  colspan="3"
+                  data-pc-name="datatable"
+                  data-pc-section="bodycell"
+                  role="cell"
+                >
+                  No results found
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
 exports[`Jest Snapshot testing suite Matches AssignmentAnnotationsPage Snapshot 1`] = `
 Object {
   "asFragment": [Function],

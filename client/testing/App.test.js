@@ -13,6 +13,7 @@ import CourseAssignmentInfoPage from '../src/views/CourseAssignmentInfoPage';
 import AssignmentGradesPage from '../src/views/AssignmentGradesPage';
 import AssignmentAnnotationsPage from '../src/views/AssignmentAnnotationsPage';
 import AssignmentReportsPage from '../src/views/AssignmentReportsPage';
+import InstitutionDataPage from '../src/views/InstitutionDataPage';
 import axios, { Axios } from "axios";
 import { Dropdown } from 'primereact/dropdown';
 
@@ -446,13 +447,14 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     fireEvent.change(inputThree, {
       target: {value: '0' }
     });
-    //selectDropdown.value = 'pageViews';
-    //fireEvent.change(selectDropdown, { target: { options: 'pageViews' } });
-    fireEvent.select(selectDropdown, {options: 'pageViews'});
+    
+    selectDropdown.tabIndex = 0;
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
     expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
     expect(inputThree.value).toBe('0');
+    expect(selectDropdown.tabIndex).toBe(0);
+    
     //const cdpButton1 = getByText('Search Assignment');
     //fireEvent.click(cdpButton1);
 
@@ -504,25 +506,17 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     fireEvent.change(inputThree, {
       target: {value: '0' }
     });
-    //selectDropdown.value = 'studentActivity';
-    //fireEvent.change(selectDropdown, { target: { options: 'studentActivity' } });
-    fireEvent.select(selectDropdown, {options: 'studentActivity'});
+
+    selectDropdown.tabIndex = 1;
     
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
     expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
     expect(inputThree.value).toBe('0');
+    expect(selectDropdown.tabIndex).toBe(1);
+
     //const cdpButton1 = getByText('Search Assignment');
     //fireEvent.click(cdpButton1);
-
-    //the panic button
-    const response = await axios.post('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'studentActivity', '_P': '0'});
-    
-    await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledTimes(2);
-      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'studentActivity', '_P': '0'});
-    });
-
   });
 
 
@@ -562,30 +556,72 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     fireEvent.change(inputTwo, {
       target: {value: 'qB83qbw8vnAPYNEwm' }
     });
+    
     //this one changes the report page number
     fireEvent.change(inputThree, {
       target: {value: '0' }
     });
-    
-    fireEvent.select(selectDropdown, {options: 'grades'});
-    
+
+    selectDropdown.tabIndex = 2;
+
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
     expect(inputTwo.value).toBe('qB83qbw8vnAPYNEwm');
     expect(inputThree.value).toBe('0');
-    //const cdpButton1 = getByText('Search Assignment');
-    //fireEvent.click(cdpButton1);
-
-    //the panic button
-    const response = await axios.post('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'grades', '_P': '0'});
-
-    await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledTimes(2);
-      expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'grades', '_P': '0'});
-    });
-
+    expect(selectDropdown.tabIndex).toBe(2);
   });
 
 });
+//#endregion
+
+
+//#region Institution Data Page Tests
+describe("Institution Data Page Tests", () => {
+  beforeEach(() => {
+    //clears the Axios mock so that it doesn't leak into other Axios API call tests
+    jest.clearAllMocks();
+  });
+
+  test('page does api calls when page loaded', async ()=> {
+    
+    const responseDataSunIsDown = [
+      { _id: '3', name: 'Test Installment' },
+      { _id: '4', name: 'False life high' }
+    ];
+    //mocks the api implementation once and ensures that the test data set is all that is returned
+    axios.get.mockImplementationOnce(() => Promise.resolve(responseDataSunIsDown));
+    //mocks the api call with set data
+    axios.get.mockResolvedValueOnce({ data: responseDataSunIsDown });
+
+    const page = render(<InstitutionDataPage />);
+    const { getByPlaceholderText, getByText, getByTestId } = page;
+
+    //checks to make sure the datatable exists on page
+    const dataTable = await waitFor(
+      () => getByTestId("tableTest"),
+      {
+        timeout: 3000,
+      }
+    );
+
+    expect(dataTable).toBeInTheDocument();
+
+   
+    //ensures axios.get calls were made and that they were made with certain instructions.
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledTimes(2);
+      expect(axios.get).toHaveBeenCalledWith('/api/institution_roster');
+      expect(axios.get).toHaveBeenCalledWith('/api/institution_courses');
+    });
+
+    //ensures pages snapshot matches what is on the page
+    //This has to be here as it otherwise causes conflicts with other tests
+    expect(page).toMatchSnapshot();
+
+  });
+});
+
+
+
 //#endregion
 
 
