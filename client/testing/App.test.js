@@ -575,7 +575,6 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
 
 
 //#region Institution Data Page Tests
-
 describe("Institution Data Page Tests", () => {
   beforeEach(() => {
     //clears the Axios mock so that it doesn't leak into other Axios API call tests
@@ -594,16 +593,31 @@ describe("Institution Data Page Tests", () => {
     axios.get.mockResolvedValueOnce({ data: responseDataSunIsDown });
 
     const page = render(<InstitutionDataPage />);
-   
+    const { getByPlaceholderText, getByText, getByTestId } = page;
 
+    //checks to make sure the datatable exists on page
+    const dataTable = await waitFor(
+      () => getByTestId("tableTest"),
+      {
+        timeout: 3000,
+      }
+    );
+
+    expect(dataTable).toBeInTheDocument();
+
+   
+    //ensures axios.get calls were made and that they were made with certain instructions.
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledTimes(2);
-      //expect(axios.post).toHaveBeenCalledTimes(1);
       expect(axios.get).toHaveBeenCalledWith('/api/institution_roster');
       expect(axios.get).toHaveBeenCalledWith('/api/institution_courses');
     });
 
-   });
+    //ensures pages snapshot matches what is on the page
+    //This has to be here as it otherwise causes conflicts with other tests
+    expect(page).toMatchSnapshot();
+
+  });
 });
 
 

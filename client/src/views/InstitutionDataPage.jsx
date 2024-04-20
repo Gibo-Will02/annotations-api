@@ -99,7 +99,7 @@ const InstitutionDataPage = () => {
 	return (
 		<>
 			<div style={{alignItems: 'center', flexDirection: 'column', display: 'flex'}}>
-				<DataTable value={rows} scrollable rowGroupMode="subheader" groupRowsBy="course" removableSort
+				<DataTable data-testid="tableTest" value={rows} scrollable rowGroupMode="subheader" groupRowsBy="course" removableSort
 					rowGroupHeaderTemplate={headerTemplate} rowGroupFooterTemplate={footerTemplate}
 					expandableRowGroups expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
 					tableStyle={{ minWidth: '70rem', maxWidth: '100rem'}}>
