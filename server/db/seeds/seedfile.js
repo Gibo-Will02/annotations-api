@@ -2,11 +2,11 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> } 
  */
-/*
+
 const axios = require( "axios" )
 
 exports.seed = async function(knex) {
-  
+/*  
   await knex("annotations").del()
   await knex('assignment').del()
   await knex('studentCourse').del()
@@ -136,5 +136,6 @@ exports.seed = async function(knex) {
       annotationText: "incoming[0].text"
     },
   ]);
+  */
 };
-*/
+
