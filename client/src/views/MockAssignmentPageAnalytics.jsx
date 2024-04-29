@@ -1,3 +1,4 @@
+// This is a Mock of the AssignmentPage Analytics api call
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -7,6 +8,7 @@ import "primereact/resources/themes/bootstrap4-light-purple/theme.css";
 
 const MockAssignmentPageAnalytics = () => {
 
+    //Custom time converter needed for the return timestamps from perusalls api
     const timeConvertor = (time_string) => {
 		let hours = Math.floor(time_string / 3600);
 		let minutes = Math.floor((time_string - (hours * 3600)) / 60);
