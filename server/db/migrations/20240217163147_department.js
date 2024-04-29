@@ -1,6 +1,7 @@
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
+ * Creates department table
  */
 exports.up = function(knex) {
     return knex.schema
@@ -14,6 +15,7 @@ exports.up = function(knex) {
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
+ * Drops department table
  */
 exports.down = function(knex) {
     return knex.schema

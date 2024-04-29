@@ -37,7 +37,7 @@ const db = require("../db")
 //var x = db('department').insert({departmentName: "Engineering"})
 //console.log(x)
 
-
+//Check if the database exists or if its empty, and seed it if its empty
 db.migrate.currentVersion()
     .then(function(version) {
         console.log("Database Migration Version: " + version)

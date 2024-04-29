@@ -1,6 +1,7 @@
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
+ * Creates assignment table
  */
 exports.up = function(knex) {
     return knex.schema
@@ -21,6 +22,7 @@ exports.up = function(knex) {
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
+ * Drops assignment table
  */
 exports.down = function(knex) {
     return knex.schema
