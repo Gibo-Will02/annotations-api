@@ -7,6 +7,7 @@ const axios = require( "axios" )
 
 exports.seed = async function(knex) {
   
+  //Delete any remnants of old tables, can be removed for preservation of database
   await knex("annotations").del()
   await knex('assignment').del()
   await knex('studentCourse').del()
@@ -16,13 +17,15 @@ exports.seed = async function(knex) {
 
   var incoming = null;
 
-  const config = { //put into router file
+  //Get needed API information
+  const config = {
     headers: {
       "X-Institution": process.env.INSTITUTION,
       "X-API-TOKEN": process.env.TOKEN
     }
   }
 
+  //Insert dummy department value
   await knex('department').insert([
     {
       departmentId: 0,
@@ -30,6 +33,7 @@ exports.seed = async function(knex) {
     }
   ])
 
+  //Get all courses
   var response = await axios.get("https://app.perusall.com/api/v1/courses", config)
   var incoming = response.data
 
@@ -37,9 +41,10 @@ exports.seed = async function(knex) {
   assignmentIdNumber = 0; //Needed because assignment counter resets after each course and student
   studentIdNumber = 0; //Needed because student counter resets after each course
   
+  //Loop through all courses
   for(let i = 0; i < incoming.length; i++)
   {
-    
+    //Insert into course table
     await knex('course').insert([
         {
             courseId: i,
@@ -48,14 +53,18 @@ exports.seed = async function(knex) {
         }
     ]);
 
+    //Get all students in the course
     var response = await axios.get("https://app.perusall.com/api/v1/courses/" + incoming[i]._id, config)
     var incomingTwo = response.data
 
+    //Loop through all the students in the course
     for(let j = 0; j < incomingTwo.studentIds.length; j++)
     {
+      //Get specific information on the student
       var response = await axios.get("https://app.perusall.com/api/v1/users/" + incomingTwo.studentIds[j], config)
       var incomingStudent = response.data
       
+      //Insert into the student table with the student information
       await knex('student').insert([
         {
             wid: studentIdNumber,
@@ -66,6 +75,7 @@ exports.seed = async function(knex) {
       ]);
       studentIdNumber++;
 
+      //Create connection between students and courses
       await knex('studentCourse').insert([
         {
           studentId: j,
@@ -73,11 +83,14 @@ exports.seed = async function(knex) {
         }
       ]);
 
+      //Get assignments for the course
       var response = await axios.get("https://app.perusall.com/api/v1/courses/" + incoming[i]._id + "/assignments", config)
       var incomingThree = response.data
 
+      //Loop through all assignments
       for(let k = 0; k < incomingThree.length; k++)
       {
+        //Insert assignment into the table
         await knex('assignment').insert([
           {
             assignmentId: assignmentIdNumber,
@@ -90,11 +103,14 @@ exports.seed = async function(knex) {
         ]);
         assignmentIdNumber++;
 
+          //Get annotation information
           var response = await axios.get("https://app.perusall.com/api/v1/courses/" + incoming[i]._id + "/assignments/" + incomingThree[k]._id + "/annotations", config)
           var incomingFour = response.data
           
+          //Loop through annotations
           for(let l = 0; l < incomingFour.length; l++)
           {
+            //Insert into annotation table
             await knex('annotations').insert([
               {
                 annotationId: annotationIdNumber,
@@ -111,5 +127,5 @@ exports.seed = async function(knex) {
     }
   }
 
-  //await knex.select().table('annotations').then(function(rows){console.log(rows)});
+  //await knex.select().table('annotations').then(function(rows){console.log(rows)}); //Debug line to prove that it all worked
 };
