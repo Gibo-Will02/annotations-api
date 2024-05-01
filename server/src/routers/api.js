@@ -21,11 +21,52 @@ router.get('/whoami', loginRequired,(req, res) => {
   })
 
 //Application API call to send a get to receive the users in an institution from the Perusall API
+/**
+ * @openapi
+ * /api/institution_roster:
+ *   get:
+ *     summary: Get institution roster
+ *     description: Retrieves the roster of users for the institution.
+ *     tags:
+ *       - Institution Roster
+ *     responses:
+ *       200:
+ *         description: Successful response with the institution roster data.
+ *       401:
+ *         description: Unauthorized request.
+ *       404:
+ *         description: Resource not found.
+ */
 router.get('/institution_roster', (req, res) => {
     axios.get("https://app.perusall.com/api/v1/users", config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
 })
   
 //Application API call to send a get to receive the courses in an institution from the Perusall API
+/**
+ * @openapi
+ * /api/course_data:
+ *   post:
+ *     summary: Get course data
+ *     description: Retrieves the courses in the institution
+ *     tags:
+ *       - Course Data
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               _CID:
+ *                 type: string
+ *                 description: Course ID
+ *     responses:
+ *       200:
+ *         description: Successful response with the institution courses data.
+ *       401:
+ *         description: Unauthorized request.
+ *       404:
+ *         description: Resource not found.
+ */
 router.post('/course_data', (req, res) => {
     var courseId = req.body._CID;
     console.log(courseId);
@@ -33,6 +74,34 @@ router.post('/course_data', (req, res) => {
 })
   
 //Application API call to send a get to receive the assignment grades for a specefic assignment in an institution from the Perusall API
+/**
+ * @openapi
+ * /api/assignment_grades:
+ *   post:
+ *     summary: Get assignment grades
+ *     description: Retrieves the grades of a given assignment within a given course.
+ *     tags:
+ *       - Assignment Grades
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               _CID:
+ *                 type: string
+ *                 description: Course ID
+ *               _AID:
+ *                 type: string
+ *                 description: Assignment ID
+ *     responses:
+ *       200:
+ *         description: Successful response with the assignment grades data.
+ *       401:
+ *         description: Unauthorized request.
+ *       404:
+ *         description: Resource not found.
+ */
 router.post('/assignment_grades', (req, res) => {
     var courseId = req.body._CID;
     var assignmentId = req.body._AID;
@@ -40,6 +109,40 @@ router.post('/assignment_grades', (req, res) => {
 })
   
 //Application API call to send a get to receive the analytics based on the assignment in an institution from the Perusall API
+/**
+ * @openapi
+ * /api/assignment_analytics:
+ *   post:
+ *     summary: Get assignment analytics
+ *     description: Retrieves the analytics of a given assignment within a given course.
+ *     tags:
+ *       - Assignment Analytics
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               _CID:
+ *                 type: string
+ *                 description: Course ID
+ *               _AID:
+ *                 type: string
+ *                 description: Assignment ID
+ *               _REP:
+ *                 type: string
+ *                 description: report
+ *               _P:
+ *                 type: string
+ *                 description: part
+ *     responses:
+ *       200:
+ *         description: Successful response with the assignment analytics data.
+ *       401:
+ *         description: Unauthorized request.
+ *       404:
+ *         description: Resource not found.
+ */
 router.post('/assignment_analytics', (req, res) => {
     var courseId = req.body._CID;
     var assignmentId = req.body._AID;
@@ -49,6 +152,34 @@ router.post('/assignment_analytics', (req, res) => {
 })
   
 //Application API call to send a get to receive the list of courses of the given user id in an institution from the Perusall API
+/**
+ * @openapi
+ * /api/user_course_list:
+ *   post:
+ *     summary: Get user course list
+ *     description: Retrieves the list of users within a given course.
+ *     tags:
+ *       - User Course List
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               _CID:
+ *                 type: string
+ *                 description: Course ID
+ *               _AID:
+ *                 type: string
+ *                 description: Assignment ID
+ *     responses:
+ *       200:
+ *         description: Successful response with the user course list data.
+ *       401:
+ *         description: Unauthorized request.
+ *       404:
+ *         description: Resource not found.
+ */
 router.post('/user_course_list', (req,res) => {
     var courseId = req.body._CID;
     var userId = req.body._UID
@@ -56,17 +187,86 @@ router.post('/user_course_list', (req,res) => {
 })
   
 //Application API call to send a get to receive the list of courses in an institution from the Perusall API
+/**
+ * @openapi
+ * /api/institution_courses:
+ *   get:
+ *     summary: Get institution courses
+ *     description: Retrieves the courses of the institution.
+ *     tags:
+ *       - Institution Courses
+ *     responses:
+ *       200:
+ *         description: Successful response with the institution courses data.
+ *       401:
+ *         description: Unauthorized request.
+ *       404:
+ *         description: Resource not found.
+ */
 router.get('/institution_courses', (req,res) => {
     axios.get("https://app.perusall.com/api/v1/courses/", config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
 })
   
 //Application API call to send a get to receive the list of assignments from the given course id in an institution from the Perusall API
+/**
+ * @openapi
+ * /api/course_assignments:
+ *   post:
+ *     summary: Get course assignments
+ *     description: Retrieves the list of assignments within a given course.
+ *     tags:
+ *       - Course Assignments
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               _CID:
+ *                 type: string
+ *                 description: Course ID
+ *     responses:
+ *       200:
+ *         description: Successful response with the list of course assignments data.
+ *       401:
+ *         description: Unauthorized request.
+ *       404:
+ *         description: Resource not found.
+ */
 router.post('/course_assignments', (req,res) => {
     var courseId = req.body._CID;
     axios.get("https://app.perusall.com/api/v1/courses/" + courseId + "/assignments", config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
 })
   
 //Application API call to send a get to receive the annotations from the course of the given course id on the assignment with the given assignment id in an institution from the Perusall API
+/**
+ * @openapi
+ * /api/assignment_annotations:
+ *   post:
+ *     summary: Get Assignment Annotations
+ *     description: Retrieves the annotations of a given assignment within a given course.
+ *     tags:
+ *       - Assignment Annotations
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               _CID:
+ *                 type: string
+ *                 description: Course ID
+ *               _AID:
+ *                 type: string
+ *                 description: Assignment ID
+ *     responses:
+ *       200:
+ *         description: Successful response with the assignment annotation data.
+ *       401:
+ *         description: Unauthorized request.
+ *       404:
+ *         description: Resource not found.
+ */
 router.post('/assignment_annotations', (req,res) => {
     var courseId = req.body._CID;
     var assignmentId = req.body._AID;
