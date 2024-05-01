@@ -1,6 +1,10 @@
 type on command line | 
                      V
 cd client
+npm install
+
+Installed Dependencies | run only if you have encountered any errors.
+                       V
 npm install --save-dev jest
 npm install --save-dev babel-jest
 npm install --save-dev jest-fetch-mock
@@ -17,3 +21,7 @@ as that reloads the snapshots
 and 
 $ npm test
 for general testing
+
+if you have any other questions about the client side or how the API works
+Contact me at nsternecker@gmail.com
+if you have any questions

@@ -1,4 +1,4 @@
-
+// A mock of prime react dropdown object may be usefull for testing
 import React, { useState, useEffect } from 'react';
 import { Tree } from 'primereact/tree';
 

@@ -1,3 +1,4 @@
+//The top navBar that allows one to transition from view page to viewpage
 import * as React from "react"
 import { Nav, NavLink, NavMenu } from "./NavbarElements";
 

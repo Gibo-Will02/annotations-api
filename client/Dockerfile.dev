@@ -1,3 +1,8 @@
+# This file may no longer be needed to run
+# if you want to run it on thier own devices and not in codespaces
+# you will need this file
+# DELETE AT YOUR OWN RISK
+#
 FROM node:16
 
 WORKDIR /usr/src/coding-textbook/client
