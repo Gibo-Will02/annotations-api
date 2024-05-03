@@ -2,6 +2,7 @@ const axios = require( "axios" )
 const express = require( "express" )
 const auth = require("./auth")
 const loginRequired = require("../middleware/login-required")
+const db = require("../../db");
 
 const router = express.Router();
 
@@ -18,7 +19,34 @@ router.use(auth);
 router.get('/whoami', loginRequired,(req, res) => {
     console.log("Username: " + req.session.username)
     res.json({username: req.session.username});
-  })
+});
+
+
+//Application API call to recieve the comments from the database given a certain assignment
+/**
+ * @openapi
+ * /api/database_test:
+ *   get:
+ *     summary: Get annotations from database
+ *     description: Retrieves the annotations belonging to a given assignment inside of the database
+ *     tags:
+ *       - Database Test
+ *     responses:
+ *       200:
+ *         description: Successful response with the database annotation data
+ *       401:
+ *         description: Unauthorized request.
+ *       404:
+ *         description: Resource not found.
+ */
+router.get('/database_test', (req, res) => {
+    db.select().table('annotations').where('assignmentId', 0).then(data => {
+        res.json(data);
+    }).catch(err => {
+        console.error(err);
+        res.status(500).json({ error: 'An error occurred' });
+    });
+});
 
 //Application API call to send a get to receive the users in an institution from the Perusall API
 /**
@@ -166,12 +194,9 @@ router.post('/assignment_analytics', (req, res) => {
  *           schema:
  *             type: object
  *             properties:
- *               _CID:
+ *               _UID:
  *                 type: string
- *                 description: Course ID
- *               _AID:
- *                 type: string
- *                 description: Assignment ID
+ *                 description: User ID
  *     responses:
  *       200:
  *         description: Successful response with the user course list data.
@@ -181,9 +206,8 @@ router.post('/assignment_analytics', (req, res) => {
  *         description: Resource not found.
  */
 router.post('/user_course_list', (req,res) => {
-    var courseId = req.body._CID;
     var userId = req.body._UID
-    axios.get("https://app.perusall.com/api/v1/courses/" + courseId + "/" + userId, config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
+    axios.get("https://app.perusall.com/api/v1/users/" + userId, config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
 })
   
 //Application API call to send a get to receive the list of courses in an institution from the Perusall API

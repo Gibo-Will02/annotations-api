@@ -101,7 +101,7 @@ exports.seed = async function(knex) {
             studentId: j
           }
         ]);
-        assignmentIdNumber++;
+        
 
           //Get annotation information
           var response = await axios.get("https://app.perusall.com/api/v1/courses/" + incoming[i]._id + "/assignments/" + incomingThree[k]._id + "/annotations", config)
@@ -114,14 +114,15 @@ exports.seed = async function(knex) {
             await knex('annotations').insert([
               {
                 annotationId: annotationIdNumber,
+                annotationText: incomingFour[l].plainText,
+                assignmentId: assignmentIdNumber,
                 perusallAnnotationId: incomingFour[l].id,
-                courseId: i,
                 studentId: j,
-                annotationText: incomingFour[l].plainText
               }
             ]);
             annotationIdNumber++;
           }
+          assignmentIdNumber++;
       }
 
     }
