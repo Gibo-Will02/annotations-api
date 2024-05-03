@@ -19,7 +19,7 @@ General factors that are affecting this product and its requirements are that it
 
  - Application aggregates data
 
- - ![ToDo List](ProjectToDo.md)
+ - [ToDo List](ProjectToDo.md)
  
 ## General Stakeholders
 
@@ -99,4 +99,4 @@ The physical environments that our application will be used in are at a universi
 # Appendices
 ### Database Diagram
 
-![Database diagram](Images/DatabaseDiagram.png)
+[Database diagram](DatabaseDiagram.drawio(1).pdf)
