@@ -294,7 +294,25 @@ router.post('/course_assignments', (req,res) => {
 router.post('/assignment_annotations', (req,res) => {
     var courseId = req.body._CID;
     var assignmentId = req.body._AID;
-    axios.get("https://app.perusall.com/api/v1/courses/" + courseId + "/assignments/" + assignmentId + "/annotations", config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
+    // axios.get("https://app.perusall.com/api/v1/courses/" + courseId + "/assignments/" + assignmentId + "/annotations", config).then((response)=>res.json(response.data)).catch((err)=>console.error(err));
+    db.select(
+        'annotations.perusallAnnotationId',
+        'annotations.annotationText',
+        'course.courseName',
+        'assignment.assignmentName',
+        'student.email'
+    )
+    .from('annotations')
+    .join('assignment', 'annotations.assignmentId', '=', 'assignment.assignmentId')
+    .join('course', 'assignment.courseId', '=', 'course.courseId')
+    .join('student', 'annotations.studentId', '=', 'student.wid')
+    .where('course.perusallCourseId', courseId)
+    .andWhere('assignment.perusallAssignmentId', assignmentId).then(data => {
+            res.json(data);
+        }).catch(err => {
+            console.error(err);
+            res.status(500).json({ error: 'An error occurred' });
+        });
 })
 
 // exports the router

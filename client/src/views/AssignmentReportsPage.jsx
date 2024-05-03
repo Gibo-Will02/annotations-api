@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { Dropdown } from 'primereact/dropdown';
+import {DataTable} from 'primereact/datatable'
+import {Column} from 'primereact/column'
+import "primereact/resources/themes/bootstrap4-light-purple/theme.css";
 
 const AssignmentReportsPage = () => {
 	//data state variable is used for displaying the report data gathered from an assignment
@@ -47,9 +50,10 @@ const AssignmentReportsPage = () => {
 	const timeConvertor = (time_string) => {
 		let hours = Math.floor(time_string / 3600);
 		let minutes = Math.floor((time_string - (hours * 3600)) / 60);
-		let seconds = time_string - (hours * 3600) - (minutes * 60);
+		let seconds = Math.floor(time_string - (hours * 3600) - (minutes * 60));
 		return(hours + " Hours, " + minutes + " Minutes, " + seconds + " Seconds");
 	}
+
 
 	/**
 	 * ReportInfoDisplay custom component used for displaying the different types of reportTypes
@@ -63,13 +67,11 @@ const AssignmentReportsPage = () => {
 				return (
 					<>
 						{(data.length > 0) ?
-						data.map((page) => {
-							return(
-								<>
-									<li>Page ID: {page._id} / Page Views: {page.views} / Average Interaction Time: {timeConvertor(Math.floor(page.averageTime))}</li>
-								</>
-							)
-						})
+						<DataTable value={data} tableStyle={{ minWidth: '50rem', maxWidth: '50rem' }}>
+							<Column field="_id" header="Page ID"></Column>
+							<Column field="views" header="Page Views"></Column>
+							<Column field="averageTime" header="Average Interaction Time" body={(rowData) => timeConvertor(rowData.averageTime)}></Column>
+						</DataTable>
 						:
 						<label>No page analytics to display</label>}
 					</>

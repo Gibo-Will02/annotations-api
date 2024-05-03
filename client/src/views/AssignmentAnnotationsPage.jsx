@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import {DataTable} from 'primereact/datatable'
+import {Column} from 'primereact/column'
+import "primereact/resources/themes/bootstrap4-light-purple/theme.css";
 
 /**
  * The AssignmentAnnotationsPage is used to show the annotations of a desired assignment
@@ -39,21 +42,6 @@ const AssignmentAnnotationsPage = () => {
 		setCourseUpdated(prevCourseId => prevCourseId !== courseId ? courseId : prevCourseId);
 	};
 
-	//DateTime parser function for the string that is returned with the annotations, allows us to see when annotations were submitted
-    const dateTimeParser = (time_string) => {
-		let date = new Date( Date.parse(time_string) );
-		const options = { 
-			year: 'numeric', 
-			month: 'long', 
-			day: 'numeric', 
-			hour: '2-digit', 
-			minute: '2-digit', 
-			second: '2-digit', 
-			timeZoneName: 'short' 
-		  };
-		return date.toLocaleDateString('en-US', options);
-	}
-
 	/**
 	 * useEffect will get the assignment annotation data only when the the courseId and assignmentId have been inputted
 	 * Will reload page when assignment or course id is updated
@@ -86,14 +74,13 @@ const AssignmentAnnotationsPage = () => {
 				<h1 style={{borderBottom: "1px solid black", display: 'inline-block'}}>Assignment Annotations:</h1>
 				{
 					(data.length > 0) ?
-					data.map((assignment) => {
-						return(
-							<>
-								<li>Annotation ID: {assignment.id} / Student ID: {assignment.studentId} / Text: {assignment.plainText} / Score: {assignment.score ? assignment.score : "No Score"} / 
-                                Created At: {dateTimeParser(assignment.createdAt)} / Edited At: {dateTimeParser(assignment.editedAt)} </li>
-							</>
-						)
-					})
+					<DataTable value={data} tableStyle={{ minWidth: '50rem', maxWidth: '50rem' }}>
+							<Column field="perusallAnnotationId" header="Annotation Id"></Column>
+							<Column field="courseName" header="Course Name"></Column>
+							<Column field="assignmentName" header="Assignment Name"></Column>
+							<Column field="email" header="Student email" ></Column>
+							<Column field="annotationText" header="Annotation Text" style={{ width: '25%' }}></Column>
+						</DataTable>
 					:
 					<label>No assignments to display</label>
 				}
