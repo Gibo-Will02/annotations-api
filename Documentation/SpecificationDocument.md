@@ -99,4 +99,4 @@ The physical environments that our application will be used in are at a universi
 # Appendices
 ### Database Diagram
 
-[Database diagram](DatabaseDiagram.drawio(1).pdf)
+[Database diagram](DatabaseDiagram.drawio.pdf)
