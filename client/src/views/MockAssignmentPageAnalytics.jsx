@@ -72,6 +72,23 @@ const MockAssignmentPageAnalytics = () => {
         }
     ]
 
+    const [posts,setPosts] = useState([]);
+
+	/**
+	 * useEffect will get the courses that exist for an institution
+	 * Does not contain any need for a page update, as there is no user input required for the page
+	 */
+	useEffect(() => {
+        axios.get('/api/database_test')
+        .then(response => {
+            setPosts(response.data);
+			console.log(response.data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+	}, []); //[] updates page if value changes, if empty it only updates on entry to the page
+
     return(
         <>
             <DataTable value={mockData} tableStyle={{ minWidth: '50rem' }}>

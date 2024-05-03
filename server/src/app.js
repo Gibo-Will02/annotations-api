@@ -53,12 +53,10 @@ db.migrate.currentVersion()
         } else {
             console.log("Database Exists - Migrating")
             db.migrate.latest()
-            /*
-            .then(function() {
-                return db.seed.run(); //Debug line to ensure database seeds on server restart if server is up
-            })
-            */
-            .then(db.select().table('annotations').then(function(rows){console.log(rows)}))
+            // .then(function() {
+            //     return db.seed.run(); //Debug line to ensure database seeds on server restart if server is up
+            // })
+            //.then(db.select().table('annotations').then(function(rows){console.log(rows)}))
             .then(function() {
                 console.log("Complete!");
             })

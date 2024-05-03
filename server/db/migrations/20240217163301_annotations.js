@@ -7,8 +7,10 @@ exports.up = function(knex) {
     return knex.schema
     .createTable("annotations", function(table){
         table.increments("annotationId", {primaryKey: true}).unsigned().notNullable();
-        table.text("perusallAnnotationId")
+        table.text("perusallAnnotationId");
+        table.integer("assignmentId").notNullable().unsigned();
         table.integer("studentId").notNullable().unsigned();
+        table.foreign("assignmentId").references("assignment.assignmentId");
         table.foreign("studentId").references("student.wid");
         table.text("annotationText").notNullable();
 
