@@ -19,4 +19,6 @@ I will try to get back to you as soon as I can.
 
 [8] add dyanmic charts and other data displays to help simplify data
 
+[9] ability to click on annotations on annotations page to traverse to student data page.
+
 And most importantly Keep your specification document updated and your project's README.md is correct.
