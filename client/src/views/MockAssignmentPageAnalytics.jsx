@@ -92,13 +92,13 @@ const MockAssignmentPageAnalytics = () => {
 	}, []); //[] updates page if value changes, if empty it only updates on entry to the page
 
     return(
-        <>
-            <DataTable value={mockData} tableStyle={{ minWidth: '50rem' }}>
+        <div style={{display:"flex", flexDirection:"column", alignItems: "center"}}>
+            <DataTable value={mockData} tableStyle={{ minWidth: '50rem', maxWidth: '50rem' }}>
                 <Column field="_id" header="Page ID"></Column>
                 <Column field="views" header="Page Views"></Column>
                 <Column field="averageTime" header="Average Interaction Time"></Column>
             </DataTable>
-        </>
+        </div>
     )
 }
 

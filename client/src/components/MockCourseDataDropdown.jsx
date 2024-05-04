@@ -35,7 +35,7 @@ const MockCourseDataDropdown = () => {
 
     return (
         <div className="card flex justify-content-center">
-            <Tree value={data} className="w-screen" style={{width: '25vh', height: '100vh', marginRight: '15px'}} />
+            <Tree value={data} className="w-screen" style={{width: '25vh', height: '100vh'}} />
         </div>
     )
 }

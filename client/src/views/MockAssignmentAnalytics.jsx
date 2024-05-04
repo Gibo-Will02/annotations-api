@@ -43,7 +43,7 @@ const MockAssignmentAnalytics = () => {
     ]
 
     return(
-        <>
+        <div style={{display:"flex", flexDirection:"column", alignItems: "center"}}>
             <DataTable value={mockData} tableStyle={{ minWidth: '50rem' }}>
                 <Column field="name" header="Name"></Column>
                 <Column field="group" header="Group"></Column>
@@ -59,7 +59,7 @@ const MockAssignmentAnalytics = () => {
                 <Column field="wordCount" header="Total word count"></Column>
                 <Column field="averageWordComment" header="Average words per comment"></Column>
             </DataTable>
-        </>
+        </div>
     )
 }
 

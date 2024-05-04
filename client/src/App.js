@@ -61,42 +61,41 @@ function App() {
   // Note you may want to pass the user as props to children
   // components.
   return (
-    <div className={toggleDarkMode ? "App App-dark-page": "App App-light-page"}>
-      <h1 style={{display:"flex", flexDirection:"column", alignItems: "center"}}>
+    <div className={toggleDarkMode ? "App App-dark-page" : "App App-light-page"}>
+      <h1 style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <div>
-          <label>Welcome {user.username}!
-            <a href="/api/logout">Logout</a>
+          <label>
+            Welcome {user.username}! <a href="/api/logout">Logout</a>
           </label>
         </div>
         <div style={{ position: 'absolute', right: 10 }}>
           <ToggleButton onLabel="Dark" offLabel="Light"
-                checked={toggleDarkMode} onChange={(e) => setToggleDarkMode(e.value)} />
+            checked={toggleDarkMode} onChange={(e) => setToggleDarkMode(e.value)} />
         </div>
       </h1>
-      <div>
       <Router>
         <Navbar />
-        <row style={{ display: 'flex' }}>
-          <div>
+        <div style={{ display: 'flex' }}>
+          <div style={{ width: '250px', marginRight: '20px' }}>
             <MockCourseDataDropdown />
           </div>
-          <div>
-            <Routes>
-              <Route path='/institutionDataPage' element={<InstitutionDataPage />} />
-              <Route path='/courseAssignmentInfoPage' element={<CourseAssignmentInfoPage />} />
-              <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
-              <Route path='/courseDataPage' element={<CourseDataPage />} />
-              <Route path='/assignmentGradesPage' element={<AssignmentGradesPage />} />
-              <Route path='/assignmentAnnotationsPage' element={<AssignmentAnnotationsPage />} />
-              <Route path='/assignmentReportsPage' element={<AssignmentReportsPage />} />
-              <Route path='/mockAssignmentAnalytics' element={<MockAssignmentAnalytics />} />
-              <Route path='/mockAssignmentPageAnalytics' element={<MockAssignmentPageAnalytics />} />
-            </Routes>
+          <div style={{ flex: 1 }}>
+            <div style={{ marginTop: '20px' }}>
+              <Routes>
+                <Route path='/institutionDataPage' element={<InstitutionDataPage />} />
+                <Route path='/courseAssignmentInfoPage' element={<CourseAssignmentInfoPage />} />
+                <Route path='/institutionCoursesPage' element={<InstitutionCoursesPage />} />
+                <Route path='/courseDataPage' element={<CourseDataPage />} />
+                <Route path='/assignmentGradesPage' element={<AssignmentGradesPage />} />
+                <Route path='/assignmentAnnotationsPage' element={<AssignmentAnnotationsPage />} />
+                <Route path='/assignmentReportsPage' element={<AssignmentReportsPage />} />
+                <Route path='/mockAssignmentAnalytics' element={<MockAssignmentAnalytics />} />
+                <Route path='/mockAssignmentPageAnalytics' element={<MockAssignmentPageAnalytics />} />
+              </Routes>
+            </div>
           </div>
-        </row>
-        <br />
-       </Router>
-      </div>
+        </div>
+      </Router>
     </div>
   );
 }
