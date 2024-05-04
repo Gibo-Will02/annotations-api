@@ -1,3 +1,5 @@
+//The navbar css style setter for index.js in this folder
+
 // import { FaBars } from "react-icons/fa";
 
 import { NavLink as Link } from "react-router-dom";

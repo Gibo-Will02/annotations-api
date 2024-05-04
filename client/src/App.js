@@ -1,3 +1,7 @@
+//The main Application file
+// Responsible for everything else to function and work as intented
+// ABSOLUTELY IMPORTANT DO NOT DELETE unless you like failing classes
+import logo from './logo.svg';
 import './App.css';
 import 'primeicons/primeicons.css';
 import CourseAssignmentInfoPage from './views/CourseAssignmentInfoPage';

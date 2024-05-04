@@ -1,4 +1,9 @@
-
+// This is the main testing file
+// it is regionated based on where the test is testing
+// DO NOT DELETE
+// Read the ClientTestsREADME.md for more information
+// commented out code is for things that no longer exist but may need to re exist at some point
+// the snapshots folder contains a current snapshot of each page taken before any components have loaded
 import { render, screen, fireEvent, getByPlaceholderText, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 //import userEvent from "@testing-library/user-event";
@@ -15,7 +20,6 @@ import AssignmentAnnotationsPage from '../src/views/AssignmentAnnotationsPage';
 import AssignmentReportsPage from '../src/views/AssignmentReportsPage';
 import InstitutionDataPage from '../src/views/InstitutionDataPage';
 import axios, { Axios } from "axios";
-import { Dropdown } from 'primereact/dropdown';
 
 
 // allows us to mock an Axios call function for API Testing
@@ -30,18 +34,21 @@ describe("Jest Snapshot testing suite", () => {
   });
 });
 
+//basic rudementary object confirmation tests
 test('course data page displays correct information', () => {
   render(<CourseDataPage />);
   const TextElement = screen.getByText("Perusall API Course Return:");
   expect(TextElement).toBeInTheDocument();
 });
 
+//basic rudementary object confirmation tests
 test('course data page displays correct information', () => {
   render(<CourseDataPage />);
   const TextElement = screen.getByText("Course Name:");
   expect(TextElement).toBeInTheDocument();
 });
 
+//basic rudementary object confirmation test that a button activates correctly
 test('course data page has search button and activates', ()=> {
     render(<CourseDataPage />);
     const nButton1 = screen.getByText('Search Course');
@@ -66,9 +73,11 @@ describe('Api Testing course data page', () => {
     //jest Axios Mock and acts like the API call returned responseData
     axios.post.mockResolvedValueOnce({ data: responseData });
 
+    //renders the page
     const { getByPlaceholderText, getByText } = render(<CourseDataPage />);
     const myinput = getByPlaceholderText('Course Id Here');
 
+    //changes input text value
     fireEvent.change(myinput, {
       target: {value: 'BRhk8oFtsmnsBHKo4' }
     });
@@ -76,6 +85,7 @@ describe('Api Testing course data page', () => {
     const cdpButton1 = getByText('Search Course');
     fireEvent.click(cdpButton1);
     
+    //waits for all processes to complete before continuing
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
       expect(axios.post).toHaveBeenCalledWith('/api/course_data', { '_CID': 'BRhk8oFtsmnsBHKo4' });
@@ -126,6 +136,7 @@ describe('Api Testing using Fake Data', () => {
     ];
     //mocks the api implementation once and ensures that the test data set is all that is returned
     axios.get.mockImplementationOnce(() => Promise.resolve(responseDataTwo));
+    //renders the page
     const { getByText } = render(<InstitutionCoursesPage />);
 
     //waits for Api call to have processed
@@ -204,6 +215,7 @@ describe('Api Testing using Fake Data', () => {
     //mocks the api call with set data
     axios.post.mockResolvedValueOnce({ data: responseData });
 
+    //renders the page
     const page = render(<CourseAssignmentInfoPage />);
     const { getByPlaceholderText, getByText } = page;
     const myinput = getByPlaceholderText('Course Id Here');
@@ -215,6 +227,7 @@ describe('Api Testing using Fake Data', () => {
     const cdpButton1 = getByText('Search Course');
     fireEvent.click(cdpButton1);
 
+    //waits for all processes to complete before continuing
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
       expect(axios.post).toHaveBeenCalledWith('/api/course_assignments', { '_CID': 'BRhk8oFtsmnsBHKo4' });
@@ -270,6 +283,7 @@ describe('Api Testing using Fake Data for AssignmentGrades Page', () => {
     const cdpButton1 = getByText('Search Assignment');
     fireEvent.click(cdpButton1);
 
+    //waits for all processes to complete before continuing
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
       expect(axios.post).toHaveBeenCalledWith('/api/assignment_grades', { '_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm'});
@@ -328,6 +342,7 @@ describe('Api Testing using Fake Data for AssignmentAnnotations Page', () => {
     const cdpButton1 = getByText('Search Assignment');
     fireEvent.click(cdpButton1);
 
+    //waits for all processes to complete before continuing
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
       expect(axios.post).toHaveBeenCalledWith('/api/assignment_annotations', { '_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm'});
@@ -356,6 +371,7 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     jest.clearAllMocks();
   });
 
+  //this part no longer exists in the project but it might
   /*
   test('checks to see if the API call succeeds for AssignmentReports with report type Submission Time', async ()=> {
     
@@ -426,6 +442,8 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     const myinput = getByPlaceholderText('Course Id Here');
     const inputTwo = getByPlaceholderText('Assignment Id Here');
     const inputThree = getByPlaceholderText('Report Page Here');
+
+    //ensures that dropdown actually exists in the file
     const selectDropdown = await waitFor(
       () => getByTestId("dropTest"),
       {
@@ -448,6 +466,8 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
       target: {value: '0' }
     });
     
+    //this doesn't trigger the dropdowns onchange no matter what I have done and as such this is the 
+    //only way i found to be able to test it. 
     selectDropdown.tabIndex = 0;
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
@@ -458,6 +478,7 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     //const cdpButton1 = getByText('Search Assignment');
     //fireEvent.click(cdpButton1);
 
+    //waits for all processes to complete before continuing
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
       expect(axios.post).toHaveBeenCalledWith('/api/assignment_analytics', {'_CID': 'BRhk8oFtsmnsBHKo4', '_AID': 'qB83qbw8vnAPYNEwm', '_REP': 'pageViews', '_P': '0'});
@@ -485,6 +506,7 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     const myinput = getByPlaceholderText('Course Id Here');
     const inputTwo = getByPlaceholderText('Assignment Id Here');
     const inputThree = getByPlaceholderText('Report Page Here');
+    //checks to see if the dropdown actually exists on the page
     const selectDropdown = await waitFor(
       () => getByTestId("dropTest"),
       {
@@ -507,6 +529,8 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
       target: {value: '0' }
     });
 
+    //this doesn't trigger the dropdowns onchange no matter what I have done and as such this is the 
+    //only way i found to be able to test it. 
     selectDropdown.tabIndex = 1;
     
 
@@ -538,6 +562,7 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
     const myinput = getByPlaceholderText('Course Id Here');
     const inputTwo = getByPlaceholderText('Assignment Id Here');
     const inputThree = getByPlaceholderText('Report Page Here');
+    //checks to see if the dropdown actually exists on the page
     const selectDropdown = await waitFor(
       () => screen.getByTestId("dropTest"),
       {
@@ -562,6 +587,8 @@ describe('Api Testing using Fake Data for AssignmentReports Page', () => {
       target: {value: '0' }
     });
 
+    //this doesn't trigger the dropdowns onchange no matter what I have done and as such this is the 
+    //only way i found to be able to test it. 
     selectDropdown.tabIndex = 2;
 
     expect(myinput.value).toBe('BRhk8oFtsmnsBHKo4');
@@ -653,6 +680,7 @@ describe('Api Tests that confirm that the Api Return Structure is the same as de
     const assignmentId = 'qB83qbw8vnAPYNEwm';
     const reportType = 'Grades';
     const reportPage = '1';
+    //this does the perusall axios api call
     const response = await axios.post('/api/assignment_analytics', {'_CID': courseId, '_AID': assignmentId, '_REP': reportType, '_P': reportPage});
 
     expect(response.data).toEqual(responseData);
@@ -681,6 +709,7 @@ describe('Api Tests that confirm that the Api Return Structure is the same as de
     axios.post.mockResolvedValue({ data: responseData });
 
     const userId = 'BRhk8oFtsmnsBHKo4';
+    //this does the perusall axios api call
     const response = await axios.post('/api/course_data', { '_CID': userId });
 
     //expects current result to equal api result
@@ -702,6 +731,7 @@ describe('Api Tests that confirm that the Api Return Structure is the same as de
 
     const courseId = 'BRhk8oFtsmnsBHKo4';
     const assignmentId = 'qB83qbw8vnAPYNEwm';
+    //this does the perusall axios api call
     const response = await axios.post('/api/assignment_annotations', {'_CID': courseId, '_AID': assignmentId});
 
     //expects current result to equal api result
@@ -735,6 +765,7 @@ describe('Api Tests that confirm that the Api Return Structure is the same as de
     axios.post.mockResolvedValue({ data: responseData });
 
     const courseId = 'BRhk8oFtsmnsBHKo4';
+    //this does the perusall axios api call
     const response = await axios.post('/api/course_assignments', {'_CID': courseId});
 
     //expects current result to equal api result
@@ -775,6 +806,7 @@ describe('Api Tests that confirm that the Api Return Structure is the same as de
 
     const courseId = 'BRhk8oFtsmnsBHKo4';
     const assignmentId = 'qB83qbw8vnAPYNEwm';
+    //this does the perusall axios api call
     const response = await axios.post('/api/assignment_grades', {'_CID': courseId, '_AID': assignmentId});
 
     //expects current result to equal api result
@@ -794,7 +826,7 @@ describe('Api Tests that confirm that the Api Return Structure is the same as de
     ];
     
     axios.get.mockResolvedValue({ data: responseData });
-
+    //this does the perusall axios api call
     const response = await axios.get('/api/institution_courses');
 
     //expects current result to equal api result
@@ -843,6 +875,7 @@ describe('Api Tests that confirm that the Api Return Structure is the same as de
 
     axios.get.mockResolvedValue({ data: responseData });
 
+    //this does the perusall axios api call
     const response = await axios.get('/api/institution_roster');
 
     //expects current result to equal api result

@@ -1,3 +1,8 @@
+/*
+* this sets up the proxy for the middleware located in server
+* No longer really needed as it functionality has been changed and no longer needed
+*
+*/
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 /**

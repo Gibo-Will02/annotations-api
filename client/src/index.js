@@ -1,3 +1,5 @@
+// This File renders the App file on the website root
+// VERY IMPORTANT DO NOT DELETE
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

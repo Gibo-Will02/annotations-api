@@ -1,3 +1,4 @@
+//this file is just a mockup of the Assignment Analytics api return call
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -7,6 +8,7 @@ import "primereact/resources/themes/bootstrap4-light-purple/theme.css";
 
 const MockAssignmentAnalytics = () => {
 
+    //mocked data that would be returned 
     const mockData = [
         {
             "name": "Gibson Williams",

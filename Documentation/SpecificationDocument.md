@@ -5,18 +5,21 @@ This application helps instructors, teachers, and professors ensure that student
 # Project Overview 
 General factors that are affecting this product and its requirements are that it is being designed as a tool for helping students better comprehend material given by their teacher/instructor, while also being designed for K-State University use. This application helps instructors, teachers, and professors ensure that students read and understand concepts while allowing students to annotate and ask questions on assigned readings. This grants students the ability to ask questions when they have trouble understanding some parts of the assigned reading and grants other students answers to similar questions. The biggest constraint we are facing is understanding our use cases for developing the application.
 
-## List of Features: 
- - Provides a service to help assign reading to students and allows the students to make annotations on the assigned reading. 
+## Current Features
 
- - Allows the student to be able to go back and see previous annotations and highlights from previous classes even after their class ends. 
+- Get data from Perusall API.
 
- - App interfaces with Perusall, then Perusall communicates with canvas and Perusall will pass back grades to canvas to set the grade for the assigned reading 
+- Store data in Postgres database.
 
- - Professor can set URLs for reading assignments with Perusall and can set reading to only cover certain pages. 
+- Displays data on webpages from API and database.
 
- - Database back-end stored at K-State to save what the students highlighted and annotated, to be used in research on how students who did well studied 
+## Future Features: 
 
- - Application after interfacing with Perusall allows for gathering data from Perusall’s API. 
+ - Database stored at K-State to save information on how students performed in their classes.
+
+ - Application aggregates data
+
+ - [ToDo List](ProjectToDo.md)
  
 ## General Stakeholders
 
@@ -96,4 +99,4 @@ The physical environments that our application will be used in are at a universi
 # Appendices
 ### Database Diagram
 
-![Database diagram](Images/DatabaseDiagram.png)
+[Database diagram](DatabaseDiagram.drawio.pdf)
