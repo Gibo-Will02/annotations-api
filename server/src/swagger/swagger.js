@@ -24,8 +24,6 @@ function swaggerDocs(app, num) {
         Request.setHeader("Content-Type", "application/json");
         Response.send(swaggerSpec);
     });
-
-    console.log('plz work');
 }
 
 module.exports = swaggerDocs;

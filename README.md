@@ -66,4 +66,6 @@ At this point the project will be port forwarded and the port will be found unde
 
 Both the client and server do hot code reloading, so you the server and/or client reboot and redeploy as you save changes in the code.  The only exception is changes to the dependencies and package file, which require a rebuild using `npm install` and through docker-compose. The server side may take a bit to load up so if the client side loads faster and says the server is not working, give it a moment and refresh the page.
 
+Furthermore, if you want to see the API calls that the project utilizes in action, when you run the server, it you can open it when running the server putting this into your search bar:
 
+**https://{codespace_name}-3050.app.github.dev/docs**

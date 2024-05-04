@@ -91,7 +91,7 @@ The physical environments that our application will be used in are at a universi
 # Semester Goals
 
 ### Minimum viable product 
-- The system sends and retrieves information from Perusall and saves data about assignments to a database. While allowing users to complete Perusall assigned readings.
+- The system sends and retrieves information from Perusall and saves data about assignments to a database. Allows professors to see minimal perusall assigned reading data.
 
 ### Enhanced Version
 - Along with the minimal requirements, the application will allow professors to query the database and apply sorting to the recieved information.
